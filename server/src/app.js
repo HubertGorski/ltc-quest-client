@@ -2,18 +2,20 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const morgan = require("morgan");
+const { sequelize } = require("./models");
+const config = require("./config/config");
 
 const app = express();
 app.use(morgan("combine"));
 app.use(bodyParser.json());
 app.use(cors());
 
-var listener = app.listen(process.env.PORT || 8081, function () {
-  console.log("Listening on port " + listener.address().port);
-});
+require("./routes")(app);
 
-app.get("/status", (req, res) => {
-  res.send({
-    message: "hellko",
+sequelize.sync().then(() => {
+  app.listen(config.port, function () {
+    console.log(`Serwer ruszył na porcie ${config.port}`);
   });
 });
+
+// sequelize.drop({ match: /_test$/ });
