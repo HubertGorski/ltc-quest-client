@@ -11,13 +11,13 @@ const sequelize = new Sequelize(
   config.db.options
 );
 
-// fs.readdirSync(__dirname)
-//   .filter((file) => file !== "index.js")
-//   .forEach((file) => {
-//     const model = sequelize.define(path.join(__dirname, file));
-//     db[model.name] = model;
-//   });
-db.users = require("./User")(sequelize, DataTypes);
+fs.readdirSync(__dirname)
+  .filter((file) => file !== "index.js")
+  .forEach((file) => {
+    const extension = path.extname(file);
+    const fileName = path.basename(file, extension);
+    db[fileName] = require(path.join(__dirname, file))(sequelize, DataTypes);
+  });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

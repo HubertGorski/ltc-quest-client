@@ -3,11 +3,12 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoincrement: true,
+      autoIncrement: true,
     },
     login: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     password: {
       type: DataTypes.STRING,
@@ -15,10 +16,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: {
       type: DataTypes.STRING,
+      unique: true,
     },
     rank: {
       type: DataTypes.STRING,
-      defaultValue: "Uczestnik",
+      defaultValue: "Participant",
     },
     teamId: {
       type: DataTypes.INTEGER,
