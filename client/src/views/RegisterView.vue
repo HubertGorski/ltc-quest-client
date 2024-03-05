@@ -6,7 +6,6 @@ import { reactive, ref } from "vue";
 interface User {
   login: string;
   password: string;
-  acceptedRules: boolean;
 }
 const error = ref<string>("");
 const newUser: User = reactive({
@@ -30,9 +29,9 @@ const registerNewUser = async () => {
   <div>
     <div
       :class="{ 'rounded-b-xl': !error }"
-      class="elevation-2 mx-auto mt-12 mb-2 w-25"
+      class="elevation-2 mx-4 mt-12 mb-2 rounded-t-lg"
     >
-      <v-toolbar color="deep-purple accent-4">
+      <v-toolbar class="rounded-t-lg" color="deep-purple accent-4">
         <v-toolbar-title>Register</v-toolbar-title>
       </v-toolbar>
       <div class="px-4 py-4">
