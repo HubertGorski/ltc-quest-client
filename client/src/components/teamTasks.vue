@@ -10,7 +10,62 @@ const props = defineProps({
     <v-card-text>
       <v-window v-model="props.selectedTeamId">
         <v-window-item :value="TEAM_ID.TEAM_1"> One </v-window-item>
-        <v-window-item :value="TEAM_ID.TEAM_2"> Two </v-window-item>
+        <v-window-item :value="TEAM_ID.TEAM_2">
+          <div>
+            <div>task1</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task</div>
+            <div>task2</div>
+          </div>
+        </v-window-item>
         <v-window-item :value="TEAM_ID.TEAM_3"> Three </v-window-item>
         <v-window-item :value="TEAM_ID.TEAM_4"> Four </v-window-item>
         <v-window-item :value="TEAM_ID.ALL_TEAMS"> ALL </v-window-item>

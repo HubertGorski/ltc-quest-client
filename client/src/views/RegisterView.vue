@@ -48,7 +48,7 @@ const registerNewUser = async () => {
             v-model="newUser.password"
           ></v-text-field>
           <div class="d-flex justify-center">
-            <v-btn @click="registerNewUser"> Register </v-btn>
+            <v-btn @click="registerNewUser">Register</v-btn>
           </div>
         </form>
       </div>
