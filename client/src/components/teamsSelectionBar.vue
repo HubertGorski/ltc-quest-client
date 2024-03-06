@@ -12,7 +12,7 @@ const emit = defineEmits<{
   (e: "changeTeam", value: number): void;
 }>();
 
-const selectedTeamId = ref<number>(1);
+const selectedTeamId = ref<number>(TEAM_ID.ALL_TEAMS);
 const color = computed(() => {
   switch (selectedTeamId.value) {
     case TEAM_ID.TEAM_1:
