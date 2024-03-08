@@ -2,19 +2,21 @@
 import teamsSelectionBar from "@/components/teamsSelectionBar.vue";
 import teamTasks from "@/components/teamTasks.vue";
 import taskSearcher from "@/components/taskSearcher.vue";
-import { TEAM_ID } from "@/enums/enumTeams";
+import { teams } from "@/assets/data/teams";
+import { tasks } from "@/assets/data/tasks";
 
 import { ref } from "vue";
+import type { Team } from "@/models/Team";
 
-const selectedTeamId = ref<number>(TEAM_ID.ALL_TEAMS);
+const selectedTeam = ref<Team>(teams[0]);
 const changeTeam = (teamId: number) => {
-  selectedTeamId.value = teamId;
+  selectedTeam.value = teams[teamId];
 };
 </script>
 
 <template>
   <task-searcher></task-searcher>
-  <team-tasks :selectedTeamId="selectedTeamId"></team-tasks>
+  <team-tasks :tasks="tasks" :selectedTeam="selectedTeam"></team-tasks>
   <teams-selection-bar @changeTeam="changeTeam"></teams-selection-bar>
 </template>
 

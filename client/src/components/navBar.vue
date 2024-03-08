@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { TEAM_LOGO, TEAM_NAME, TEAM_COLOR } from "@/enums/enumTeams";
-import { USER_NAME } from "@/enums/enumUsers";
+import { USER } from "@/enums/enumUsers";
 import { useRoute } from "vue-router";
 
 const isOpenMenu = ref<boolean>(false);
@@ -38,7 +38,7 @@ const currentRouteName = computed(() => route.name);
             <v-list-item
               prepend-avatar="https://cdn.vuetifyjs.com/images/john.jpg"
               :subtitle="TEAM_NAME.TEAM_1"
-              :title="USER_NAME.USER_1"
+              :title="USER.NAME"
             >
               <template v-slot:append>
                 <v-icon>{{ TEAM_LOGO.TEAM_1 }}</v-icon>

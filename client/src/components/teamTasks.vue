@@ -1,74 +1,32 @@
 <script setup lang="ts">
 import { TEAM_ID } from "@/enums/enumTeams";
+import taskListElement from "@/components/taskListElement.vue";
+import { Team } from "@/models/Team";
+import { Task } from "@/models/Task";
+
 const props = defineProps({
-  selectedTeamId: Number,
+  selectedTeam: {
+    type: Team,
+    required: true,
+  },
+  tasks: {
+    type: Array<Task>,
+    required: true,
+  },
 });
 </script>
 
 <template>
   <v-card>
     <v-card-text>
-      <v-window v-model="props.selectedTeamId">
-        <v-window-item :value="TEAM_ID.TEAM_1"> One </v-window-item>
-        <v-window-item :value="TEAM_ID.TEAM_2">
-          <div>
-            <div>task1</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task</div>
-            <div>task2</div>
-          </div>
+      <v-window v-model="selectedTeam.teamId">
+        <v-window-item :value="TEAM_ID.TEAM_1">
+          <task-list-element :task="tasks[0]" :team="selectedTeam" />
         </v-window-item>
-        <v-window-item :value="TEAM_ID.TEAM_3"> Three </v-window-item>
-        <v-window-item :value="TEAM_ID.TEAM_4"> Four </v-window-item>
-        <v-window-item :value="TEAM_ID.ALL_TEAMS"> ALL </v-window-item>
+        <v-window-item :value="TEAM_ID.TEAM_2"> </v-window-item>
+        <v-window-item :value="TEAM_ID.TEAM_3"> </v-window-item>
+        <v-window-item :value="TEAM_ID.TEAM_4"> </v-window-item>
+        <v-window-item :value="TEAM_ID.ALL_TEAMS"> </v-window-item>
       </v-window>
     </v-card-text>
   </v-card>
