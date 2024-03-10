@@ -22,3 +22,5 @@ export class Team {
     this.size = size;
   }
 }
+
+export const noSelectedTeam = new Team(0, "Everyone", "blue-grey", "");

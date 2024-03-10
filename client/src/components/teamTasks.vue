@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { TEAM_ID } from "@/enums/enumTeams";
 import taskListElement from "@/components/taskListElement.vue";
+import type { Task } from "@/models/Task";
 import { Team } from "@/models/Team";
-import { Task } from "@/models/Task";
+import { computed, ref, watch } from "vue";
 
 const props = defineProps({
-  selectedTeam: {
-    type: Team,
+  teams: {
+    type: Array<Team>,
     required: true,
   },
   tasks: {
@@ -14,19 +14,33 @@ const props = defineProps({
     required: true,
   },
 });
+const selectedTab = defineModel({ required: true, type: Number });
 </script>
 
 <template>
   <v-card>
     <v-card-text>
-      <v-window v-model="selectedTeam.teamId">
-        <v-window-item :value="TEAM_ID.TEAM_1">
-          <task-list-element :task="tasks[0]" :team="selectedTeam" />
+      {{ selectedTab }}
+      <v-window v-model="selectedTab">
+        <v-window-item>
+          all
+          <task-list-element
+            v-for="task of tasks"
+            :key="task.teamTaskId"
+            :task="task"
+          />
         </v-window-item>
-        <v-window-item :value="TEAM_ID.TEAM_2"> </v-window-item>
-        <v-window-item :value="TEAM_ID.TEAM_3"> </v-window-item>
-        <v-window-item :value="TEAM_ID.TEAM_4"> </v-window-item>
-        <v-window-item :value="TEAM_ID.ALL_TEAMS"> </v-window-item>
+        <v-window-item
+          v-for="team of teams"
+          :key="team.teamId"
+          :value="team.teamId"
+        >
+          <task-list-element
+            v-for="task of tasks"
+            :key="task.teamTaskId"
+            :task="task"
+          />
+        </v-window-item>
       </v-window>
     </v-card-text>
   </v-card>

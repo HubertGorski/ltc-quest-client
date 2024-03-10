@@ -1,24 +1,33 @@
 <script setup lang="ts">
 import { Task } from "@/models/Task";
-import { Team } from "@/models/Team";
 
 const props = defineProps({
-  team: {
-    type: Team,
-    required: true,
-  },
   task: {
     type: Task,
     required: true,
   },
 });
+const taskColor = props.task.isDone
+  ? `text-${props.task.teamTaskColor} isDone`
+  : "text-grey-darken-3";
 </script>
 
 <template>
-  <div :class="{ isDone: task.isDone }" class="task text-grey-darken-3">
+  <div :class="[taskColor]" class="task">
     <div class="task_info">
-      <div class="title">{{ task.title }}</div>
-      <div v-if="!task.isDone" class="description text-grey-darken-2">
+      <div class="title">
+        <v-icon
+          v-if="task.isRejected"
+          class="pb-1 mr-1 text-red-accent-4"
+          size="20"
+          >mdi-alert-circle</v-icon
+        >
+        <span> {{ task.title }}</span>
+      </div>
+      <div
+        v-if="!task.isDone && !task.isExpectancy"
+        class="description text-grey-darken-2"
+      >
         {{ task.description }}
       </div>
     </div>

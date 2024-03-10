@@ -1,63 +1,38 @@
 <script setup lang="ts">
-import {
-  TEAM_COLOR,
-  TEAM_ID,
-  TEAM_NAME,
-  TEAM_LOGO,
-  teamIds,
-} from "@/enums/enumTeams";
-import { computed, ref, watch } from "vue";
+import { Team } from "@/models/Team";
+import { noSelectedTeam } from "@/models/Team";
+import { watch } from "vue";
 
-const emit = defineEmits<{
-  (e: "changeTeam", value: number): void;
-}>();
-
-const selectedTeamId = ref<number>(TEAM_ID.ALL_TEAMS);
-const color = computed(() => {
-  switch (selectedTeamId.value) {
-    case TEAM_ID.TEAM_1:
-      return TEAM_COLOR.TEAM_1;
-    case TEAM_ID.TEAM_2:
-      return TEAM_COLOR.TEAM_2;
-    case TEAM_ID.TEAM_3:
-      return TEAM_COLOR.TEAM_3;
-    case TEAM_ID.TEAM_4:
-      return TEAM_COLOR.TEAM_4;
-    default:
-      return TEAM_COLOR.ALL_TEAMS;
-  }
+const props = defineProps({
+  teams: {
+    type: Array<Team>,
+    required: true,
+  },
 });
 
-watch(selectedTeamId, (newSelectedTeamId) => {
-  newSelectedTeamId = teamIds.includes(newSelectedTeamId)
-    ? newSelectedTeamId
-    : TEAM_ID.ALL_TEAMS;
-  emit("changeTeam", newSelectedTeamId);
+const selectedTab = defineModel({ required: true, type: Number });
+const colors: string[] = [];
+colors.push(noSelectedTeam.color);
+props.teams.forEach((team) => {
+  colors.push(team.color);
+});
+
+watch(selectedTab, (newSelectedTab) => {
+  selectedTab.value = newSelectedTab ? newSelectedTab : 0;
 });
 </script>
 
 <template>
   <v-layout class="overflow-visible" style="height: 56px">
     <v-bottom-navigation
-      v-model="selectedTeamId"
-      :bg-color="color"
+      v-model="selectedTab"
+      :bg-color="colors[selectedTab]"
       mode="shift"
     >
-      <v-btn>
-        <v-icon>{{ TEAM_LOGO.TEAM_1 }}</v-icon>
-        <span>{{ TEAM_NAME.TEAM_1 }}</span>
-      </v-btn>
-      <v-btn>
-        <v-icon>{{ TEAM_LOGO.TEAM_2 }}</v-icon>
-        <span>{{ TEAM_NAME.TEAM_2 }}</span>
-      </v-btn>
-      <v-btn>
-        <v-icon>{{ TEAM_LOGO.TEAM_3 }}</v-icon>
-        <span>{{ TEAM_NAME.TEAM_3 }}</span>
-      </v-btn>
-      <v-btn>
-        <v-icon>{{ TEAM_LOGO.TEAM_4 }}</v-icon>
-        <span>{{ TEAM_NAME.TEAM_4 }}</span>
+      <v-btn v-show="false">noSelectedTeam</v-btn>
+      <v-btn v-for="team of teams" :key="team.teamId">
+        <v-icon>{{ team.logo }}</v-icon>
+        <span>{{ team.name }}</span>
       </v-btn>
     </v-bottom-navigation>
   </v-layout>

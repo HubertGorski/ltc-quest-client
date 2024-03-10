@@ -11,6 +11,7 @@ export class Task {
   creationDate: string;
   teamId: number;
   userId: number;
+  teamTaskColor: string;
   acceptDate: string | null;
   accepterId: number | null;
 
@@ -24,6 +25,7 @@ export class Task {
     creationDate: string,
     teamId: number,
     userId: number,
+    teamTaskColor: string,
     acceptDate: string | null = null,
     accepterId: number | null = null
   ) {
@@ -36,6 +38,7 @@ export class Task {
     this.creationDate = creationDate;
     this.teamId = teamId;
     this.userId = userId;
+    this.teamTaskColor = teamTaskColor;
     this.acceptDate = acceptDate;
     this.accepterId = accepterId;
   }
@@ -46,6 +49,14 @@ export class Task {
 
   get isDone(): boolean {
     return TASK_STATUS.CONFIRMED === this.status;
+  }
+
+  get isRejected(): boolean {
+    return TASK_STATUS.REJECTED === this.status;
+  }
+
+  get isExpectancy(): boolean {
+    return TASK_STATUS.EXPECTANCY === this.status;
   }
 }
 

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { TEAM_LOGO, TEAM_NAME, TEAM_COLOR } from "@/enums/enumTeams";
 import { USER } from "@/enums/enumUsers";
 import { useRoute } from "vue-router";
+import { noSelectedTeam } from "@/models/Team";
 
 const isOpenMenu = ref<boolean>(false);
 const closeMenu = () => {
@@ -21,7 +21,7 @@ const currentRouteName = computed(() => route.name);
       location="bottom"
     >
       <template v-slot:activator="{ props }">
-        <v-toolbar :color="TEAM_COLOR.ALL_TEAMS">
+        <v-toolbar :color="noSelectedTeam.color">
           <v-toolbar-title>{{ currentRouteName }}</v-toolbar-title>
           <v-btn class="mx-4" v-bind="props">
             <v-icon size="32">mdi-menu</v-icon>
@@ -37,11 +37,11 @@ const currentRouteName = computed(() => route.name);
           >
             <v-list-item
               prepend-avatar="https://cdn.vuetifyjs.com/images/john.jpg"
-              :subtitle="TEAM_NAME.TEAM_1"
+              :subtitle="USER.TEAM"
               :title="USER.NAME"
             >
               <template v-slot:append>
-                <v-icon>{{ TEAM_LOGO.TEAM_1 }}</v-icon>
+                <v-icon>{{ USER.TEAM_LOGO }}</v-icon>
               </template>
             </v-list-item>
           </RouterLink>

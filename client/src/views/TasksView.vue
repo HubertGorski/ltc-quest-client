@@ -3,21 +3,63 @@ import teamsSelectionBar from "@/components/teamsSelectionBar.vue";
 import teamTasks from "@/components/teamTasks.vue";
 import taskSearcher from "@/components/taskSearcher.vue";
 import { teams } from "@/assets/data/teams";
-import { tasks } from "@/assets/data/tasks";
+import { computed, reactive, ref } from "vue";
+import type { Filters } from "@/enums/enumTasks";
+import { tasksData } from "@/assets/data/tasks";
+import type { Task } from "@/models/Task";
 
-import { ref } from "vue";
-import type { Team } from "@/models/Team";
+const searchPhrase = ref<String>("");
+const activeSortState = ref<number>(0);
+const activeTabRef = ref<number>(0);
+const activeFilters: Filters = reactive({
+  taskStatus: [],
+  taskPoints: [],
+  taskTypes: [],
+});
 
-const selectedTeam = ref<Team>(teams[0]);
-const changeTeam = (teamId: number) => {
-  selectedTeam.value = teams[teamId];
+const changeFilters = (filters: Filters) => {
+  activeFilters.taskStatus = filters.taskStatus;
+  activeFilters.taskPoints = filters.taskPoints;
+  activeFilters.taskTypes = filters.taskTypes;
 };
+
+const setSearchPhrase = (phrase: String) => {
+  searchPhrase.value = phrase;
+};
+
+const setSortState = (sortState: number) => {
+  activeSortState.value = sortState;
+};
+
+const tasks = tasksData;
+const filteredTasks = computed(() => {
+  return searchPhrase.value === ""
+    ? tasks
+    : tasks.filter(
+        (task: Task) =>
+          task.title.toLowerCase().includes(searchPhrase.value.toLowerCase()) ||
+          task.description
+            .toLowerCase()
+            .includes(searchPhrase.value.toLowerCase())
+      );
+});
 </script>
 
 <template>
-  <task-searcher></task-searcher>
-  <team-tasks :tasks="tasks" :selectedTeam="selectedTeam"></team-tasks>
-  <teams-selection-bar @changeTeam="changeTeam"></teams-selection-bar>
+  <task-searcher
+    @setSearchPhrase="setSearchPhrase"
+    @setSortState="setSortState"
+    @changeFilters="changeFilters"
+  ></task-searcher>
+  <team-tasks
+    v-model="activeTabRef"
+    :tasks="filteredTasks"
+    :teams="teams"
+  ></team-tasks>
+  <teams-selection-bar
+    :teams="teams"
+    v-model="activeTabRef"
+  ></teams-selection-bar>
 </template>
 
 <style scoped></style>
