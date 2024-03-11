@@ -12,8 +12,8 @@ const tasks = ref<Task[]>(tasksData);
 const activeTab = ref<number>(0);
 const activeFilters: Filters = reactive({
   taskStatus: [],
-  taskPoints: [],
-  taskTypes: [],
+  taskPoints: null,
+  taskTypes: null,
 });
 
 const changeFilters = (filters: Filters) => {

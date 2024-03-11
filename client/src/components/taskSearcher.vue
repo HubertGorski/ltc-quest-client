@@ -19,8 +19,8 @@ const sortTasksState = ref<number>(0);
 
 const filters: Filters = reactive({
   taskStatus: [],
-  taskPoints: [],
-  taskTypes: [],
+  taskPoints: null,
+  taskTypes: null,
 });
 
 const sortTasks = () => {
@@ -35,6 +35,14 @@ const btnSortClass = computed(() => {
   return sortTasksState.value === 0
     ? "elevation-1 bg-grey-lighten-4 text-grey-darken-1"
     : `elevation-4 bg-grey-lighten-4 text-black active`;
+});
+
+const isEmptyFilters = computed(() => {
+  return (
+    filters.taskPoints === null &&
+    filters.taskStatus.length === 0 &&
+    filters.taskTypes === null
+  );
 });
 
 watch(sortTasksState, (state) => {
@@ -52,39 +60,52 @@ watch(searchTaskPhrase, (newSearchTaskPhrase) => {
     searchPhrase: newSearchTaskPhrase,
   });
 });
+const panelActive = ref<boolean>(false);
+const showFilters = () => {
+  panelActive.value = !panelActive.value;
+};
 </script>
 
 <template>
   <div class="px-4 py-4">
-    <v-select
-      item-title="title"
-      item-value="value"
-      v-model="filters.taskStatus"
-      :items="taskStatusItems"
-      :label="TASK_LABELS.TASK_STATUS"
-      multiple
-      hide-details
-      clearable
-    ></v-select>
-    <v-select
-      class="my-2"
-      item-title="title"
-      item-value="value"
-      v-model="filters.taskPoints"
-      :items="taskPointsItems"
-      :label="TASK_LABELS.TASK_POINTS"
-      hide-details
-      clearable
-    ></v-select>
-    <v-select
-      item-title="title"
-      item-value="value"
-      v-model="filters.taskTypes"
-      :items="taskTypesItems"
-      :label="TASK_LABELS.TASK_TYPE"
-      hide-details
-      clearable
-    ></v-select>
+    <v-btn
+      @click="showFilters"
+      class="w-100 h-25 elevation-1 bg-grey-lighten-4"
+      :class="[isEmptyFilters ? 'text-grey-darken-1' : 'text-black']"
+    >
+      <v-icon>mdi-filter</v-icon>
+    </v-btn>
+    <div v-if="panelActive" class="pt-2">
+      <v-select
+        item-title="title"
+        item-value="value"
+        v-model="filters.taskStatus"
+        :items="taskStatusItems"
+        :label="TASK_LABELS.TASK_STATUS"
+        multiple
+        hide-details
+        clearable
+      ></v-select>
+      <v-select
+        class="my-2"
+        item-title="title"
+        item-value="value"
+        v-model="filters.taskPoints"
+        :items="taskPointsItems"
+        :label="TASK_LABELS.TASK_POINTS"
+        hide-details
+        clearable
+      ></v-select>
+      <v-select
+        item-title="title"
+        item-value="value"
+        v-model="filters.taskTypes"
+        :items="taskTypesItems"
+        :label="TASK_LABELS.TASK_TYPE"
+        hide-details
+        clearable
+      ></v-select>
+    </div>
     <v-sheet class="d-flex pt-2">
       <v-sheet class="flex-grow-1 align-center">
         <v-text-field
@@ -103,6 +124,7 @@ watch(searchTaskPhrase, (newSearchTaskPhrase) => {
       </v-sheet>
     </v-sheet>
   </div>
+  <v-divider></v-divider>
 </template>
 
 <style scoped>

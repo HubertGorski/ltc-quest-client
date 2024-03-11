@@ -22,7 +22,19 @@ const currentRouteName = computed(() => route.name);
     >
       <template v-slot:activator="{ props }">
         <v-toolbar :color="noSelectedTeam.color">
-          <v-toolbar-title>{{ currentRouteName }}</v-toolbar-title>
+          <v-toolbar-title>
+            <div class="d-flex align-center">
+              <span>
+                {{ currentRouteName }}
+              </span>
+              <span
+                class="text-body-1 font-italic px-1"
+                v-if="currentRouteName === 'Zadania'"
+              >
+                (3/45)
+              </span>
+            </div>
+          </v-toolbar-title>
           <v-btn class="mx-4" v-bind="props">
             <v-icon size="32">mdi-menu</v-icon>
           </v-btn>

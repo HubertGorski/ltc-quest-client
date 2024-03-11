@@ -84,8 +84,8 @@ interface FilterTasks {
 
 export interface Filters {
   taskStatus: Number[];
-  taskPoints: Number[];
-  taskTypes: Number[];
+  taskPoints: Number | null;
+  taskTypes: Number | null;
 }
 export interface SearchData {
   sortState: Number;
