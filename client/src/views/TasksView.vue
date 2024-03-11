@@ -55,6 +55,7 @@ const filteredTasks = computed(() => {
     v-model="activeTabRef"
     :tasks="filteredTasks"
     :teams="teams"
+    :activeSortState="activeSortState"
   ></team-tasks>
   <teams-selection-bar
     :teams="teams"

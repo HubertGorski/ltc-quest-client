@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Team } from "@/models/Team";
 import { noSelectedTeam } from "@/models/Team";
-import { watch } from "vue";
+import { computed, watch } from "vue";
 
 const props = defineProps({
   teams: {
@@ -10,7 +10,7 @@ const props = defineProps({
   },
 });
 
-const selectedTab = defineModel({ required: true, type: Number });
+const selectedTab = defineModel({ required: true });
 const colors: string[] = [];
 colors.push(noSelectedTeam.color);
 props.teams.forEach((team) => {
@@ -20,15 +20,17 @@ props.teams.forEach((team) => {
 watch(selectedTab, (newSelectedTab) => {
   selectedTab.value = newSelectedTab ? newSelectedTab : 0;
 });
+
+const color = computed(() => {
+  return typeof selectedTab.value === "number"
+    ? colors[selectedTab.value]
+    : colors[noSelectedTeam.teamId];
+});
 </script>
 
 <template>
   <v-layout class="overflow-visible" style="height: 56px">
-    <v-bottom-navigation
-      v-model="selectedTab"
-      :bg-color="colors[selectedTab]"
-      mode="shift"
-    >
+    <v-bottom-navigation v-model="selectedTab" :bg-color="color" mode="shift">
       <v-btn v-show="false">noSelectedTeam</v-btn>
       <v-btn v-for="team of teams" :key="team.teamId">
         <v-icon>{{ team.logo }}</v-icon>

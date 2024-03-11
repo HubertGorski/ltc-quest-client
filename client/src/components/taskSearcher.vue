@@ -37,6 +37,9 @@ const btnSortClass = computed(() => {
     : `elevation-4 bg-grey-lighten-4 text-black active`;
 });
 
+watch(sortTasksState, (state) => {
+  emit("setSortState", state);
+});
 watch(filters, (newFilters) => {
   emit("changeFilters", newFilters);
 });
