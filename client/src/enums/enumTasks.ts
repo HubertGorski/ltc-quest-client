@@ -87,3 +87,7 @@ export interface Filters {
   taskPoints: Number[];
   taskTypes: Number[];
 }
+export interface SearchData {
+  sortState: Number;
+  searchPhrase: String;
+}

@@ -10,27 +10,27 @@ const props = defineProps({
   },
 });
 
-const selectedTab = defineModel({ required: true });
+const activeTab = defineModel({ required: true });
 const colors: string[] = [];
 colors.push(noSelectedTeam.color);
 props.teams.forEach((team) => {
   colors.push(team.color);
 });
 
-watch(selectedTab, (newSelectedTab) => {
-  selectedTab.value = newSelectedTab ? newSelectedTab : 0;
+watch(activeTab, (newActiveTab) => {
+  activeTab.value = newActiveTab ? newActiveTab : 0;
 });
 
 const color = computed(() => {
-  return typeof selectedTab.value === "number"
-    ? colors[selectedTab.value]
+  return typeof activeTab.value === "number"
+    ? colors[activeTab.value]
     : colors[noSelectedTeam.teamId];
 });
 </script>
 
 <template>
   <v-layout class="overflow-visible" style="height: 56px">
-    <v-bottom-navigation v-model="selectedTab" :bg-color="color" mode="shift">
+    <v-bottom-navigation v-model="activeTab" :bg-color="color" mode="shift">
       <v-btn v-show="false">noSelectedTeam</v-btn>
       <v-btn v-for="team of teams" :key="team.teamId">
         <v-icon>{{ team.logo }}</v-icon>

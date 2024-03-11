@@ -2,7 +2,6 @@
 import taskListElement from "@/components/taskListElement.vue";
 import type { Task } from "@/models/Task";
 import { Team } from "@/models/Team";
-import { ref, watch } from "vue";
 
 const props = defineProps({
   teams: {
@@ -13,37 +12,8 @@ const props = defineProps({
     type: Array<Task>,
     required: true,
   },
-  activeSortState: {
-    type: Number,
-    required: true,
-  },
 });
 const selectedTab = defineModel({ required: true });
-const filteredTasks = ref<Task[]>(props.tasks);
-const sortedTasks = ref<Task[]>(props.tasks);
-
-const sortTasks = (activeSortState: Number, tasks: Task[]) => {
-  if (activeSortState === 1) {
-    sortedTasks.value = [...tasks].sort((a, b) => a.points - b.points);
-  } else if (activeSortState === 2) {
-    sortedTasks.value = [...tasks].sort((a, b) => b.points - a.points);
-  } else {
-    sortedTasks.value = [...tasks];
-  }
-};
-watch(
-  () => props.activeSortState,
-  () => {
-    sortTasks(props.activeSortState, filteredTasks.value);
-  }
-);
-watch(
-  () => props.tasks,
-  () => {
-    filteredTasks.value = props.tasks;
-    sortTasks(props.activeSortState, filteredTasks.value);
-  }
-);
 </script>
 
 <template>
@@ -53,7 +23,7 @@ watch(
         <v-window-item>
           all
           <task-list-element
-            v-for="task of sortedTasks"
+            v-for="task of tasks"
             :key="task.teamTaskId"
             :task="task"
           />
@@ -64,7 +34,7 @@ watch(
           :value="team.teamId"
         >
           <task-list-element
-            v-for="task of sortedTasks"
+            v-for="task of tasks"
             :key="task.teamTaskId"
             :task="task"
           />

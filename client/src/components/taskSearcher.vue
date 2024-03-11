@@ -5,13 +5,13 @@ import {
   taskTypesItems,
   TASK_LABELS,
   type Filters,
+  type SearchData,
 } from "@/enums/enumTasks";
 import { computed, reactive, ref, watch } from "vue";
 
 const emit = defineEmits<{
   (e: "changeFilters", value: Filters): void;
-  (e: "setSearchPhrase", value: string): void;
-  (e: "setSortState", value: number): void;
+  (e: "modifyTaskList", value: SearchData): void;
 }>();
 
 const searchTaskPhrase = ref<string>("");
@@ -38,13 +38,19 @@ const btnSortClass = computed(() => {
 });
 
 watch(sortTasksState, (state) => {
-  emit("setSortState", state);
+  emit("modifyTaskList", {
+    sortState: state,
+    searchPhrase: searchTaskPhrase.value,
+  });
 });
 watch(filters, (newFilters) => {
   emit("changeFilters", newFilters);
 });
 watch(searchTaskPhrase, (newSearchTaskPhrase) => {
-  emit("setSearchPhrase", newSearchTaskPhrase);
+  emit("modifyTaskList", {
+    sortState: sortTasksState.value,
+    searchPhrase: newSearchTaskPhrase,
+  });
 });
 </script>
 
