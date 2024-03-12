@@ -67,7 +67,7 @@ const showFilters = () => {
 </script>
 
 <template>
-  <div class="px-4 py-4">
+  <div class="searcher bg-white">
     <v-btn
       @click="showFilters"
       class="w-100 h-25 elevation-1 bg-grey-lighten-4"
@@ -124,10 +124,15 @@ const showFilters = () => {
       </v-sheet>
     </v-sheet>
   </div>
-  <v-divider></v-divider>
 </template>
 
 <style scoped>
+.searcher {
+  position: sticky;
+  top: 64px;
+  padding: 16px;
+  z-index: 2;
+}
 .active .icon {
   font-size: 32px;
 }

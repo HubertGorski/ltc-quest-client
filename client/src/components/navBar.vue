@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { USER } from "@/enums/enumUsers";
 import { useRoute } from "vue-router";
 import { noSelectedTeam } from "@/models/Team";
+import { users } from "@/assets/data/users";
 
+const currentUser = users[3];
 const isOpenMenu = ref<boolean>(false);
 const closeMenu = () => {
   isOpenMenu.value = false;
@@ -31,7 +32,9 @@ const currentRouteName = computed(() => route.name);
                 class="text-body-1 font-italic px-1"
                 v-if="currentRouteName === 'Zadania'"
               >
-                (3/45)
+                {{
+                  `(${currentUser.completedTasks}/${currentUser.totalTasks})`
+                }}
               </span>
             </div>
           </v-toolbar-title>
@@ -48,12 +51,12 @@ const currentRouteName = computed(() => route.name);
             to="/profile"
           >
             <v-list-item
-              prepend-avatar="https://cdn.vuetifyjs.com/images/john.jpg"
-              :subtitle="USER.TEAM"
-              :title="USER.NAME"
+              :prepend-avatar="currentUser.avatar"
+              :subtitle="currentUser.teamName"
+              :title="currentUser.name"
             >
               <template v-slot:append>
-                <v-icon>{{ USER.TEAM_LOGO }}</v-icon>
+                <v-icon>{{ currentUser.teamLogo }}</v-icon>
               </template>
             </v-list-item>
           </RouterLink>

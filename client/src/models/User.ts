@@ -4,9 +4,12 @@ export class User {
   token: string;
   name: string;
   role: string;
+  permissions: number[];
   avatar: string;
-  teamId: number;
-  permissions: number;
+  teamName: string;
+  teamLogo: string;
+  totalTasks: number;
+  completedTasks: number;
 
   constructor(
     userId: number,
@@ -14,17 +17,23 @@ export class User {
     token: string,
     name: string,
     role: string,
+    permissions: number[],
     avatar: string,
-    teamId: number,
-    permissions: number
+    teamName: string,
+    teamLogo: string,
+    totalTasks: number,
+    completedTasks: number
   ) {
     this.userId = userId;
     this.login = login;
     this.token = token;
     this.name = name;
     this.role = role;
-    this.avatar = avatar;
-    this.teamId = teamId;
     this.permissions = permissions;
+    this.avatar = avatar;
+    this.teamName = teamName;
+    this.teamLogo = teamLogo;
+    this.totalTasks = totalTasks;
+    this.completedTasks = completedTasks;
   }
 }

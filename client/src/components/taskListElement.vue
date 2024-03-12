@@ -13,7 +13,11 @@ const taskColor = props.task.isDone
 </script>
 
 <template>
-  <div :class="[taskColor]" class="task">
+  <RouterLink
+    :to="{ path: `/tasks/${task.teamTaskId}` }"
+    :class="[taskColor]"
+    class="task"
+  >
     <div class="task_info">
       <div class="title">
         <v-icon
@@ -32,7 +36,7 @@ const taskColor = props.task.isDone
       </div>
     </div>
     <div class="task_points">{{ task.points }}</div>
-  </div>
+  </RouterLink>
   <v-divider></v-divider>
 </template>
 
@@ -42,6 +46,7 @@ const taskColor = props.task.isDone
   padding: 12px 4px;
   align-items: center;
   justify-content: space-between;
+  text-decoration: none;
 }
 .task_points {
   padding: 8px;
