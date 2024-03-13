@@ -9,13 +9,19 @@ import {
 } from "@/enums/enumTasks";
 import { computed, reactive, ref, watch } from "vue";
 
+const props = defineProps({
+  sortTasksState: {
+    type: Number,
+    required: true,
+  },
+});
 const emit = defineEmits<{
   (e: "changeFilters", value: Filters): void;
   (e: "modifyTaskList", value: SearchData): void;
 }>();
 
 const searchTaskPhrase = ref<string>("");
-const sortTasksState = ref<number>(0);
+const sortTasksState = ref<number>(props.sortTasksState);
 
 const filters: Filters = reactive({
   taskStatus: [],

@@ -12,7 +12,8 @@ export const tasksData = [
     "piątek",
     1,
     1,
-    "red"
+    "red",
+    "mdi-alien-outline",
   ),
   new Task(
     1,
@@ -24,7 +25,8 @@ export const tasksData = [
     "piątek",
     1,
     1,
-    "red"
+    "red",
+    "mdi-alien-outline",
   ),
   new Task(
     2,
@@ -36,7 +38,8 @@ export const tasksData = [
     "piątek",
     1,
     1,
-    "red"
+    "red",
+    "mdi-alien-outline",
   ),
   new Task(
     3,
@@ -48,7 +51,8 @@ export const tasksData = [
     "piątek",
     1,
     1,
-    "red"
+    "red",
+    "mdi-alien-outline",
   ),
   new Task(
     4,
@@ -60,7 +64,8 @@ export const tasksData = [
     "piątek",
     1,
     1,
-    "red"
+    "red",
+    "mdi-alien-outline",
   ),
   new Task(
     5,
@@ -72,7 +77,8 @@ export const tasksData = [
     "piątek",
     1,
     1,
-    "red"
+    "red",
+    "mdi-alien-outline",
   ),
   new Task(
     6,
@@ -84,7 +90,8 @@ export const tasksData = [
     "piątek",
     1,
     1,
-    "red"
+    "red",
+    "mdi-alien-outline",
   ),
   new Task(
     7,
@@ -96,7 +103,8 @@ export const tasksData = [
     "piątek",
     1,
     1,
-    "red"
+    "red",
+    "mdi-alien-outline",
   ),
   new Task(
     8,
@@ -108,7 +116,8 @@ export const tasksData = [
     "piątek",
     1,
     1,
-    "red"
+    "red",
+    "mdi-alien-outline",
   ),
   new Task(
     9,
@@ -120,7 +129,8 @@ export const tasksData = [
     "piątek",
     1,
     1,
-    "red"
+    "red",
+    "mdi-alien-outline",
   ),
   new Task(
     10,
@@ -132,7 +142,8 @@ export const tasksData = [
     "piątek",
     1,
     1,
-    "red"
+    "red",
+    "mdi-alien-outline",
   ),
   new Task(
     11,
@@ -144,7 +155,8 @@ export const tasksData = [
     "piątek",
     1,
     1,
-    "red"
+    "red",
+    "mdi-alien-outline",
   ),
   new Task(
     12,
@@ -156,7 +168,8 @@ export const tasksData = [
     "piątek",
     1,
     1,
-    "red"
+    "red",
+    "mdi-alien-outline",
   ),
   new Task(
     13,
@@ -168,7 +181,8 @@ export const tasksData = [
     "piątek",
     1,
     1,
-    "red"
+    "red",
+    "mdi-alien-outline",
   ),
   new Task(
     14,
@@ -180,6 +194,7 @@ export const tasksData = [
     "piątek",
     1,
     1,
-    "red"
+    "red",
+    "mdi-alien-outline",
   ),
 ];
