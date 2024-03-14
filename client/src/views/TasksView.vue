@@ -16,7 +16,7 @@ const sortState = computed(() => {
   return route.query.sort ? Number(route.query.sort) : 0;
 });
 const tasks = ref<Task[]>(tasksData);
-const selectedTeamId = route.hash ? teams.find(team => team.name === route.hash.substring(1)).teamId : 0;
+const selectedTeamId = teams.find(team => team.name === route.hash.substring(1))?.teamId || 0;
 const activeTab = ref<number>(selectedTeamId);
 
 watch(activeTab, (newActiveTab) => {

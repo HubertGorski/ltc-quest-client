@@ -5,10 +5,10 @@ export enum TASK_STATUS {
   REJECTED = -1,
 }
 export enum TASK_STATUS_TITLES {
-  CONFIRMED = "Potwierdzone",
-  EXPECTANCY = "Oczekujące",
-  UNDONE = "Do zrealizowania",
-  REJECTED = "Odrzucone",
+  CONFIRMED = "filters.taskStatusTitles.confirmed",
+  EXPECTANCY = "filters.taskStatusTitles.expectancy",
+  UNDONE = "filters.taskStatusTitles.undone",
+  REJECTED = "filters.taskStatusTitles.rejected",
 }
 
 export const taskStatusItems: FilterTasks[] = [
@@ -35,8 +35,8 @@ export enum TASK_POINTS {
   NEGATIVE = 0,
 }
 export enum TASK_POINTS_TITLES {
-  POSITIVE = "Dodatnie punkty",
-  NEGATIVE = "Ujemne punkty",
+  POSITIVE = "filters.taskPointsTitles.positive",
+  NEGATIVE = "filters.taskPointsTitles.negative",
 }
 
 export const taskPointsItems: FilterTasks[] = [
@@ -55,8 +55,8 @@ export enum TASK_TYPE {
   ADDITIONAL = 1,
 }
 export enum TASK_TYPE_TITLES {
-  DEFAULT = "Podstawowe",
-  ADDITIONAL = "Dodatkowe",
+  DEFAULT = "filters.taskTypeTitles.default",
+  ADDITIONAL = "filters.taskTypeTitles.additional",
 }
 
 export const taskTypesItems: FilterTasks[] = [
@@ -70,14 +70,7 @@ export const taskTypesItems: FilterTasks[] = [
   },
 ];
 
-export enum TASK_LABELS {
-  TASK = "Zadanie",
-  TASK_STATUS = "Status zadania",
-  TASK_POINTS = "Punkty zadania",
-  TASK_TYPE = "Typ zadania",
-}
-
-interface FilterTasks {
+export interface FilterTasks {
   title: string;
   value: number;
 }

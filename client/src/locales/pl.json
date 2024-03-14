@@ -1,0 +1,30 @@
+{
+"finishTask": "Zakończ zadanie",
+"back": "Wstecz",
+"taskAvailability": {
+    "forAll": "Zadanie dostępne dla wszystkich drużyn",
+    "forSelected": "Zadanie dostępne dla wybranych drużyn"
+    },
+"filters": {
+    "taskLabels": {
+        "task": "Zadanie",
+        "taskStatus": "Status zadania",
+        "taskPoints": "Punkty zadania",
+        "taskType": "Typ zadania"
+        },
+    "taskStatusTitles": {
+        "confirmed": "Potwierdzone",
+        "expectancy": "Oczekujące",
+        "undone": "Do zrealizowania",
+        "rejected": "Odrzucone"
+        },
+    "taskPointsTitles": {
+        "positive": "Dodatnie punkty",
+        "negative": "Ujemne punkty"
+        },
+    "taskTypeTitles": {
+        "default": "Podstawowe",
+        "additional": "Dodatkowe"
+        }
+    }
+}

@@ -3,11 +3,13 @@ import {
   taskPointsItems,
   taskStatusItems,
   taskTypesItems,
-  TASK_LABELS,
   type Filters,
   type SearchData,
+  type FilterTasks,
 } from "@/enums/enumTasks";
 import { computed, reactive, ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 
 const props = defineProps({
   sortTasksState: {
@@ -70,6 +72,16 @@ const panelActive = ref<boolean>(false);
 const showFilters = () => {
   panelActive.value = !panelActive.value;
 };
+const getTranslatedFilterOptions = (filterOptions: FilterTasks[]) => {
+  const translatedOptions: FilterTasks[] = [];
+  Object.values(filterOptions).forEach((option, index) => {
+    translatedOptions[index] = {
+      title: t(option.title),
+      value: option.value
+    };
+  });
+  return translatedOptions;
+}
 </script>
 
 <template>
@@ -86,8 +98,8 @@ const showFilters = () => {
         item-title="title"
         item-value="value"
         v-model="filters.taskStatus"
-        :items="taskStatusItems"
-        :label="TASK_LABELS.TASK_STATUS"
+        :items="getTranslatedFilterOptions(taskStatusItems)"
+        :label="$t('filters.taskLabels.taskStatus')"
         multiple
         hide-details
         clearable
@@ -97,8 +109,8 @@ const showFilters = () => {
         item-title="title"
         item-value="value"
         v-model="filters.taskPoints"
-        :items="taskPointsItems"
-        :label="TASK_LABELS.TASK_POINTS"
+        :items="getTranslatedFilterOptions(taskPointsItems)"
+        :label="$t('filters.taskLabels.taskPoints')"
         hide-details
         clearable
       ></v-select>
@@ -106,8 +118,8 @@ const showFilters = () => {
         item-title="title"
         item-value="value"
         v-model="filters.taskTypes"
-        :items="taskTypesItems"
-        :label="TASK_LABELS.TASK_TYPE"
+        :items="getTranslatedFilterOptions(taskTypesItems)"
+        :label="$t('filters.taskLabels.taskType')"
         hide-details
         clearable
       ></v-select>
@@ -117,7 +129,7 @@ const showFilters = () => {
         <v-text-field
           class="pr-2"
           v-model="searchTaskPhrase"
-          :label="TASK_LABELS.TASK"
+          :label="$t('filters.taskLabels.task')"
           hide-details
         ></v-text-field>
       </v-sheet>
