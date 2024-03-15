@@ -14,47 +14,47 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "Strona główna",
+      name: "router.home",
       component: HomeView,
     },
     {
       path: "/profile",
-      name: "Profil",
+      name: "router.profile",
       component: ProfileView,
     },
     {
       path: "/tasks",
-      name: "Zadania",
+      name: "router.tasks",
       component: TasksView,
     },
     {
       path: "/tasks/:id",
-      name: "Szczegóły zadania",
+      name: "router.tasksDetails",
       component: TasksDetailsView,
     },
     {
       path: "/ranking",
-      name: "Ranking",
+      name: "router.ranking",
       component: RankingView,
     },
     {
       path: "/bingo",
-      name: "Cyborg bingo",
+      name: "router.bingo",
       component: BingoView,
     },
     {
       path: "/settings",
-      name: "Ustawienia konta",
+      name: "router.settings",
       component: SettingsView,
     },
     {
       path: "/login",
-      name: "Logowanie",
+      name: "router.login",
       component: LoginView,
     },
     {
       path: "/register",
-      name: "Rejestracja",
+      name: "router.register",
       component: RegisterView,
     },
   ],

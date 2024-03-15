@@ -61,6 +61,10 @@ export class Task {
   get isExpectancy(): boolean {
     return TASK_STATUS.EXPECTANCY === this.status;
   }
+
+  setTaskStatus(status: TASK_STATUS): void {
+    this.status = status;
+  }
 }
 
 interface taskStatus {

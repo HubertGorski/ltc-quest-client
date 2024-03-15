@@ -1,6 +1,20 @@
 {
+"router": {
+    "home": "Strona główna",
+    "profile": "Profil",
+    "tasks": "Zadania",
+    "tasksDetails": "Szczegóły zadania",
+    "ranking": "Ranking",
+    "bingo": "Cyborg bingo",
+    "settings": "Ustawienia konta",
+    "login": "Logowanie",
+    "register": "Rejestracja"
+    },
+"logout": "Wyloguj",
 "finishTask": "Zakończ zadanie",
 "back": "Wstecz",
+"taskConfirmed": "Zadanie ukończone",
+"completedBy": "Zadanie ukończyli:",
 "taskAvailability": {
     "forAll": "Zadanie dostępne dla wszystkich drużyn",
     "forSelected": "Zadanie dostępne dla wybranych drużyn"
