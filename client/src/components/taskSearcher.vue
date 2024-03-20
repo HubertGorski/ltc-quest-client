@@ -3,17 +3,22 @@ import {
   taskPointsItems,
   taskStatusItems,
   taskTypesItems,
-  type Filters,
-  type SearchData,
-  type FilterTasks,
+  taskTeamAdvantageItems,
+  taskNatureItems,
 } from "@/enums/enumTasks";
 import { computed, reactive, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
+import { FilterTasks, Filters, type SearchData } from "@/models/Filters";
+
 const { t } = useI18n();
 
 const props = defineProps({
   sortTasksState: {
     type: Number,
+    required: true,
+  },
+  filters: {
+    type: Filters,
     required: true,
   },
 });
@@ -24,12 +29,7 @@ const emit = defineEmits<{
 
 const searchTaskPhrase = ref<string>("");
 const sortTasksState = ref<number>(props.sortTasksState);
-
-const filters: Filters = reactive({
-  taskStatus: [],
-  taskPoints: null,
-  taskTypes: null,
-});
+const filters: Filters = reactive(props.filters);
 
 const sortTasks = () => {
   if (sortTasksState.value === 2) {
@@ -46,11 +46,7 @@ const btnSortClass = computed(() => {
 });
 
 const isEmptyFilters = computed(() => {
-  return (
-    filters.taskPoints === null &&
-    filters.taskStatus.length === 0 &&
-    filters.taskTypes === null
-  );
+  return Object.values(filters).every(value => value === null || (Array.isArray(value) && value.length === 0));
 });
 
 watch(sortTasksState, (state) => {
@@ -93,11 +89,11 @@ const getTranslatedFilterOptions = (filterOptions: FilterTasks[]) => {
     >
       <v-icon>mdi-filter</v-icon>
     </v-btn>
-    <div v-if="panelActive" class="pt-2">
+    <div v-if="panelActive" class="searcher_inputs">
       <v-select
         item-title="title"
         item-value="value"
-        v-model="filters.taskStatus"
+        v-model="filters.status"
         :items="getTranslatedFilterOptions(taskStatusItems)"
         :label="$t('filters.taskLabels.taskStatus')"
         multiple
@@ -105,10 +101,9 @@ const getTranslatedFilterOptions = (filterOptions: FilterTasks[]) => {
         clearable
       ></v-select>
       <v-select
-        class="my-2"
         item-title="title"
         item-value="value"
-        v-model="filters.taskPoints"
+        v-model="filters.points"
         :items="getTranslatedFilterOptions(taskPointsItems)"
         :label="$t('filters.taskLabels.taskPoints')"
         hide-details
@@ -117,9 +112,27 @@ const getTranslatedFilterOptions = (filterOptions: FilterTasks[]) => {
       <v-select
         item-title="title"
         item-value="value"
-        v-model="filters.taskTypes"
+        v-model="filters.types"
         :items="getTranslatedFilterOptions(taskTypesItems)"
         :label="$t('filters.taskLabels.taskType')"
+        hide-details
+        clearable
+      ></v-select>
+      <v-select
+        item-title="title"
+        item-value="value"
+        v-model="filters.advantage"
+        :items="getTranslatedFilterOptions(taskTeamAdvantageItems)"
+        :label="$t('filters.taskLabels.taskTeamAdvantage')"
+        hide-details
+        clearable
+      ></v-select>
+      <v-select
+        item-title="title"
+        item-value="value"
+        v-model="filters.nature"
+        :items="getTranslatedFilterOptions(taskNatureItems)"
+        :label="$t('filters.taskLabels.taskNature')"
         hide-details
         clearable
       ></v-select>
@@ -150,6 +163,12 @@ const getTranslatedFilterOptions = (filterOptions: FilterTasks[]) => {
   top: 64px;
   padding: 16px;
   z-index: 2;
+}
+.searcher_inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 8px;
 }
 .active .icon {
   font-size: 32px;

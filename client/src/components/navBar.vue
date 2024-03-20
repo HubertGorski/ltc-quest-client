@@ -11,8 +11,24 @@ const isOpenMenu = ref<boolean>(false);
 const closeMenu = () => {
   isOpenMenu.value = false;
 };
+
+const translatedRouteNames: { [key: string]: string } = {
+    home: t('router.home'),
+    profile: t('router.profile'),
+    tasks: t('router.tasks'),
+    tasksDetails: t('router.tasksDetails'),
+    ranking: t('router.ranking'),
+    bingo: t('router.bingo'),
+    settings: t('router.settings'),
+    login: t('router.login'),
+    register: t('router.register'),
+};
 const route = useRoute();
-const currentRouteName = computed(() => route.name);
+const currentRouteName = computed(() => route.name ? route.name.toString(): '');
+const currentTranslatedRouteName = computed(() => {
+  return translatedRouteNames[currentRouteName.value];
+});
+
 </script>
 
 <template>
@@ -28,11 +44,11 @@ const currentRouteName = computed(() => route.name);
           <v-toolbar-title>
             <div class="d-flex align-center">
               <span>
-                {{ currentRouteName }}
+                {{ currentTranslatedRouteName }}
               </span>
               <span
                 class="text-body-1 font-italic px-1"
-                v-if="currentRouteName === 'Zadania'"
+                v-if="currentRouteName === 'tasks'"
               >
                 {{
                   `(${currentUser.completedTasks}/${currentUser.totalTasks})`

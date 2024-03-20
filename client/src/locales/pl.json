@@ -24,21 +24,31 @@
         "task": "Zadanie",
         "taskStatus": "Status zadania",
         "taskPoints": "Punkty zadania",
-        "taskType": "Typ zadania"
+        "taskType": "Typ zadania",
+        "taskTeamAdvantage": "Przewaga drużyny",
+        "taskNature": "Rodzaj zadania"
         },
-    "taskStatusTitles": {
+    "taskStatus": {
         "confirmed": "Potwierdzone",
         "expectancy": "Oczekujące",
         "undone": "Do zrealizowania",
         "rejected": "Odrzucone"
         },
-    "taskPointsTitles": {
-        "positive": "Dodatnie punkty",
-        "negative": "Ujemne punkty"
+    "taskPoints": {
+        "positive": "Dodatnie",
+        "negative": "Ujemne"
         },
-    "taskTypeTitles": {
-        "default": "Podstawowe",
+    "taskType": {
+        "default": "Domyślne",
         "additional": "Dodatkowe"
+        },
+    "taskTeamAdvantage": {
+        "lose": "Brak dominacji",
+        "win": "Dominacja"
+        },
+    "taskNature": {
+        "basic": "Podstawowe",
+        "special": "Specjalne"
         }
     }
 }

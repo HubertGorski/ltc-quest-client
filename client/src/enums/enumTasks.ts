@@ -1,86 +1,34 @@
+import { FilterTasks } from "@/models/Filters";
+
 export enum TASK_STATUS {
   CONFIRMED = 2,
   EXPECTANCY = 1,
   UNDONE = 0,
   REJECTED = -1,
 }
-export enum TASK_STATUS_TITLES {
-  CONFIRMED = "filters.taskStatusTitles.confirmed",
-  EXPECTANCY = "filters.taskStatusTitles.expectancy",
-  UNDONE = "filters.taskStatusTitles.undone",
-  REJECTED = "filters.taskStatusTitles.rejected",
-}
-
 export const taskStatusItems: FilterTasks[] = [
-  {
-    title: TASK_STATUS_TITLES.CONFIRMED,
-    value: TASK_STATUS.CONFIRMED,
-  },
-  {
-    title: TASK_STATUS_TITLES.EXPECTANCY,
-    value: TASK_STATUS.EXPECTANCY,
-  },
-  {
-    title: TASK_STATUS_TITLES.UNDONE,
-    value: TASK_STATUS.UNDONE,
-  },
-  {
-    title: TASK_STATUS_TITLES.REJECTED,
-    value: TASK_STATUS.REJECTED,
-  },
-];
-
-export enum TASK_POINTS {
-  POSITIVE = 1,
-  NEGATIVE = 0,
-}
-export enum TASK_POINTS_TITLES {
-  POSITIVE = "filters.taskPointsTitles.positive",
-  NEGATIVE = "filters.taskPointsTitles.negative",
-}
+  new FilterTasks("filters.taskStatus.confirmed", 'confirmed'),
+  new FilterTasks("filters.taskStatus.expectancy", 'expectancy'),
+  new FilterTasks("filters.taskStatus.undone", 'undone'),
+  new FilterTasks("filters.taskStatus.rejected", 'rejected'),
+]
 
 export const taskPointsItems: FilterTasks[] = [
-  {
-    title: TASK_POINTS_TITLES.POSITIVE,
-    value: TASK_POINTS.POSITIVE,
-  },
-  {
-    title: TASK_POINTS_TITLES.NEGATIVE,
-    value: TASK_POINTS.NEGATIVE,
-  },
-];
-
-export enum TASK_TYPE {
-  DEFAULT = 0,
-  ADDITIONAL = 1,
-}
-export enum TASK_TYPE_TITLES {
-  DEFAULT = "filters.taskTypeTitles.default",
-  ADDITIONAL = "filters.taskTypeTitles.additional",
-}
+  new FilterTasks("filters.taskPoints.positive", 'positive'),
+  new FilterTasks("filters.taskPoints.negative", 'negative'),
+]
 
 export const taskTypesItems: FilterTasks[] = [
-  {
-    title: TASK_TYPE_TITLES.DEFAULT,
-    value: TASK_TYPE.DEFAULT,
-  },
-  {
-    title: TASK_TYPE_TITLES.ADDITIONAL,
-    value: TASK_TYPE.ADDITIONAL,
-  },
-];
+  new FilterTasks("filters.taskType.additional", 'additional'),
+  new FilterTasks("filters.taskType.default", 'default'),
+]
 
-export interface FilterTasks {
-  title: string;
-  value: number;
-}
+export const taskTeamAdvantageItems: FilterTasks[] = [
+  new FilterTasks("filters.taskTeamAdvantage.win", 'win'),
+  new FilterTasks("filters.taskTeamAdvantage.lose", 'lose'),
+]
 
-export interface Filters {
-  taskStatus: Number[];
-  taskPoints: Number | null;
-  taskTypes: Number | null;
-}
-export interface SearchData {
-  sortState: Number;
-  searchPhrase: String;
-}
+export const taskNatureItems: FilterTasks[] = [
+  new FilterTasks("filters.taskNature.special", 'special'),
+  new FilterTasks("filters.taskNature.basic", 'basic'),
+]

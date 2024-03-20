@@ -4,50 +4,71 @@ import teamTasks from "@/components/teamTasks.vue";
 import taskSearcher from "@/components/taskSearcher.vue";
 import { teams } from "@/assets/data/teams";
 import { computed, reactive, ref, watch } from "vue";
-import type { Filters, SearchData } from "@/enums/enumTasks";
 import { tasksData } from "@/assets/data/tasks";
 import type { Task } from "@/models/Task";
 import { useRoute } from "vue-router";
 import router from "@/router";
+import { Filters, type SearchData } from "@/models/Filters";
 
 const route = useRoute();
 
 const sortState = computed(() => {
   return route.query.sort ? Number(route.query.sort) : 0;
 });
+
+const filters: Filters = reactive({
+  status: route.query.status ? [String(route.query.status)] : [],
+  points: route.query.points ? String(route.query.points) : null,
+  types: route.query.types ? String(route.query.types) : null,
+  advantage: route.query.advantage ? String(route.query.advantage) : null,
+  nature: route.query.nature? String(route.query.nature) : null,
+});
+
+const actualQuery = route.query;
+let actualHash: string = '';
 const tasks = ref<Task[]>(tasksData);
 const selectedTeamId = teams.find(team => team.name === route.hash.substring(1))?.teamId || 0;
 const activeTab = ref<number>(selectedTeamId);
 
 watch(activeTab, (newActiveTab) => {
-  const query = {};
-  if (sortState.value !== 0) {
-    Object.assign(query, { sort: sortState.value });
-  }
-
   if (newActiveTab === 0) {
-    return router.push({ path: '/tasks', query:  query  });
+    actualHash = '';
   }
-  if (typeof newActiveTab === 'number') {
-    return router.push({ path: '/tasks', query: query , hash: `#${teams[newActiveTab - 1].name}` });
+  if (newActiveTab > 0) {
+    actualHash = `#${teams[newActiveTab - 1].name}`;
   }
+  setQuery();
 });
 
-const activeFilters: Filters = reactive({
-  taskStatus: [],
-  taskPoints: null,
-  taskTypes: null,
-});
+const setQuery = () => {
+  return router.push({ path: '/tasks', query: actualQuery , hash: actualHash });
+}
 
-const changeFilters = (filters: Filters) => {
-  activeFilters.taskStatus = filters.taskStatus;
-  activeFilters.taskPoints = filters.taskPoints;
-  activeFilters.taskTypes = filters.taskTypes;
+const updateFiltersQuery = (newFilters: Filters) => {
+  Object.entries(newFilters).forEach(([key, value]) => {
+    if ((value && typeof value === "string") || (Array.isArray(value) && value.length > 0)) {
+      Object.assign(actualQuery, { [key]: value });
+    }
+  });
+};
+
+const updateSortQuery = (sortState: Number) => {
+  if (sortState !== 0) {
+    Object.assign(actualQuery, { sort: sortState });
+  }
 };
 
 const modifyTaskList = (data: SearchData) => {
   tasks.value = getFilteredTasks(data.searchPhrase, tasksData);
   tasks.value = getSortTasks(data.sortState, tasks.value);
+  updateSortQuery(data.sortState);
+  setQuery();
+};
+
+const getTaskListWithFilters = (newFilters: Filters) => {
+  // get new data
+  updateFiltersQuery(newFilters);
+  setQuery();
 };
 
 const getFilteredTasks = (searchPhrase: String, tasks: Task[]) => {
@@ -60,14 +81,7 @@ const getFilteredTasks = (searchPhrase: String, tasks: Task[]) => {
       );
 };
 
-const getSortTasks = (sortState: Number, tasks: Task[]) => {
-  const query = {};
-  if (sortState !== 0) {
-    Object.assign(query, { sort: sortState });
-  }
-
-  router.push({ path: '/tasks', hash: route.hash, query: query });
-  
+const getSortTasks = (sortState: Number, tasks: Task[]) => {  
   if (sortState === 1) {
     return [...tasks].sort((a, b) => a.points - b.points);
   } else if (sortState === 2) {
@@ -82,8 +96,9 @@ tasks.value = getSortTasks(sortState.value, tasks.value);
 <template>
   <task-searcher
     @modifyTaskList="modifyTaskList"
-    @changeFilters="changeFilters"
+    @changeFilters="getTaskListWithFilters"
     :sortTasksState="sortState"
+    :filters="filters"
   ></task-searcher>
   <team-tasks v-model="activeTab" :tasks="tasks" :teams="teams"></team-tasks>
   <teams-selection-bar :teams="teams" v-model="activeTab"></teams-selection-bar>
