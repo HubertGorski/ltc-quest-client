@@ -10,7 +10,7 @@ export class Filters {
     points: string | null = null,
     types: string | null = null,
     advantage: string | null = null,
-    nature: string | null = null,
+    nature: string | null = null
   ) {
     this.status = status;
     this.points = points;

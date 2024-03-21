@@ -1,5 +1,5 @@
 {
-"router": {
+  "router": {
     "home": "Strona główna",
     "profile": "Profil",
     "tasks": "Zadania",
@@ -9,46 +9,46 @@
     "settings": "Ustawienia konta",
     "login": "Logowanie",
     "register": "Rejestracja"
-    },
-"logout": "Wyloguj",
-"finishTask": "Zakończ zadanie",
-"back": "Wstecz",
-"taskConfirmed": "Zadanie ukończone",
-"completedBy": "Zadanie ukończyli:",
-"taskAvailability": {
+  },
+  "logout": "Wyloguj",
+  "finishTask": "Zakończ zadanie",
+  "back": "Wstecz",
+  "taskConfirmed": "Zadanie ukończone",
+  "completedBy": "Zadanie ukończyli:",
+  "taskAvailability": {
     "forAll": "Zadanie dostępne dla wszystkich drużyn",
     "forSelected": "Zadanie dostępne dla wybranych drużyn"
-    },
-"filters": {
+  },
+  "filters": {
     "taskLabels": {
-        "task": "Zadanie",
-        "taskStatus": "Status zadania",
-        "taskPoints": "Punkty zadania",
-        "taskType": "Typ zadania",
-        "taskTeamAdvantage": "Przewaga drużyny",
-        "taskNature": "Rodzaj zadania"
-        },
+      "task": "Zadanie",
+      "taskStatus": "Status zadania",
+      "taskPoints": "Punkty zadania",
+      "taskType": "Typ zadania",
+      "taskTeamAdvantage": "Przewaga drużyny",
+      "taskNature": "Rodzaj zadania"
+    },
     "taskStatus": {
-        "confirmed": "Potwierdzone",
-        "expectancy": "Oczekujące",
-        "undone": "Do zrealizowania",
-        "rejected": "Odrzucone"
-        },
+      "confirmed": "Potwierdzone",
+      "expectancy": "Oczekujące",
+      "undone": "Do zrealizowania",
+      "rejected": "Odrzucone"
+    },
     "taskPoints": {
-        "positive": "Dodatnie",
-        "negative": "Ujemne"
-        },
+      "positive": "Dodatnie",
+      "negative": "Ujemne"
+    },
     "taskType": {
-        "default": "Domyślne",
-        "additional": "Dodatkowe"
-        },
+      "default": "Domyślne",
+      "additional": "Dodatkowe"
+    },
     "taskTeamAdvantage": {
-        "lose": "Brak dominacji",
-        "win": "Dominacja"
-        },
+      "lose": "Brak dominacji",
+      "win": "Dominacja"
+    },
     "taskNature": {
-        "basic": "Podstawowe",
-        "special": "Specjalne"
-        }
+      "basic": "Podstawowe",
+      "special": "Specjalne"
     }
+  }
 }

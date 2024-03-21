@@ -13,22 +13,23 @@ const closeMenu = () => {
 };
 
 const translatedRouteNames: { [key: string]: string } = {
-    home: t('router.home'),
-    profile: t('router.profile'),
-    tasks: t('router.tasks'),
-    tasksDetails: t('router.tasksDetails'),
-    ranking: t('router.ranking'),
-    bingo: t('router.bingo'),
-    settings: t('router.settings'),
-    login: t('router.login'),
-    register: t('router.register'),
+  home: t("router.home"),
+  profile: t("router.profile"),
+  tasks: t("router.tasks"),
+  tasksDetails: t("router.tasksDetails"),
+  ranking: t("router.ranking"),
+  bingo: t("router.bingo"),
+  settings: t("router.settings"),
+  login: t("router.login"),
+  register: t("router.register"),
 };
 const route = useRoute();
-const currentRouteName = computed(() => route.name ? route.name.toString(): '');
+const currentRouteName = computed(() =>
+  route.name ? route.name.toString() : ""
+);
 const currentTranslatedRouteName = computed(() => {
   return translatedRouteNames[currentRouteName.value];
 });
-
 </script>
 
 <template>
@@ -86,7 +87,7 @@ const currentTranslatedRouteName = computed(() => {
               class="text-decoration-none text-grey-darken-2"
               @click="closeMenu"
               to="/ranking"
-              >{{ $t('router.ranking') }}</RouterLink
+              >{{ $t("router.ranking") }}</RouterLink
             >
           </v-list-item>
           <v-list-item>
@@ -94,7 +95,7 @@ const currentTranslatedRouteName = computed(() => {
               class="text-decoration-none text-grey-darken-2"
               @click="closeMenu"
               to="/tasks"
-              >{{ $t('router.tasks') }}</RouterLink
+              >{{ $t("router.tasks") }}</RouterLink
             >
           </v-list-item>
           <v-list-item>
@@ -102,7 +103,7 @@ const currentTranslatedRouteName = computed(() => {
               class="text-decoration-none text-grey-darken-2"
               @click="closeMenu"
               to="/bingo"
-              >{{ $t('router.bingo') }}</RouterLink
+              >{{ $t("router.bingo") }}</RouterLink
             >
           </v-list-item>
           <v-list-item>
@@ -110,7 +111,7 @@ const currentTranslatedRouteName = computed(() => {
               class="text-decoration-none text-grey-darken-2"
               @click="closeMenu"
               to="/settings"
-              >{{ $t('router.settings') }}</RouterLink
+              >{{ $t("router.settings") }}</RouterLink
             >
           </v-list-item>
           <v-divider></v-divider>
@@ -119,7 +120,7 @@ const currentTranslatedRouteName = computed(() => {
               class="text-decoration-none text-grey-darken-2"
               @click="closeMenu"
               to="/login"
-              >{{ $t('logout') }}</RouterLink
+              >{{ $t("logout") }}</RouterLink
             >
           </v-list-item>
         </v-list>

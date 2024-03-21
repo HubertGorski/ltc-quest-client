@@ -46,7 +46,9 @@ const btnSortClass = computed(() => {
 });
 
 const isEmptyFilters = computed(() => {
-  return Object.values(filters).every(value => value === null || (Array.isArray(value) && value.length === 0));
+  return Object.values(filters).every(
+    (value) => value === null || (Array.isArray(value) && value.length === 0)
+  );
 });
 
 watch(sortTasksState, (state) => {
@@ -73,11 +75,11 @@ const getTranslatedFilterOptions = (filterOptions: FilterTasks[]) => {
   Object.values(filterOptions).forEach((option, index) => {
     translatedOptions[index] = {
       title: t(option.title),
-      value: option.value
+      value: option.value,
     };
   });
   return translatedOptions;
-}
+};
 </script>
 
 <template>
