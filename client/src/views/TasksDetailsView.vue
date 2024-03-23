@@ -20,11 +20,33 @@ const chartOptions = {
 </script>
 
 <template>
-  <v-card class="mx-4 my-4 px-2 py-2">
+  <div class="mx-4 my-2">
+    <div class="manageButtons">
+      <v-sheet class="d-flex ga-1 flex-grow-1">
+        <v-btn @click="$router.go(-1)">
+          <v-icon>mdi-arrow-left-bottom</v-icon>
+        </v-btn>
+        <v-btn v-if="!taskDetails.isDone" :class="fillBtn" class="flex-grow-1">
+          <span>{{ $t("finishTask") }}</span>
+        </v-btn>
+        <v-btn v-else class="font-italic text-grey-darken-1 flex-grow-1 disable-events">
+          <span>{{ $t("taskConfirmed") }}</span>
+        </v-btn>
+      </v-sheet>
+      <v-sheet class="d-flex ga-1">
+        <v-btn @click="$router.go(-1)">
+          <v-icon>mdi-arrow-left</v-icon>
+        </v-btn>
+        <v-btn @click="$router.go(-1)">
+          <v-icon>mdi-arrow-right</v-icon>
+        </v-btn>
+      </v-sheet>
+    </div>
+  <v-card class="px-2 py-2">
     <span class="px-2 text-h6">{{ taskDetails.title }}</span>
     <v-card-text>{{ taskDetails.description }}</v-card-text>
   </v-card>
-  <v-card class="mx-4 my-4 px-2 py-2">
+  <v-card class="my-4 px-2 py-2">
     <span class="px-2 text-subtitle-1">{{ $t("completedBy") }}</span>
     <div class="d-flex flex-wrap justify-center px-8 pt-4 ga-2">
       <btn-with-dropdown
@@ -44,18 +66,25 @@ const chartOptions = {
     <div class="text-center text-subtitle-2 font-italic">
       {{ $t("taskAvailability.forSelected") }}
     </div>
-    <v-card-actions class="d-flex justify-space-between px-8">
-      <v-btn @click="$router.go(-1)">
-        <span>{{ $t("back") }}</span>
-      </v-btn>
-      <v-btn v-if="!taskDetails.isDone" :class="fillBtn">
-        <span>{{ $t("finishTask") }}</span>
-      </v-btn>
-      <div v-else disabled class="font-italic text-grey-darken-2">
-        <span>{{ $t("taskConfirmed") }}</span>
-      </div>
-    </v-card-actions>
   </v-card>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.manageButtons {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 4px 0;
+  margin-bottom: 4px;
+}
+.manageButtons button {
+  padding: 0 12px;
+  height: 32px;
+  min-width: 24px;
+  font-size: 12px;
+}
+.disable-events {
+  pointer-events: none
+}
+</style>

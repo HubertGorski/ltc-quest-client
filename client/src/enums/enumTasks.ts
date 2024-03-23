@@ -5,12 +5,14 @@ export enum TASK_STATUS {
   EXPECTANCY = 1,
   UNDONE = 0,
   REJECTED = -1,
+  DISABLED = -2,
 }
 export const taskStatusItems: FilterTasks[] = [
   new FilterTasks("filters.taskStatus.confirmed", "confirmed"),
   new FilterTasks("filters.taskStatus.expectancy", "expectancy"),
   new FilterTasks("filters.taskStatus.undone", "undone"),
   new FilterTasks("filters.taskStatus.rejected", "rejected"),
+  new FilterTasks("filters.taskStatus.disabled", "disabled"),
 ];
 
 export const taskPointsItems: FilterTasks[] = [
@@ -19,8 +21,8 @@ export const taskPointsItems: FilterTasks[] = [
 ];
 
 export const taskTypesItems: FilterTasks[] = [
-  new FilterTasks("filters.taskType.additional", "additional"),
-  new FilterTasks("filters.taskType.default", "default"),
+  new FilterTasks("filters.taskType.basic", "basic"),
+  new FilterTasks("filters.taskType.special", "special"),
 ];
 
 export const taskTeamAdvantageItems: FilterTasks[] = [
@@ -28,7 +30,7 @@ export const taskTeamAdvantageItems: FilterTasks[] = [
   new FilterTasks("filters.taskTeamAdvantage.lose", "lose"),
 ];
 
-export const taskNatureItems: FilterTasks[] = [
-  new FilterTasks("filters.taskNature.special", "special"),
-  new FilterTasks("filters.taskNature.basic", "basic"),
+export const taskAvailabilityItems: FilterTasks[] = [
+  new FilterTasks("filters.availability.forAll", "forAll"),
+  new FilterTasks("filters.availability.onlySelectedTeams", "onlySelectedTeams"),
 ];

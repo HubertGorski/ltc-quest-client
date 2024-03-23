@@ -18,7 +18,7 @@ const selectedTab = defineModel({ required: true });
 
 <template>
   <v-card>
-    <v-card-text>
+    <v-card-text class="pt-0">
       <v-window v-model="selectedTab">
         <v-window-item>
           all

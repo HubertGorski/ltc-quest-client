@@ -7,30 +7,40 @@ const props = defineProps({
     required: true,
   },
 });
-const taskColor = props.task.isDone
-  ? `text-${props.task.teamTaskColor} isDone`
-  : "text-grey-darken-3";
 </script>
 
 <template>
   <RouterLink
-    :to="{ path: `/tasks/${task.teamTaskId}` }"
-    :class="[taskColor]"
+    :to="{ path: `/tasks/${task.taskId}` }"
+    :class="[task.isDisabled ? 'text-grey-lighten-1' : 'text-grey-darken-3']"
     class="task"
   >
     <div class="task_info">
       <div class="title">
         <v-icon
           v-if="task.isRejected"
-          class="pb-1 mr-1 text-red-accent-4"
+          class="pb-1 mr-2 text-red-accent-4"
           size="20"
           >mdi-alert-circle</v-icon
+        >
+        <v-icon
+          v-if="task.isExpectancy"
+          class="pb-1 mr-2 text-yellow-accent-4"
+          size="20"
+          >mdi-clock-time-eight</v-icon
+        >
+        <v-icon
+          v-if="task.isDone"
+          class="pb-1 mr-2 text-green-accent-4"
+          size="20"
+          >mdi-checkbox-marked-circle</v-icon
         >
         <span> {{ task.title }}</span>
       </div>
       <div
-        v-if="!task.isDone && !task.isExpectancy"
-        class="description text-grey-darken-2"
+        v-if="!task.isDone"
+        class="description"
+        :class="[task.isDisabled ? 'text-grey-lighten-1' : 'text-grey-darken-2']"
       >
         {{ task.description }}
       </div>
@@ -60,12 +70,6 @@ const taskColor = props.task.isDone
 }
 .title {
   font-size: 16px;
-  font-weight: 600;
-}
-.isDone .title {
-  font-weight: 800;
-}
-.isDone .task_points {
   font-weight: 600;
 }
 .description {

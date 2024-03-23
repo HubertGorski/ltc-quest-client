@@ -26,29 +26,32 @@
       "taskPoints": "Punkty zadania",
       "taskType": "Typ zadania",
       "taskTeamAdvantage": "Przewaga drużyny",
-      "taskNature": "Rodzaj zadania"
+      "taskAvailability": "Dostępność"
     },
     "taskStatus": {
       "confirmed": "Potwierdzone",
       "expectancy": "Oczekujące",
       "undone": "Do zrealizowania",
-      "rejected": "Odrzucone"
+      "rejected": "Odrzucone",
+      "disabled": "Niedostępne"
     },
     "taskPoints": {
       "positive": "Dodatnie",
       "negative": "Ujemne"
     },
     "taskType": {
-      "default": "Domyślne",
-      "additional": "Dodatkowe"
+      "basic": "Podstawowe",
+      "special": "Specjalne"
     },
     "taskTeamAdvantage": {
       "lose": "Brak dominacji",
       "win": "Dominacja"
     },
-    "taskNature": {
-      "basic": "Podstawowe",
-      "special": "Specjalne"
-    }
+    "availability": {
+      "forAll": "Dla wszystkich drużyn",
+      "onlySelectedTeams": "Dla wybranych drużyn"
+    },
+    "search": "Szukaj",
+    "resetFilters": "Wyczyść filtry"
   }
 }

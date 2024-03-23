@@ -1,22 +1,24 @@
 export class Filters {
+  [key: string]: string[] | string | null;
+
   status: string[];
   points: string | null;
   types: string | null;
   advantage: string | null;
-  nature: string | null;
+  availability: string | null;
 
   constructor(
     status: string[] = [],
     points: string | null = null,
     types: string | null = null,
     advantage: string | null = null,
-    nature: string | null = null
+    availability: string | null = null
   ) {
     this.status = status;
     this.points = points;
     this.types = types;
     this.advantage = advantage;
-    this.nature = nature;
+    this.availability = availability;
   }
 }
 

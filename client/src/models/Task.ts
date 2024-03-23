@@ -3,10 +3,12 @@ import { ADMIN } from "@/enums/enumUsers";
 
 export class Task {
   teamTaskId: number;
+  taskId: number;
   title: string;
   description: string;
   status: TASK_STATUS;
   points: number;
+  isSpecial: boolean;
   createrId: number;
   creationDate: string;
   teamId: number;
@@ -18,10 +20,12 @@ export class Task {
 
   constructor(
     teamTaskId: number,
+    taskId: number,
     title: string,
     description: string,
     status: TASK_STATUS,
     points: number,
+    isSpecial: boolean,
     createrId: number,
     creationDate: string,
     teamId: number,
@@ -32,10 +36,12 @@ export class Task {
     accepterId: number | null = null
   ) {
     this.teamTaskId = teamTaskId;
+    this.taskId = taskId;
     this.title = title;
     this.description = description;
     this.status = status;
     this.points = points;
+    this.isSpecial = isSpecial;
     this.createrId = createrId;
     this.creationDate = creationDate;
     this.teamId = teamId;
@@ -62,18 +68,25 @@ export class Task {
     return TASK_STATUS.EXPECTANCY === this.status;
   }
 
+  get isDisabled(): boolean {
+    return TASK_STATUS.DISABLED === this.status;
+  }
+
   setTaskStatus(status: TASK_STATUS): void {
     this.status = status;
   }
 }
 
+// per taskId
 interface taskStatus {
-  taskId: number;
   userId: number;
-  status: number;
+  isDone: boolean;
 }
 interface taskTeamsPoints {
-  taskId: number;
   teamId: number;
   points: number;
+}
+interface taskTeamsAvailability {
+  teamId: number;
+  availability: boolean;
 }

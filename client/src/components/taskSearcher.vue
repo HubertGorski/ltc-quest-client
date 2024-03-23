@@ -4,14 +4,12 @@ import {
   taskStatusItems,
   taskTypesItems,
   taskTeamAdvantageItems,
-  taskNatureItems,
+  taskAvailabilityItems,
 } from "@/enums/enumTasks";
 import { computed, reactive, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { FilterTasks, Filters, type SearchData } from "@/models/Filters";
-
 const { t } = useI18n();
-
 const props = defineProps({
   sortTasksState: {
     type: Number,
@@ -57,9 +55,6 @@ watch(sortTasksState, (state) => {
     searchPhrase: searchTaskPhrase.value,
   });
 });
-watch(filters, (newFilters) => {
-  emit("changeFilters", newFilters);
-});
 watch(searchTaskPhrase, (newSearchTaskPhrase) => {
   emit("modifyTaskList", {
     sortState: sortTasksState.value,
@@ -80,14 +75,29 @@ const getTranslatedFilterOptions = (filterOptions: FilterTasks[]) => {
   });
   return translatedOptions;
 };
+
+const resetFilters = () => {
+  Object.keys(filters).forEach(key => {
+  if (Array.isArray(filters[key])) {
+    filters[key] = [];
+  } else {
+      filters[key] = null;
+    }
+  });
+}
+
+const setFilters = () => {
+  emit("changeFilters", filters);
+  panelActive.value = false;
+}
 </script>
 
 <template>
   <div class="searcher bg-white">
     <v-btn
       @click="showFilters"
-      class="w-100 h-25 elevation-1 bg-grey-lighten-4"
-      :class="[isEmptyFilters ? 'text-grey-darken-1' : 'text-black']"
+      class="w-100 h-25 bg-grey-lighten-4"
+      :class="[isEmptyFilters ? 'text-grey-darken-1' : 'text-black', panelActive ? 'elevation-4' : ' elevation-1']"
     >
       <v-icon>mdi-filter</v-icon>
     </v-btn>
@@ -132,12 +142,20 @@ const getTranslatedFilterOptions = (filterOptions: FilterTasks[]) => {
       <v-select
         item-title="title"
         item-value="value"
-        v-model="filters.nature"
-        :items="getTranslatedFilterOptions(taskNatureItems)"
-        :label="$t('filters.taskLabels.taskNature')"
+        v-model="filters.availability"
+        :items="getTranslatedFilterOptions(taskAvailabilityItems)"
+        :label="$t('filters.taskLabels.taskAvailability')"
         hide-details
         clearable
       ></v-select>
+      <v-sheet class="d-flex justify-center ga-2">
+        <v-btn @click="setFilters" class="elevation-1 bg-grey-lighten-4 flex-grow-1">
+          <p>{{ $t('filters.search') }}</p>
+        </v-btn>
+        <v-btn @click="resetFilters" :class="[isEmptyFilters ? 'text-grey-darken-1' : 'text-black']" class="elevation-1 bg-grey-lighten-4">
+          <p>{{ $t('filters.resetFilters') }}</p>
+        </v-btn>
+      </v-sheet>
     </div>
     <v-sheet class="d-flex pt-2">
       <v-sheet class="flex-grow-1 align-center">
