@@ -6,6 +6,7 @@ export class Task {
   taskId: number;
   title: string;
   description: string;
+  additionalDescription: string;
   status: TASK_STATUS;
   points: number;
   isSpecial: boolean;
@@ -15,12 +16,14 @@ export class Task {
   userId: number;
   acceptDate: string | null;
   accepterId: number | null;
+  additionalImages: string[];
 
   constructor(
     teamTaskId: number,
     taskId: number,
     title: string,
     description: string,
+    additionalDescription: string,
     status: TASK_STATUS,
     points: number,
     isSpecial: boolean,
@@ -29,12 +32,14 @@ export class Task {
     teamId: number,
     userId: number,
     acceptDate: string | null = null,
-    accepterId: number | null = null
+    accepterId: number | null = null,
+    additionalImages: string[]
   ) {
     this.teamTaskId = teamTaskId;
     this.taskId = taskId;
     this.title = title;
     this.description = description;
+    this.additionalDescription = additionalDescription;
     this.status = status;
     this.points = points;
     this.isSpecial = isSpecial;
@@ -44,6 +49,7 @@ export class Task {
     this.userId = userId;
     this.acceptDate = acceptDate;
     this.accepterId = accepterId;
+    this.additionalImages = additionalImages;
   }
 
   get isDefaultTask(): boolean {

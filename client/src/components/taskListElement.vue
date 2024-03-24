@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { TASK_STATUS } from "@/enums/enumTasks";
 import { Task } from "@/models/Task";
+import { computed } from "vue";
 
 const props = defineProps({
   task: {
@@ -7,6 +9,19 @@ const props = defineProps({
     required: true,
   },
 });
+
+const infoIcon = computed(() => {
+  const isRejectedIcon: infoIcon = { mdiText: "mdi-alert-circle", color: "text-red-accent-4", taskStatus: TASK_STATUS.REJECTED }
+  const isConfirmedIcon: infoIcon = { mdiText: "mdi-checkbox-marked-circle", color: "text-green-accent-4", taskStatus: TASK_STATUS.CONFIRMED }
+  const isExpectancyIcon: infoIcon = { mdiText: "mdi-clock-time-eight", color: "text-yellow-accent-4", taskStatus: TASK_STATUS.EXPECTANCY }
+  return [isRejectedIcon, isConfirmedIcon, isExpectancyIcon].filter(infoIcon => infoIcon.taskStatus === props.task.status)[0];
+});
+
+interface infoIcon {
+  mdiText: string,
+  color: string,
+  taskStatus: TASK_STATUS,
+}
 </script>
 
 <template>
@@ -18,23 +33,11 @@ const props = defineProps({
     <div class="task_info">
       <div class="title">
         <v-icon
-          v-if="task.isRejected"
-          class="pb-1 mr-2 text-red-accent-4"
-          size="20"
-          >mdi-alert-circle</v-icon
-        >
-        <v-icon
-          v-if="task.isExpectancy"
-          class="pb-1 mr-2 text-yellow-accent-4"
-          size="20"
-          >mdi-clock-time-eight</v-icon
-        >
-        <v-icon
-          v-if="task.isDone"
-          class="pb-1 mr-2 text-green-accent-4"
-          size="20"
-          >mdi-checkbox-marked-circle</v-icon
-        >
+        v-if="infoIcon"
+        class="pb-1 mr-2"
+        :class="infoIcon.color"
+        size="20"
+          >{{ infoIcon.mdiText }}</v-icon>
         <span> {{ task.title }}</span>
       </div>
       <div

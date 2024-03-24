@@ -11,13 +11,25 @@
     "register": "Rejestracja"
   },
   "logout": "Wyloguj",
-  "finishTask": "Zakończ zadanie",
   "back": "Wstecz",
-  "taskConfirmed": "Zadanie ukończone",
-  "completedBy": "Zadanie ukończyli:",
-  "taskAvailability": {
-    "forAll": "Zadanie dostępne dla wszystkich drużyn",
-    "forSelected": "Zadanie dostępne dla wybranych drużyn"
+  "taskDetails": {
+    "completedByUsers": "Uczestnicy, którzy ukończyli zadanie:",
+    "taskAvailability": {
+      "forAll": "Zadanie dostępne dla wszystkich drużyn",
+      "forSelected": "Zadanie dostępne dla wybranych drużyn"
+    },
+    "taskStatusBtn": {
+      "taskConfirmed": "Zadanie ukończone",
+      "taskExpectancy": "Oczekiwanie",
+      "taskUndone": "Zakończ zadanie",
+      "taskRejected": "Zadanie odrzucono",
+      "taskDisabled": "Zadanie niedostępne"
+    },
+    "isSpecialTask": "Zadanie specjalne",
+    "additionalInfo": "Dodatkowe informacje",
+    "attachment": "Załącznik",
+    "taskCreationDate": "Utworzono: ",
+    "taskAcceptedDate": "Zatwierdzono: "
   },
   "filters": {
     "taskLabels": {

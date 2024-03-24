@@ -5,6 +5,7 @@ import router from "./router";
 import vuetify from "./configs/vuetify";
 import i18n from "./configs/i18n";
 import VueApexCharts from "vue3-apexcharts";
+import "@/assets/styles.css";
 
 const app = createApp(App);
 
