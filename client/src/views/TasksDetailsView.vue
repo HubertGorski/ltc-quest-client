@@ -5,11 +5,15 @@ import { ref } from "vue";
 import { teams } from "@/assets/data/teams";
 import { hexColor } from "@/managers/styleManager";
 import btnWithDropdown from "@/components/btnWithDropdown.vue";
+import { useUserStore } from "@/stores/userStore";
+
+const userStore = useUserStore();
 
 const route = useRoute();
 const taskId = Number(route.params.id);
 const taskDetails = tasksData[taskId];
-const fillBtn = ref(`bg-${taskDetails.teamTaskColor}`);
+const teamColor = userStore.user.teamColor;
+const fillBtn = ref(`bg-${teamColor}`);
 
 const series = [1, 0, 0, 1];
 const chartOptions = {
@@ -75,8 +79,7 @@ const chartOptions = {
   display: flex;
   justify-content: space-between;
   gap: 4px;
-  padding: 4px 0;
-  margin-bottom: 4px;
+  padding: 4px 0 16px 0;
 }
 .manageButtons button {
   padding: 0 12px;
@@ -88,3 +91,4 @@ const chartOptions = {
   pointer-events: none
 }
 </style>
+@/stores/userStore

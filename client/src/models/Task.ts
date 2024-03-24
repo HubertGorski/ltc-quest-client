@@ -13,8 +13,6 @@ export class Task {
   creationDate: string;
   teamId: number;
   userId: number;
-  teamTaskColor: string;
-  teamLogoTaskOwner: string;
   acceptDate: string | null;
   accepterId: number | null;
 
@@ -30,8 +28,6 @@ export class Task {
     creationDate: string,
     teamId: number,
     userId: number,
-    teamTaskColor: string,
-    teamLogoTaskOwner: string,
     acceptDate: string | null = null,
     accepterId: number | null = null
   ) {
@@ -46,8 +42,6 @@ export class Task {
     this.creationDate = creationDate;
     this.teamId = teamId;
     this.userId = userId;
-    this.teamTaskColor = teamTaskColor;
-    this.teamLogoTaskOwner = teamLogoTaskOwner;
     this.acceptDate = acceptDate;
     this.accepterId = accepterId;
   }

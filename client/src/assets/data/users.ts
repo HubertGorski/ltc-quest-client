@@ -11,6 +11,7 @@ export const users = [
     "",
     "Aliens",
     "mdi-alien-outline",
+    "indigo",
     32,
     4
   ),
@@ -24,6 +25,7 @@ export const users = [
     "",
     "Aliens",
     "mdi-alien-outline",
+    "indigo",
     32,
     6
   ),
@@ -37,6 +39,7 @@ export const users = [
     "",
     "Aliens",
     "mdi-alien-outline",
+    "indigo",
     32,
     1
   ),
@@ -48,8 +51,9 @@ export const users = [
     "Trener",
     [1, 1, 1, 0, 0],
     "https://cdn.vuetifyjs.com/images/john.jpg",
-    "Aliens",
-    "mdi-alien-outline",
+    "Gamblers",
+    "mdi-bitcoin",
+    "indigo",
     32,
     9
   ),

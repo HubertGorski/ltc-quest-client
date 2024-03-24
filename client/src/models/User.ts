@@ -8,6 +8,7 @@ export class User {
   avatar: string;
   teamName: string;
   teamLogo: string;
+  teamColor: string;
   totalTasks: number;
   completedTasks: number;
 
@@ -21,6 +22,7 @@ export class User {
     avatar: string,
     teamName: string,
     teamLogo: string,
+    teamColor: string,
     totalTasks: number,
     completedTasks: number
   ) {
@@ -33,6 +35,7 @@ export class User {
     this.avatar = avatar;
     this.teamName = teamName;
     this.teamLogo = teamLogo;
+    this.teamColor = teamColor;
     this.totalTasks = totalTasks;
     this.completedTasks = completedTasks;
   }
