@@ -23,7 +23,8 @@
       "taskExpectancy": "Oczekiwanie",
       "taskUndone": "Zakończ zadanie",
       "taskRejected": "Zadanie odrzucono",
-      "taskDisabled": "Zadanie niedostępne"
+      "taskDisabled": "Zadanie niedostępne",
+      "taskExpired": "Zadanie wygasło"
     },
     "isSpecialTask": "Zadanie specjalne",
     "additionalInfo": "Dodatkowe informacje",

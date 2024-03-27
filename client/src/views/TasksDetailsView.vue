@@ -36,7 +36,9 @@ const statusButtonDisabledClass =
 
 const statusButton = computed(() => {
   const isUndoneBtn: TaskStatusButton = {
-    text: t("taskDetails.taskStatusBtn.taskUndone"),
+    text: taskDetails.isActive
+      ? t("taskDetails.taskStatusBtn.taskUndone")
+      : t("taskDetails.taskStatusBtn.taskExpired"),
     class: taskDetails.isActive ? `bg-${teamColor}` : statusButtonDisabledClass,
     state: TASK_STATUS.UNDONE,
     action: finishTask,
