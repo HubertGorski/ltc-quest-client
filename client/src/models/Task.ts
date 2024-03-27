@@ -17,6 +17,8 @@ export class Task {
   acceptDate: string | null;
   accepterId: number | null;
   additionalImages: string[];
+  startDate: Date | null;
+  endDate: Date | null;
 
   constructor(
     teamTaskId: number,
@@ -33,7 +35,9 @@ export class Task {
     userId: number,
     acceptDate: string | null = null,
     accepterId: number | null = null,
-    additionalImages: string[]
+    additionalImages: string[] = [],
+    startDate: string | null = null,
+    endDate: string | null = null
   ) {
     this.teamTaskId = teamTaskId;
     this.taskId = taskId;
@@ -50,6 +54,8 @@ export class Task {
     this.acceptDate = acceptDate;
     this.accepterId = accepterId;
     this.additionalImages = additionalImages;
+    this.startDate = startDate ? new Date(startDate) : null;
+    this.endDate = endDate ? new Date(endDate) : null;
   }
 
   get isDefaultTask(): boolean {
@@ -70,6 +76,18 @@ export class Task {
 
   get isDisabled(): boolean {
     return TASK_STATUS.DISABLED === this.status;
+  }
+
+  get isStarted(): boolean {
+    return this.startDate ? new Date() > this.startDate : true;
+  }
+
+  get isExpired(): boolean {
+    return this.endDate ? new Date() > this.endDate : false;
+  }
+
+  get isActive(): boolean {
+    return !this.isDisabled && this.isStarted && !this.isExpired;
   }
 
   setTaskStatus(status: TASK_STATUS): void {

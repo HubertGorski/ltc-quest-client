@@ -15,7 +15,7 @@ export const tasksData = [
     "21.03.2024r.",
     1,
     1,
-    '',
+    "",
     null,
     []
   ),
@@ -32,7 +32,7 @@ export const tasksData = [
     "21.03.2024r.",
     1,
     1,
-    '',
+    "",
     null,
     []
   ),
@@ -49,7 +49,7 @@ export const tasksData = [
     "21.03.2024r.",
     1,
     1,
-    '',
+    "",
     null,
     []
   ),
@@ -66,7 +66,7 @@ export const tasksData = [
     "21.03.2024r.",
     1,
     1,
-    '',
+    "",
     null,
     []
   ),
@@ -83,7 +83,7 @@ export const tasksData = [
     "21.03.2024r.",
     1,
     1,
-    '',
+    "",
     null,
     []
   ),
@@ -100,7 +100,7 @@ export const tasksData = [
     "21.03.2024r.",
     1,
     1,
-    '',
+    "",
     null,
     []
   ),
@@ -117,7 +117,7 @@ export const tasksData = [
     "21.03.2024r.",
     1,
     1,
-    '',
+    "",
     null,
     []
   ),
@@ -134,7 +134,7 @@ export const tasksData = [
     "21.03.2024r.",
     1,
     1,
-    '',
+    "",
     null,
     []
   ),
@@ -154,9 +154,11 @@ export const tasksData = [
     "09.04.2024r.",
     null,
     [
-      'https://www.national-geographic.pl/media/cache/slider_big/uploads/media/default/0014/76/gdzie-jechac-w-gory.jpg',
-      'https://portaltatrzanski.pl/upload/article/2bdd8b1cb241e4d5521145af1e097035.jpeg'
-    ]
+      "https://www.national-geographic.pl/media/cache/slider_big/uploads/media/default/0014/76/gdzie-jechac-w-gory.jpg",
+      "https://portaltatrzanski.pl/upload/article/2bdd8b1cb241e4d5521145af1e097035.jpeg",
+    ],
+    "2024-03-27 10:11",
+    "2024-03-27 21:10"
   ),
   new Task(
     9,
@@ -171,7 +173,7 @@ export const tasksData = [
     "21.03.2024r.",
     1,
     1,
-    '',
+    "",
     null,
     []
   ),
@@ -188,7 +190,7 @@ export const tasksData = [
     "21.03.2024r.",
     1,
     1,
-    '',
+    "",
     null,
     []
   ),
@@ -205,7 +207,7 @@ export const tasksData = [
     "21.03.2024r.",
     1,
     1,
-    '',
+    "",
     null,
     []
   ),
@@ -222,7 +224,7 @@ export const tasksData = [
     "21.03.2024r.",
     1,
     1,
-    '',
+    "",
     null,
     []
   ),
@@ -239,7 +241,7 @@ export const tasksData = [
     "21.03.2024r.",
     1,
     1,
-    '',
+    "",
     null,
     []
   ),
@@ -256,7 +258,7 @@ export const tasksData = [
     "21.03.2024r.",
     1,
     1,
-    '',
+    "",
     null,
     []
   ),
