@@ -1,13 +1,13 @@
-import { defineStore } from 'pinia'
-import { User } from '@/models/User'
-import { users } from '@/assets/data/users'
+import { defineStore } from "pinia";
+import { User } from "@/models/User";
+import { users } from "@/assets/data/users";
 
 interface MyState {
   user: User;
 }
 
 export const useUserStore = defineStore({
-  id: 'userStore',
+  id: "userStore",
   state: (): MyState => ({
     user: users[3],
   }),
@@ -19,7 +19,8 @@ export const useUserStore = defineStore({
   },
 
   actions: {
-    setUserPermissions(permissions: number[]) { this.user.permissions = permissions; }
+    setUserPermissions(permissions: number[]) {
+      this.user.permissions = permissions;
+    },
   },
-
 });

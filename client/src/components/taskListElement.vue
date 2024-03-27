@@ -11,16 +11,30 @@ const props = defineProps({
 });
 
 const infoIcon = computed(() => {
-  const isRejectedIcon: infoIcon = { mdiText: "mdi-alert-circle", color: "text-red-accent-4", taskStatus: TASK_STATUS.REJECTED }
-  const isConfirmedIcon: infoIcon = { mdiText: "mdi-checkbox-marked-circle", color: "text-green-accent-4", taskStatus: TASK_STATUS.CONFIRMED }
-  const isExpectancyIcon: infoIcon = { mdiText: "mdi-clock-time-eight", color: "text-yellow-accent-4", taskStatus: TASK_STATUS.EXPECTANCY }
-  return [isRejectedIcon, isConfirmedIcon, isExpectancyIcon].filter(infoIcon => infoIcon.taskStatus === props.task.status)[0];
+  const isRejectedIcon: infoIcon = {
+    mdiText: "mdi-alert-circle",
+    color: "text-red-accent-4",
+    taskStatus: TASK_STATUS.REJECTED,
+  };
+  const isConfirmedIcon: infoIcon = {
+    mdiText: "mdi-checkbox-marked-circle",
+    color: "text-green-accent-4",
+    taskStatus: TASK_STATUS.CONFIRMED,
+  };
+  const isExpectancyIcon: infoIcon = {
+    mdiText: "mdi-clock-time-eight",
+    color: "text-yellow-accent-4",
+    taskStatus: TASK_STATUS.EXPECTANCY,
+  };
+  return [isRejectedIcon, isConfirmedIcon, isExpectancyIcon].filter(
+    (infoIcon) => infoIcon.taskStatus === props.task.status
+  )[0];
 });
 
 interface infoIcon {
-  mdiText: string,
-  color: string,
-  taskStatus: TASK_STATUS,
+  mdiText: string;
+  color: string;
+  taskStatus: TASK_STATUS;
 }
 </script>
 
@@ -33,17 +47,20 @@ interface infoIcon {
     <div class="task_info">
       <div class="title">
         <v-icon
-        v-if="infoIcon"
-        class="pb-1 mr-2"
-        :class="infoIcon.color"
-        size="20"
-          >{{ infoIcon.mdiText }}</v-icon>
+          v-if="infoIcon"
+          class="pb-1 mr-2"
+          :class="infoIcon.color"
+          size="20"
+          >{{ infoIcon.mdiText }}</v-icon
+        >
         <span> {{ task.title }}</span>
       </div>
       <div
         v-if="!task.isDone"
         class="description"
-        :class="[task.isDisabled ? 'text-grey-lighten-1' : 'text-grey-darken-2']"
+        :class="[
+          task.isDisabled ? 'text-grey-lighten-1' : 'text-grey-darken-2',
+        ]"
       >
         {{ task.description }}
       </div>

@@ -17,19 +17,24 @@ const props = defineProps({
   reverse: {
     type: Boolean,
     default: false,
-  }
+  },
 });
-
 </script>
 
 <template>
-<div :class="{ direction: reverse }" class="d-flex py-4 px-2 ga-2 align-center">
+  <div
+    :class="{ direction: reverse }"
+    class="d-flex py-4 px-2 ga-2 align-center"
+  >
     <v-card class="avatar-box">
-      <img class="avatar" :src="user.avatar">
+      <img class="avatar" :src="user.avatar" />
     </v-card>
     <v-card class="flex-grow-1">
       <v-card-text>
-        <div :class="{ direction: reverse }" class="d-flex justify-space-between text-grey-darken-1">
+        <div
+          :class="{ direction: reverse }"
+          class="d-flex justify-space-between text-grey-darken-1"
+        >
           <div>
             <p class="font-16 text-grey-darken-3">{{ user.name }}</p>
             <p class="font-14">{{ user.role }}</p>

@@ -77,19 +77,19 @@ const getTranslatedFilterOptions = (filterOptions: FilterTasks[]) => {
 };
 
 const resetFilters = () => {
-  Object.keys(filters).forEach(key => {
-  if (Array.isArray(filters[key])) {
-    filters[key] = [];
-  } else {
+  Object.keys(filters).forEach((key) => {
+    if (Array.isArray(filters[key])) {
+      filters[key] = [];
+    } else {
       filters[key] = null;
     }
   });
-}
+};
 
 const setFilters = () => {
   emit("changeFilters", filters);
   panelActive.value = false;
-}
+};
 </script>
 
 <template>
@@ -97,7 +97,10 @@ const setFilters = () => {
     <v-btn
       @click="showFilters"
       class="w-100 h-25 bg-grey-lighten-4"
-      :class="[isEmptyFilters ? 'text-grey-darken-1' : 'text-black', panelActive ? 'elevation-4' : ' elevation-1']"
+      :class="[
+        isEmptyFilters ? 'text-grey-darken-1' : 'text-black',
+        panelActive ? 'elevation-4' : ' elevation-1',
+      ]"
     >
       <v-icon>mdi-filter</v-icon>
     </v-btn>
@@ -149,11 +152,18 @@ const setFilters = () => {
         clearable
       ></v-select>
       <v-sheet class="d-flex justify-center ga-2">
-        <v-btn @click="setFilters" class="elevation-1 bg-grey-lighten-4 flex-grow-1">
-          <p>{{ $t('filters.search') }}</p>
+        <v-btn
+          @click="setFilters"
+          class="elevation-1 bg-grey-lighten-4 flex-grow-1"
+        >
+          <p>{{ $t("filters.search") }}</p>
         </v-btn>
-        <v-btn @click="resetFilters" :class="[isEmptyFilters ? 'text-grey-darken-1' : 'text-black']" class="elevation-1 bg-grey-lighten-4">
-          <p>{{ $t('filters.resetFilters') }}</p>
+        <v-btn
+          @click="resetFilters"
+          :class="[isEmptyFilters ? 'text-grey-darken-1' : 'text-black']"
+          class="elevation-1 bg-grey-lighten-4"
+        >
+          <p>{{ $t("filters.resetFilters") }}</p>
         </v-btn>
       </v-sheet>
     </div>

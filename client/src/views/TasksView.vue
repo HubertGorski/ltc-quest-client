@@ -23,7 +23,9 @@ filters.types = route.query.types ? String(route.query.types) : null;
 filters.advantage = route.query.advantage
   ? String(route.query.advantage)
   : null;
-filters.availability = route.query.availability ? String(route.query.availability) : null;
+filters.availability = route.query.availability
+  ? String(route.query.availability)
+  : null;
 
 const tasks = ref<Task[]>(tasksData);
 const selectedTeamId =

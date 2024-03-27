@@ -32,5 +32,8 @@ export const taskTeamAdvantageItems: FilterTasks[] = [
 
 export const taskAvailabilityItems: FilterTasks[] = [
   new FilterTasks("filters.availability.forAll", "forAll"),
-  new FilterTasks("filters.availability.onlySelectedTeams", "onlySelectedTeams"),
+  new FilterTasks(
+    "filters.availability.onlySelectedTeams",
+    "onlySelectedTeams"
+  ),
 ];
