@@ -12,6 +12,8 @@
   },
   "logout": "Wyloguj",
   "back": "Wstecz",
+  "select": "Wybierz",
+  "cancel": "Odrzuć",
   "taskDetails": {
     "completedByUsers": "Uczestnicy, którzy ukończyli zadanie:",
     "taskAvailability": {
@@ -39,7 +41,9 @@
       "taskPoints": "Punkty zadania",
       "taskType": "Typ zadania",
       "taskTeamAdvantage": "Przewaga drużyny",
-      "taskAvailability": "Dostępność"
+      "taskAvailability": "Dostępność",
+      "taskStartDate": "Data startu zadania",
+      "taskExpiredDate": "Data wygaszenia zadania"
     },
     "taskStatus": {
       "confirmed": "Potwierdzone",

@@ -6,6 +6,7 @@ export enum TASK_STATUS {
   UNDONE = 0,
   REJECTED = -1,
   DISABLED = -2,
+  HIDDEN = -3,
 }
 export const taskStatusItems: FilterTasks[] = [
   new FilterTasks("filters.taskStatus.confirmed", "confirmed"),

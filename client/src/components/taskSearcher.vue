@@ -9,6 +9,8 @@ import {
 import { computed, reactive, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { FilterTasks, Filters, type SearchData } from "@/models/Filters";
+import HubDatePicker from "./hubComponents/HubDatePicker.vue";
+
 const { t } = useI18n();
 const props = defineProps({
   sortTasksState: {
@@ -151,6 +153,8 @@ const setFilters = () => {
         hide-details
         clearable
       ></v-select>
+      <hub-date-picker v-model="filters.taskStartDate" label="filters.taskLabels.taskStartDate" />
+      <hub-date-picker v-model="filters.taskEndDate" label="filters.taskLabels.taskExpiredDate" />
       <v-sheet class="d-flex justify-center ga-2">
         <v-btn
           @click="setFilters"
