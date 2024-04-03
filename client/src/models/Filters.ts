@@ -1,31 +1,53 @@
-export class Filters {
-  [key: string]: string[] | string | Date[] | null;
+import type { LocationQueryValue } from "vue-router";
 
-  status: string[];
-  points: string | null;
-  types: string | null;
-  advantage: string | null;
-  availability: string | null;
+export class Filters {
+  [key: string]: Date[] | LocationQueryValue | LocationQueryValue[]
+
+  status: LocationQueryValue | LocationQueryValue[];
+  points: LocationQueryValue | LocationQueryValue[];
+  types: LocationQueryValue | LocationQueryValue[];
+  advantage: LocationQueryValue | LocationQueryValue[];
+  availability: LocationQueryValue | LocationQueryValue[];
   taskStartDate: Date[];
   taskEndDate: Date[];
 
   constructor(
-    status: string[] = [],
-    points: string | null = null,
-    types: string | null = null,
-    advantage: string | null = null,
-    availability: string | null = null,
-    taskStartDate: Date[] = [],
-    taskEndDate: Date[] = []
+    status: LocationQueryValue | LocationQueryValue[],
+    points: LocationQueryValue | LocationQueryValue[],
+    types: LocationQueryValue | LocationQueryValue[],
+    advantage: LocationQueryValue | LocationQueryValue[],
+    availability: LocationQueryValue | LocationQueryValue[],
+    taskStartDate: LocationQueryValue | LocationQueryValue[],
+    taskEndDate: LocationQueryValue | LocationQueryValue[],
   ) {
     this.status = status;
     this.points = points;
     this.types = types;
     this.advantage = advantage;
     this.availability = availability;
-    this.taskStartDate = taskStartDate;
-    this.taskEndDate = taskEndDate;
+    this.taskStartDate = queriesToDates(taskStartDate);
+    this.taskEndDate = queriesToDates(taskEndDate);
   }
+}
+
+function queriesToDates(stringDates: LocationQueryValue | LocationQueryValue[]): Date[] {
+  if (!stringDates) {
+    return [];
+  }
+
+  if(typeof stringDates === 'string'){
+    const timestamp: number = parseInt(stringDates);
+    return [new Date(timestamp)];
+  }
+
+  const dates: Date[] = [];
+  for (const dateString of stringDates) {
+    const timestamp: number = parseInt(String(dateString));
+    const date: Date = new Date(timestamp);
+    dates.push(date);
+  }
+
+  return dates;    
 }
 
 export class FilterTasks {

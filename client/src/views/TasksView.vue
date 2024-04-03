@@ -16,16 +16,15 @@ const sortState = computed(() => {
   return route.query.sort ? Number(route.query.sort) : 0;
 });
 
-const filters: Filters = new Filters();
-filters.status = route.query.status ? [String(route.query.status)] : [];
-filters.points = route.query.points ? String(route.query.points) : null;
-filters.types = route.query.types ? String(route.query.types) : null;
-filters.advantage = route.query.advantage
-  ? String(route.query.advantage)
-  : null;
-filters.availability = route.query.availability
-  ? String(route.query.availability)
-  : null;
+const filters: Filters = new Filters(
+  route.query.status,
+  route.query.points,
+  route.query.types,
+  route.query.advantage,
+  route.query.availability,
+  route.query.taskStartDate,
+  route.query.taskEndDate
+);
 
 const tasks = ref<Task[]>(tasksData);
 const selectedTeamId =
@@ -47,11 +46,26 @@ watch(activeTab, (newActiveTab) => {
 const updateFiltersQuery = (newFilters: Filters) => {
   const queryObject = {};
   Object.entries(newFilters).forEach(([key, value]) => {
-    if (
-      (value && typeof value === "string") ||
-      (Array.isArray(value) && value.length > 0)
-    ) {
+    if (value && typeof value === "string") {
       Object.assign(queryObject, { [key]: value });
+    } else if (value && typeof value === "object") {
+      const strings: string[] = [];
+      const stringDates: string[] = [];
+      Object.values(value).forEach(element => {
+        if (!element) {
+          return;
+        }
+
+        if (typeof element === 'string'){
+          strings.push(element);
+          Object.assign(queryObject, { [key]: strings });
+        }
+
+        if (typeof element === 'object'){
+          stringDates.push(Date.parse(element).toString());
+          Object.assign(queryObject, { [key]: stringDates });
+        }
+      });
     } else {
       Object.assign(queryObject, { [key]: undefined });
     }
