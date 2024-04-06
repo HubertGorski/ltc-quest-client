@@ -59,8 +59,3 @@ export class FilterTasks {
     this.value = value;
   }
 }
-
-export interface SearchData {
-  sortState: Number;
-  searchPhrase: string;
-}

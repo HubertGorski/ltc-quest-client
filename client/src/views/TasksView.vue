@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import teamsSelectionBar from "@/components/teamsSelectionBar.vue";
 import teamTasks from "@/components/teamTasks.vue";
-import taskSearcher from "@/components/taskSearcher.vue";
+import taskSearcher from "@/components/taskSearcher/TaskSearcher.vue";
 import { teams } from "@/assets/data/teams";
 import { computed, ref, watch } from "vue";
 import { tasksData } from "@/assets/data/tasks";
 import type { Task } from "@/models/Task";
 import { useRoute } from "vue-router";
 import router from "@/router";
-import { Filters, type SearchData } from "@/models/Filters";
+import { Filters } from "@/models/Filters";
+import type { SearchData } from "@/components/taskSearcher/SearchAndSortBar.vue";
 
 const route = useRoute();
 
@@ -49,19 +50,23 @@ const updateFiltersQuery = (newFilters: Filters) => {
     if (value && typeof value === "string") {
       Object.assign(queryObject, { [key]: value });
     } else if (value && typeof value === "object") {
-      const strings: string[] = [];
-      const stringDates: string[] = [];
+      if (value.length === 0) {
+        Object.assign(queryObject, { [key]: undefined });
+      }
+
       Object.values(value).forEach(element => {
-        if (!element) {
+        if (!element) {      
           return;
         }
 
         if (typeof element === 'string'){
+          const strings: string[] = [];
           strings.push(element);
           Object.assign(queryObject, { [key]: strings });
         }
 
         if (typeof element === 'object'){
+          const stringDates: string[] = [];
           stringDates.push(Date.parse(element).toString());
           Object.assign(queryObject, { [key]: stringDates });
         }

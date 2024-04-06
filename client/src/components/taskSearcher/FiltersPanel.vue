@@ -6,17 +6,13 @@ import {
   taskTeamAdvantageItems,
   taskAvailabilityItems,
 } from "@/enums/enumTasks";
-import { computed, reactive, ref, watch } from "vue";
+import { computed, reactive, ref } from "vue";
 import { useI18n } from "vue-i18n";
-import { FilterTasks, Filters, type SearchData } from "@/models/Filters";
-import HubDatePicker from "./hubComponents/HubDatePicker.vue";
+import { FilterTasks, Filters } from "@/models/Filters";
+import HubDatePicker from "@/components/hubComponents/HubDatePicker.vue";
 
 const { t } = useI18n();
 const props = defineProps({
-  sortTasksState: {
-    type: Number,
-    required: true,
-  },
   filters: {
     type: Filters,
     required: true,
@@ -24,46 +20,15 @@ const props = defineProps({
 });
 const emit = defineEmits<{
   (e: "changeFilters", value: Filters): void;
-  (e: "modifyTaskList", value: SearchData): void;
 }>();
-
-const searchTaskPhrase = ref<string>("");
-const sortTasksState = ref<number>(props.sortTasksState);
 const filters: Filters = reactive(props.filters);
-
-const sortTasks = () => {
-  if (sortTasksState.value === 2) {
-    sortTasksState.value = 0;
-  } else {
-    sortTasksState.value++;
-  }
-};
-
-const btnSortClass = computed(() => {
-  return sortTasksState.value === 0
-    ? "elevation-1 bg-grey-lighten-4 text-grey-darken-1"
-    : `elevation-4 bg-grey-lighten-4 text-black active`;
-});
-
 const isEmptyFilters = computed(() => {
   return Object.values(filters).every(
     (value) => value === null || (Array.isArray(value) && value.length === 0)
   );
 });
-
-watch(sortTasksState, (state) => {
-  emit("modifyTaskList", {
-    sortState: state,
-    searchPhrase: searchTaskPhrase.value,
-  });
-});
-watch(searchTaskPhrase, (newSearchTaskPhrase) => {
-  emit("modifyTaskList", {
-    sortState: sortTasksState.value,
-    searchPhrase: newSearchTaskPhrase,
-  });
-});
 const panelActive = ref<boolean>(false);
+
 const showFilters = () => {
   panelActive.value = !panelActive.value;
 };
@@ -77,7 +42,6 @@ const getTranslatedFilterOptions = (filterOptions: FilterTasks[]) => {
   });
   return translatedOptions;
 };
-
 const resetFilters = () => {
   Object.keys(filters).forEach((key) => {
     if (Array.isArray(filters[key])) {
@@ -87,7 +51,6 @@ const resetFilters = () => {
     }
   });
 };
-
 const setFilters = () => {
   emit("changeFilters", filters);
   panelActive.value = false;
@@ -95,7 +58,7 @@ const setFilters = () => {
 </script>
 
 <template>
-  <div class="searcher bg-white">
+  <div>
     <v-btn
       @click="showFilters"
       class="w-100 h-25 bg-grey-lighten-4"
@@ -171,47 +134,14 @@ const setFilters = () => {
         </v-btn>
       </v-sheet>
     </div>
-    <v-sheet class="d-flex pt-2">
-      <v-sheet class="flex-grow-1 align-center">
-        <v-text-field
-          class="pr-2"
-          v-model="searchTaskPhrase"
-          :label="$t('filters.taskLabels.task')"
-          hide-details
-        ></v-text-field>
-      </v-sheet>
-      <v-sheet class="d-flex align-center justify-center">
-        <v-btn @click="sortTasks" size="50" :class="btnSortClass">
-          <v-icon class="icon" :class="{ desc: sortTasksState === 2 }"
-            >mdi-menu-up</v-icon
-          >
-        </v-btn>
-      </v-sheet>
-    </v-sheet>
   </div>
 </template>
 
 <style scoped>
-.searcher {
-  position: sticky;
-  top: 64px;
-  padding: 16px;
-  z-index: 2;
-}
 .searcher_inputs {
   display: flex;
   flex-direction: column;
   gap: 6px;
   padding-top: 8px;
-}
-.active .icon {
-  font-size: 32px;
-}
-.icon {
-  font-size: 26px;
-  transition: all 0.3s;
-}
-.desc {
-  transform: rotate(180deg);
 }
 </style>
