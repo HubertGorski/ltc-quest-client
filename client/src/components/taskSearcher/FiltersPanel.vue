@@ -7,11 +7,10 @@ import {
   taskAvailabilityItems,
 } from "@/enums/enumTasks";
 import { computed, reactive, ref } from "vue";
-import { useI18n } from "vue-i18n";
-import { FilterTasks, Filters } from "@/models/Filters";
+import { Filters } from "@/models/Filters";
 import HubDatePicker from "@/components/hubComponents/HubDatePicker.vue";
+import { getTranslatedFilterOptions } from "../hubComponents/HubUtils.vue";
 
-const { t } = useI18n();
 const props = defineProps({
   filters: {
     type: Filters,
@@ -21,26 +20,15 @@ const props = defineProps({
 const emit = defineEmits<{
   (e: "changeFilters", value: Filters): void;
 }>();
+const panelActive = ref<boolean>(false);
 const filters: Filters = reactive(props.filters);
 const isEmptyFilters = computed(() => {
   return Object.values(filters).every(
     (value) => value === null || (Array.isArray(value) && value.length === 0)
   );
 });
-const panelActive = ref<boolean>(false);
-
 const showFilters = () => {
   panelActive.value = !panelActive.value;
-};
-const getTranslatedFilterOptions = (filterOptions: FilterTasks[]) => {
-  const translatedOptions: FilterTasks[] = [];
-  Object.values(filterOptions).forEach((option, index) => {
-    translatedOptions[index] = {
-      title: t(option.title),
-      value: option.value,
-    };
-  });
-  return translatedOptions;
 };
 const resetFilters = () => {
   Object.keys(filters).forEach((key) => {
@@ -69,7 +57,7 @@ const setFilters = () => {
     >
       <v-icon>mdi-filter</v-icon>
     </v-btn>
-    <div v-if="panelActive" class="searcher_inputs">
+    <div v-if="panelActive" class="filtersPanel">
       <v-select
         item-title="title"
         item-value="value"
@@ -138,7 +126,7 @@ const setFilters = () => {
 </template>
 
 <style scoped>
-.searcher_inputs {
+.filtersPanel {
   display: flex;
   flex-direction: column;
   gap: 6px;
