@@ -14,7 +14,6 @@ const props = defineProps({
   },
 });
 
-const translatedLabel = t(props.label);
 const date = defineModel({type: Array<Date>, required: true });
 
 </script>
@@ -34,7 +33,7 @@ const date = defineModel({type: Array<Date>, required: true });
               <v-icon class="pr-4 text-grey-darken-2" @click="date = []">mdi-close-circle</v-icon>
             </template>
         </vue-date-picker>
-        <span :class="[date.length > 0 ? 'dateSelected' : 'dateNotSelected']" class="text-grey-darken-1">{{ translatedLabel }}</span>
+        <span :class="[date.length > 0 ? 'dateSelected' : 'dateNotSelected']" class="text-grey-darken-1">{{ label }}</span>
     </div>
 </template>
 

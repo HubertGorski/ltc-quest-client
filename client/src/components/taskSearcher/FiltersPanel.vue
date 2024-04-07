@@ -57,28 +57,23 @@ const setFilters = () => {
       <v-icon>mdi-filter</v-icon>
     </v-btn>
     <div v-if="panelActive" class="filtersPanel">
-      <v-select
-        item-title="title"
-        item-value="value"
-        v-model="filters[0].value"
-        :items="getTranslatedFilterOptions(filters[0].options)"
-        :label="$t(filters[0].label)"
-        :multiple="filters[0].multipleSelect"
-        :hide-details="filters[0].hideDetails"
-        :clearable="filters[0].clearable"
-      ></v-select>
-      <v-select
-        item-title="title"
-        item-value="value"
-        v-model="filters[1].value"
-        :items="getTranslatedFilterOptions(filters[1].options)"
-        :label="$t(filters[1].label)"
-        :multiple="filters[1].multipleSelect"
-        :hide-details="filters[1].hideDetails"
-        :clearable="filters[1].clearable"
-      ></v-select>
-      <!-- <hub-date-picker v-model="filters.taskStartDate" label="filters.taskLabels.taskStartDate" /> -->
-      <!-- <hub-date-picker v-model="filters.taskEndDate" label="filters.taskLabels.taskExpiredDate" /> -->
+      <div v-for="filter in filters">
+          <hub-date-picker
+            v-if="filter.isDate" 
+            v-model="filter.value" 
+            :label="$t(filter.label)" />
+          <v-select
+            v-else
+            item-title="title"
+            item-value="value"
+            v-model="filter.value"
+            :items="getTranslatedFilterOptions(filter.options)"
+            :label="$t(filter.label)"
+            :multiple="filter.multipleSelect"
+            :hide-details="filter.hideDetails"
+            :clearable="filter.clearable"
+          ></v-select>
+      </div>
       <v-sheet class="d-flex justify-center ga-2">
         <v-btn
           @click="setFilters"

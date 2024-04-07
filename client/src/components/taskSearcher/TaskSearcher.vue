@@ -40,8 +40,8 @@ const filters: Filter[] = [
     {title: "filters.availability.forAll", value: "forAll"},
     {title: "filters.availability.onlySelectedTeams", value: "onlySelectedTeams"},
   ], 'filters.taskLabels.taskAvailability'),
-  new Filter("taskStartDate", route.query.taskStartDate, [], 'filters.taskLabels.taskStartDate'),
-  new Filter("taskExpiredDate", route.query.taskEndDate, [], 'filters.taskLabels.taskExpiredDate')
+  new Filter("taskStartDate", route.query.taskStartDate, [], 'filters.taskLabels.taskStartDate', true),
+  new Filter("taskExpiredDate", route.query.taskEndDate, [], 'filters.taskLabels.taskExpiredDate', true)
 ];
 
 const sortTasksState = ref<number>(props.sortTasksState);

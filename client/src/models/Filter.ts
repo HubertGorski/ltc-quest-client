@@ -5,6 +5,7 @@ export class Filter {
   value: FilterValue;
   options: FilterObjectLabel[];
   label: string;
+  isDate: boolean;
   multipleSelect: boolean;
   hideDetails: boolean;
   clearable: boolean;
@@ -23,6 +24,7 @@ export class Filter {
     this.value = isDate ? queriesToDates(value) : value;
     this.options = options;
     this.label = label;
+    this.isDate = isDate;
     this.multipleSelect = multipleSelect;
     this.hideDetails = hideDetails;
     this.clearable = clearable;
