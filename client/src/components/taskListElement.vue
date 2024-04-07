@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { TASK_STATUS } from "@/enums/enumTasks";
-import { Task } from "@/models/Task";
+import { TASK_STATUS, Task } from "@/models/Task";
 import { computed } from "vue";
 
 const props = defineProps({

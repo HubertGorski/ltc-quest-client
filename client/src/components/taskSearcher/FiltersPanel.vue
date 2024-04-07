@@ -1,27 +1,20 @@
 <script setup lang="ts">
-import {
-  taskPointsItems,
-  taskStatusItems,
-  taskTypesItems,
-  taskTeamAdvantageItems,
-  taskAvailabilityItems,
-} from "@/enums/enumTasks";
 import { computed, reactive, ref } from "vue";
-import { Filters } from "@/models/Filters";
 import HubDatePicker from "@/components/hubComponents/HubDatePicker.vue";
 import { getTranslatedFilterOptions } from "../hubComponents/HubUtils.vue";
+import { Filter, type SelectedFilterObject } from "@/models/Filter";
 
 const props = defineProps({
   filters: {
-    type: Filters,
+    type: Array<Filter>,
     required: true,
   },
 });
 const emit = defineEmits<{
-  (e: "changeFilters", value: Filters): void;
+  (e: "changeFilters", value: SelectedFilterObject[]): void;
 }>();
 const panelActive = ref<boolean>(false);
-const filters: Filters = reactive(props.filters);
+const filters: Filter[] = reactive(props.filters);
 const isEmptyFilters = computed(() => {
   return Object.values(filters).every(
     (value) => value === null || (Array.isArray(value) && value.length === 0)
@@ -30,17 +23,23 @@ const isEmptyFilters = computed(() => {
 const showFilters = () => {
   panelActive.value = !panelActive.value;
 };
+
 const resetFilters = () => {
-  Object.keys(filters).forEach((key) => {
-    if (Array.isArray(filters[key])) {
-      filters[key] = [];
+  Object.values(filters).forEach((filter) => {
+    if (Array.isArray(filter.value)) {
+      filter.value = [];
     } else {
-      filters[key] = null;
+      filter.value = null;
     }
-  });
+  }); 
 };
+
 const setFilters = () => {
-  emit("changeFilters", filters);
+  const filterObjects: SelectedFilterObject[] = [];
+  Object.values(filters).forEach(filter => {
+    filterObjects.push({name: filter.name, value: filter.value});
+    });
+  emit("changeFilters", filterObjects);
   panelActive.value = false;
 };
 </script>
@@ -61,51 +60,25 @@ const setFilters = () => {
       <v-select
         item-title="title"
         item-value="value"
-        v-model="filters.status"
-        :items="getTranslatedFilterOptions(taskStatusItems)"
-        :label="$t('filters.taskLabels.taskStatus')"
-        multiple
-        hide-details
-        clearable
+        v-model="filters[0].value"
+        :items="getTranslatedFilterOptions(filters[0].options)"
+        :label="$t(filters[0].label)"
+        :multiple="filters[0].multipleSelect"
+        :hide-details="filters[0].hideDetails"
+        :clearable="filters[0].clearable"
       ></v-select>
       <v-select
         item-title="title"
         item-value="value"
-        v-model="filters.points"
-        :items="getTranslatedFilterOptions(taskPointsItems)"
-        :label="$t('filters.taskLabels.taskPoints')"
-        hide-details
-        clearable
+        v-model="filters[1].value"
+        :items="getTranslatedFilterOptions(filters[1].options)"
+        :label="$t(filters[1].label)"
+        :multiple="filters[1].multipleSelect"
+        :hide-details="filters[1].hideDetails"
+        :clearable="filters[1].clearable"
       ></v-select>
-      <v-select
-        item-title="title"
-        item-value="value"
-        v-model="filters.types"
-        :items="getTranslatedFilterOptions(taskTypesItems)"
-        :label="$t('filters.taskLabels.taskType')"
-        hide-details
-        clearable
-      ></v-select>
-      <v-select
-        item-title="title"
-        item-value="value"
-        v-model="filters.advantage"
-        :items="getTranslatedFilterOptions(taskTeamAdvantageItems)"
-        :label="$t('filters.taskLabels.taskTeamAdvantage')"
-        hide-details
-        clearable
-      ></v-select>
-      <v-select
-        item-title="title"
-        item-value="value"
-        v-model="filters.availability"
-        :items="getTranslatedFilterOptions(taskAvailabilityItems)"
-        :label="$t('filters.taskLabels.taskAvailability')"
-        hide-details
-        clearable
-      ></v-select>
-      <hub-date-picker v-model="filters.taskStartDate" label="filters.taskLabels.taskStartDate" />
-      <hub-date-picker v-model="filters.taskEndDate" label="filters.taskLabels.taskExpiredDate" />
+      <!-- <hub-date-picker v-model="filters.taskStartDate" label="filters.taskLabels.taskStartDate" /> -->
+      <!-- <hub-date-picker v-model="filters.taskEndDate" label="filters.taskLabels.taskExpiredDate" /> -->
       <v-sheet class="d-flex justify-center ga-2">
         <v-btn
           @click="setFilters"

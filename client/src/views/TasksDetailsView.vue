@@ -8,10 +8,9 @@ import btnWithDropdown from "@/components/btnWithDropdown.vue";
 import { useI18n } from "vue-i18n";
 import { useUserStore } from "@/stores/userStore";
 import { computed } from "vue";
-import { TASK_STATUS } from "@/enums/enumTasks";
 import userMiniCard from "@/components/userMiniCard.vue";
 import type { User } from "@/models/User";
-import type { Task } from "@/models/Task";
+import { TASK_STATUS, type Task } from "@/models/Task";
 import goToTopBtn from "@/components/goToTopBtn.vue";
 
 const { t } = useI18n();

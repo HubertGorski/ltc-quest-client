@@ -8,24 +8,14 @@ import { tasksData } from "@/assets/data/tasks";
 import type { Task } from "@/models/Task";
 import { useRoute } from "vue-router";
 import router from "@/router";
-import { Filters } from "@/models/Filters";
 import type { SearchData } from "@/components/taskSearcher/SearchAndSortBar.vue";
+import type { SelectedFilterObject } from "@/models/Filter";
 
 const route = useRoute();
 
 const sortState = computed(() => {
   return route.query.sort ? Number(route.query.sort) : 0;
 });
-
-const filters: Filters = new Filters(
-  route.query.status,
-  route.query.points,
-  route.query.types,
-  route.query.advantage,
-  route.query.availability,
-  route.query.taskStartDate,
-  route.query.taskEndDate
-);
 
 const tasks = ref<Task[]>(tasksData);
 const selectedTeamId =
@@ -44,35 +34,34 @@ watch(activeTab, (newActiveTab) => {
   return router.push({ path: "/tasks", query: route.query, hash: "" });
 });
 
-const updateFiltersQuery = (newFilters: Filters) => {
+const updateFiltersQuery = (newFilters: SelectedFilterObject[]) => {
   const queryObject = {};
-  Object.entries(newFilters).forEach(([key, value]) => {
-    if (value && typeof value === "string") {
-      Object.assign(queryObject, { [key]: value });
-    } else if (value && typeof value === "object") {
-      if (value.length === 0) {
-        Object.assign(queryObject, { [key]: undefined });
+  newFilters.forEach(filter => {
+    if (filter.value && typeof filter.value === "string") {
+      Object.assign(queryObject, { [filter.name]: filter.value });
+    } else if (filter.value && typeof filter.value === "object") {
+      if (filter.value.length === 0) {
+        Object.assign(queryObject, { [filter.name]: undefined });
       }
-
-      Object.values(value).forEach(element => {
+      const strings: string[] = [];
+      const stringDates: string[] = [];
+      Object.values(filter.value).forEach(element => {
         if (!element) {      
           return;
         }
 
         if (typeof element === 'string'){
-          const strings: string[] = [];
           strings.push(element);
-          Object.assign(queryObject, { [key]: strings });
+          Object.assign(queryObject, { [filter.name]: strings });
         }
 
         if (typeof element === 'object'){
-          const stringDates: string[] = [];
           stringDates.push(Date.parse(element).toString());
-          Object.assign(queryObject, { [key]: stringDates });
+          Object.assign(queryObject, { [filter.name]: stringDates });
         }
       });
     } else {
-      Object.assign(queryObject, { [key]: undefined });
+      Object.assign(queryObject, { [filter.name]: undefined });
     }
   });
 
@@ -101,7 +90,7 @@ const modifyTaskList = (data: SearchData) => {
   updateSortQuery(data.sortState);
 };
 
-const getTaskListWithFilters = (newFilters: Filters) => {
+const getTaskListWithFilters = (newFilters: SelectedFilterObject[]) => {
   // get new data
   updateFiltersQuery(newFilters);
 };
@@ -133,7 +122,6 @@ tasks.value = getSortTasks(sortState.value, tasks.value);
     @modifyTaskList="modifyTaskList"
     @changeFilters="getTaskListWithFilters"
     :sortTasksState="sortState"
-    :filters="filters"
   ></task-searcher>
   <team-tasks v-model="activeTab" :tasks="tasks" :teams="teams"></team-tasks>
   <teams-selection-bar :teams="teams" v-model="activeTab"></teams-selection-bar>

@@ -1,10 +1,10 @@
 <script lang="ts">
-import type { FilterTasks } from '@/models/Filters';
+import type { FilterObjectLabel } from '@/models/Filter';
 import { useI18n } from "vue-i18n";
 
-function getTranslatedFilterOptions(filterOptions: FilterTasks[]) {
+function getTranslatedFilterOptions(filterOptions: FilterObjectLabel[]) {
     const { t } = useI18n();
-    const translatedOptions: FilterTasks[] = [];
+    const translatedOptions: FilterObjectLabel[] = [];
     Object.values(filterOptions).forEach((option, index) => {
             translatedOptions[index] = {
             title: t(option.title),

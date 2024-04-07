@@ -1,6 +1,3 @@
-import { TASK_STATUS } from "@/enums/enumTasks";
-import { ADMIN } from "@/enums/enumUsers";
-
 export class Task {
   teamTaskId: number;
   taskId: number;
@@ -58,10 +55,6 @@ export class Task {
     this.endDate = endDate ? new Date(endDate) : null;
   }
 
-  get isDefaultTask(): boolean {
-    return this.createrId === ADMIN.ID;
-  }
-
   get isDone(): boolean {
     return TASK_STATUS.CONFIRMED === this.status;
   }
@@ -93,6 +86,15 @@ export class Task {
   setTaskStatus(status: TASK_STATUS): void {
     this.status = status;
   }
+}
+
+export enum TASK_STATUS {
+  CONFIRMED = 2,
+  EXPECTANCY = 1,
+  UNDONE = 0,
+  REJECTED = -1,
+  DISABLED = -2,
+  HIDDEN = -3,
 }
 
 // per taskId
