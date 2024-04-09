@@ -16,9 +16,17 @@ const emit = defineEmits<{
 const panelActive = ref<boolean>(false);
 const filters: Filter[] = reactive(props.filters);
 const isEmptyFilters = computed(() => {
-  return Object.values(filters).every(
-    (value) => value === null || (Array.isArray(value) && value.length === 0)
-  );
+  let isEmptyFilters = true;
+  Object.values(filters).forEach((filter) => {
+    if (
+      (Array.isArray(filter.value) && filter.value.length > 0) ||
+      (!Array.isArray(filter.value) && filter.value)
+    ) {
+      isEmptyFilters = false;
+      return;
+    }
+  });
+  return isEmptyFilters;
 });
 const showFilters = () => {
   panelActive.value = !panelActive.value;
@@ -31,14 +39,14 @@ const resetFilters = () => {
     } else {
       filter.value = null;
     }
-  }); 
+  });
 };
 
 const setFilters = () => {
   const filterObjects: SelectedFilterObject[] = [];
-  Object.values(filters).forEach(filter => {
-    filterObjects.push({name: filter.name, value: filter.value});
-    });
+  Object.values(filters).forEach((filter) => {
+    filterObjects.push({ name: filter.name, value: filter.value });
+  });
   emit("changeFilters", filterObjects);
   panelActive.value = false;
 };
@@ -58,21 +66,22 @@ const setFilters = () => {
     </v-btn>
     <div v-if="panelActive" class="filtersPanel">
       <div v-for="filter in filters">
-          <hub-date-picker
-            v-if="filter.isDate" 
-            v-model="filter.value" 
-            :label="$t(filter.label)" />
-          <v-select
-            v-else
-            item-title="title"
-            item-value="value"
-            v-model="filter.value"
-            :items="getTranslatedFilterOptions(filter.options)"
-            :label="$t(filter.label)"
-            :multiple="filter.multipleSelect"
-            :hide-details="filter.hideDetails"
-            :clearable="filter.clearable"
-          ></v-select>
+        <hub-date-picker
+          v-if="filter.isDate"
+          v-model="filter.value"
+          :label="$t(filter.label)"
+        />
+        <v-select
+          v-else
+          item-title="title"
+          item-value="value"
+          v-model="filter.value"
+          :items="getTranslatedFilterOptions(filter.options)"
+          :label="$t(filter.label)"
+          :multiple="filter.multipleSelect"
+          :hide-details="filter.hideDetails"
+          :clearable="filter.clearable"
+        ></v-select>
       </div>
       <v-sheet class="d-flex justify-center ga-2">
         <v-btn
