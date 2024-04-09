@@ -9,7 +9,7 @@ export class Filter {
   multipleSelect: boolean;
   hideDetails: boolean;
   clearable: boolean;
-  
+
   constructor(
     name: string,
     value: LocationQueryValue | LocationQueryValue[],
@@ -18,10 +18,9 @@ export class Filter {
     isDate: boolean = false,
     multipleSelect: boolean = false,
     hideDetails: boolean = true,
-    clearable: boolean = true,
+    clearable: boolean = true
   ) {
-    this.name = name,
-    this.value = isDate ? queriesToDates(value) : value;
+    (this.name = name), (this.value = isDate ? queriesToDates(value) : value);
     this.options = options;
     this.label = label;
     this.isDate = isDate;
@@ -31,7 +30,7 @@ export class Filter {
   }
 }
 
-type FilterValue =  Date[] | LocationQueryValue | LocationQueryValue[];
+type FilterValue = Date[] | LocationQueryValue | LocationQueryValue[];
 
 export interface FilterObjectLabel {
   title: string;
@@ -43,12 +42,14 @@ export interface SelectedFilterObject {
   value: FilterValue;
 }
 
-function queriesToDates(stringDates: LocationQueryValue | LocationQueryValue[]): Date[] {
+function queriesToDates(
+  stringDates: LocationQueryValue | LocationQueryValue[]
+): Date[] {
   if (!stringDates) {
     return [];
   }
 
-  if(typeof stringDates === 'string'){
+  if (typeof stringDates === "string") {
     const timestamp: number = parseInt(stringDates);
     return [new Date(timestamp)];
   }
@@ -60,5 +61,32 @@ function queriesToDates(stringDates: LocationQueryValue | LocationQueryValue[]):
     dates.push(date);
   }
 
-  return dates;    
+  return dates;
+}
+
+export function getSelectedFilterObjects(
+  filters: Filter[]
+): SelectedFilterObject[] {
+  const filterObjects: SelectedFilterObject[] = [];
+  Object.values(filters).forEach((filter) => {
+    if (
+      (Array.isArray(filter.value) && filter.value.length > 0) ||
+      (!Array.isArray(filter.value) && filter.value)
+    ) {
+      filterObjects.push({ name: filter.name, value: filter.value });
+    }
+  });
+
+  return filterObjects;
+}
+
+export function getSelectedFilterObjectsWithEmptyValues(
+  filters: Filter[]
+): SelectedFilterObject[] {
+  const filterObjects: SelectedFilterObject[] = [];
+  Object.values(filters).forEach((filter) => {
+    filterObjects.push({ name: filter.name, value: filter.value });
+  });
+
+  return filterObjects;
 }

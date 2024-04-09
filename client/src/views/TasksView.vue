@@ -36,7 +36,7 @@ watch(activeTab, (newActiveTab) => {
 
 const updateFiltersQuery = (newFilters: SelectedFilterObject[]) => {
   const queryObject = {};
-  newFilters.forEach(filter => {
+  newFilters.forEach((filter) => {
     if (filter.value && typeof filter.value === "string") {
       Object.assign(queryObject, { [filter.name]: filter.value });
     } else if (filter.value && typeof filter.value === "object") {
@@ -45,17 +45,17 @@ const updateFiltersQuery = (newFilters: SelectedFilterObject[]) => {
       }
       const strings: string[] = [];
       const stringDates: string[] = [];
-      Object.values(filter.value).forEach(element => {
-        if (!element) {      
+      Object.values(filter.value).forEach((element) => {
+        if (!element) {
           return;
         }
 
-        if (typeof element === 'string'){
+        if (typeof element === "string") {
           strings.push(element);
           Object.assign(queryObject, { [filter.name]: strings });
         }
 
-        if (typeof element === 'object'){
+        if (typeof element === "object") {
           stringDates.push(Date.parse(element).toString());
           Object.assign(queryObject, { [filter.name]: stringDates });
         }

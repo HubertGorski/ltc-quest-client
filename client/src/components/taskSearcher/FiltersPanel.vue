@@ -2,7 +2,11 @@
 import { computed, reactive, ref } from "vue";
 import HubDatePicker from "@/components/hubComponents/HubDatePicker.vue";
 import { getTranslatedFilterOptions } from "../hubComponents/HubUtils.vue";
-import { Filter, type SelectedFilterObject } from "@/models/Filter";
+import {
+  Filter,
+  getSelectedFilterObjectsWithEmptyValues,
+  type SelectedFilterObject,
+} from "@/models/Filter";
 
 const props = defineProps({
   filters: {
@@ -43,11 +47,7 @@ const resetFilters = () => {
 };
 
 const setFilters = () => {
-  const filterObjects: SelectedFilterObject[] = [];
-  Object.values(filters).forEach((filter) => {
-    filterObjects.push({ name: filter.name, value: filter.value });
-  });
-  emit("changeFilters", filterObjects);
+  emit("changeFilters", getSelectedFilterObjectsWithEmptyValues(filters));
   panelActive.value = false;
 };
 </script>
@@ -65,7 +65,7 @@ const setFilters = () => {
       <v-icon>mdi-filter</v-icon>
     </v-btn>
     <div v-if="panelActive" class="filtersPanel">
-      <div v-for="filter in filters">
+      <div v-for="filter in filters" :key="filter.name">
         <hub-date-picker
           v-if="filter.isDate"
           v-model="filter.value"
