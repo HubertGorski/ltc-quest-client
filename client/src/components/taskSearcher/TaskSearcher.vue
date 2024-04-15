@@ -28,7 +28,7 @@ const filters: Filter[] = [
     {title: "filters.taskPoints.positive", value: "positive"},
     {title: "filters.taskPoints.negative", value: "negative"},
   ], 'filters.taskLabels.taskPoints'),
-  new Filter("type", route.query.types, [
+  new Filter("type", route.query.type, [
     {title: "filters.taskType.basic", value: "basic"},
     {title: "filters.taskType.special", value: "special"},
   ], 'filters.taskLabels.taskType'),
@@ -41,7 +41,7 @@ const filters: Filter[] = [
     {title: "filters.availability.onlySelectedTeams", value: "onlySelectedTeams"},
   ], 'filters.taskLabels.taskAvailability'),
   new Filter("taskStartDate", route.query.taskStartDate, [], 'filters.taskLabels.taskStartDate', true),
-  new Filter("taskExpiredDate", route.query.taskEndDate, [], 'filters.taskLabels.taskExpiredDate', true)
+  new Filter("taskExpiredDate", route.query.taskExpiredDate, [], 'filters.taskLabels.taskExpiredDate', true)
 ];
 
 const sortTasksState = ref<number>(props.sortTasksState);
