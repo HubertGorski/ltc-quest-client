@@ -108,7 +108,7 @@ interface taskStatus {
   userId: number;
   isDone: boolean;
 }
-interface taskTeamsPoints {
+export interface taskTeamsPoints {
   teamId: number;
   points: number;
 }

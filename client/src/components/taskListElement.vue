@@ -71,19 +71,19 @@ interface infoIcon {
       >
         {{ task.description }}
       </div>
+      <div class="pointsBars">
+        <div 
+        v-for="teamPoints in task.teamsPoints"
+        :key="teamPoints.teamId" 
+        class="pointsBars_bar"
+        :class="`bg-${wordStore.getTeamById(teamPoints.teamId)?.color}`"
+        :style="{ width: getPointsInPercentages(teamPoints.points) + '%' }"
+        >
+        </div>
+      </div>
     </div>
     <div class="task_points">{{ task.points }}</div>
   </RouterLink>
-  <div class="pointsBars">
-    <div 
-    v-for="teamPoints in task.teamsPoints"
-    :key="teamPoints.teamId" 
-    class="pointsBars_bar"
-    :class="`bg-${wordStore.getTeamById(teamPoints.teamId)?.color}`"
-    :style="{ width: getPointsInPercentages(teamPoints.points) + '%' }"
-    >
-    </div>
-  </div>
   <v-divider></v-divider>
 </template>
 
@@ -118,7 +118,7 @@ interface infoIcon {
   white-space: normal;
 }
 .pointsBars {
-  padding: 4px 36px 4px 12px;
+  padding: 4px 0;
 }
 .pointsBars_bar {
   height: 2px;

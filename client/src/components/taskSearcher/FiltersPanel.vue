@@ -17,7 +17,7 @@ const panelActive = ref<boolean>(false);
 const filters: Filter[] = reactive(props.filters);
 const isEmptyFilters = computed(() => {
   return filters.every(filter =>
-    filter.value === null || (Array.isArray(filter.value) && filter.value.length === 0)
+    filter.value === null || typeof filter.value === 'undefined' || (Array.isArray(filter.value) && filter.value.length === 0)
   );
 });
 const showFilters = () => {
