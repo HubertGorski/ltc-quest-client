@@ -2,11 +2,13 @@
 import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import { noSelectedTeam } from "@/models/Team";
-import { users } from "@/assets/data/users";
 import { useI18n } from "vue-i18n";
+import { hasAccess, privTypes } from "@/managers/permissionsManager";
+import { useUserStore } from "@/stores/userStore";
 
 const { t } = useI18n();
-const currentUser = users[3];
+const userStore = useUserStore();
+const currentUser = userStore.user;
 const isOpenMenu = ref<boolean>(false);
 const closeMenu = () => {
   isOpenMenu.value = false;
@@ -22,6 +24,7 @@ const translatedRouteNames: { [key: string]: string } = {
   settings: t("router.settings"),
   login: t("router.login"),
   register: t("router.register"),
+  addPoints: t("router.addPoints"),
 };
 const route = useRoute();
 const currentRouteName = computed(() =>
@@ -29,6 +32,15 @@ const currentRouteName = computed(() =>
 );
 const currentTranslatedRouteName = computed(() => {
   return translatedRouteNames[currentRouteName.value];
+});
+const isAddPointsView = computed(() => {
+  return currentRouteName.value === 'addPoints';
+});
+const isTasksView = computed(() => {
+  return currentRouteName.value === 'tasks';
+});
+const hasAccessToAddTask = computed(() => {
+  return hasAccess(privTypes.usingModTask, currentUser.permissions);
 });
 </script>
 
@@ -49,7 +61,7 @@ const currentTranslatedRouteName = computed(() => {
               </span>
               <span
                 class="text-body-1 font-italic px-1"
-                v-if="currentRouteName === 'tasks'"
+                v-if="isTasksView"
               >
                 {{
                   `(${currentUser.completedTasks}/${currentUser.totalTasks})`
@@ -57,7 +69,8 @@ const currentTranslatedRouteName = computed(() => {
               </span>
             </div>
           </v-toolbar-title>
-          <v-btn class="mx-4" v-bind="props">
+            <v-btn v-if="(isTasksView || isAddPointsView) && hasAccessToAddTask" @click="isAddPointsView ? $router.go(-1) : $router.push('/addPoints')" :icon="isAddPointsView ? 'mdi-keyboard-backspace': '$plus'" class="text-h6" />
+          <v-btn class="mx-2 px-0" v-bind="props">
             <v-icon size="32">mdi-menu</v-icon>
           </v-btn>
         </v-toolbar>
