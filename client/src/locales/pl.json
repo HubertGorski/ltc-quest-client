@@ -8,7 +8,8 @@
     "bingo": "Cyborg bingo",
     "settings": "Ustawienia konta",
     "login": "Logowanie",
-    "register": "Rejestracja"
+    "register": "Rejestracja",
+    "addPoints": "Przyznaj punkty"
   },
   "logout": "Wyloguj",
   "back": "Wstecz",

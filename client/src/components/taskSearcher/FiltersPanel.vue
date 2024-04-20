@@ -20,17 +20,12 @@ const emit = defineEmits<{
 const panelActive = ref<boolean>(false);
 const filters: Filter[] = reactive(props.filters);
 const isEmptyFilters = computed(() => {
-  let isEmptyFilters = true;
-  Object.values(filters).forEach((filter) => {
-    if (
-      (Array.isArray(filter.value) && filter.value.length > 0) ||
-      (!Array.isArray(filter.value) && filter.value)
-    ) {
-      isEmptyFilters = false;
-      return;
-    }
-  });
-  return isEmptyFilters;
+  return filters.every(
+    (filter) =>
+      filter.value === null ||
+      typeof filter.value === "undefined" ||
+      (Array.isArray(filter.value) && filter.value.length === 0)
+  );
 });
 const showFilters = () => {
   panelActive.value = !panelActive.value;

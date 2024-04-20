@@ -16,6 +16,8 @@ export class Task {
   additionalImages: string[];
   startDate: Date | null;
   endDate: Date | null;
+  teamsPoints: taskTeamsPoints[];
+  wordId: number;
 
   constructor(
     teamTaskId: number,
@@ -34,7 +36,9 @@ export class Task {
     accepterId: number | null = null,
     additionalImages: string[] = [],
     startDate: string | null = null,
-    endDate: string | null = null
+    endDate: string | null = null,
+    teamsPoints: taskTeamsPoints[] = [],
+    wordId: number = 0,
   ) {
     this.teamTaskId = teamTaskId;
     this.taskId = taskId;
@@ -53,6 +57,8 @@ export class Task {
     this.additionalImages = additionalImages;
     this.startDate = startDate ? new Date(startDate) : null;
     this.endDate = endDate ? new Date(endDate) : null;
+    this.teamsPoints = teamsPoints;
+    this.wordId = wordId;
   }
 
   get isDone(): boolean {
@@ -102,7 +108,7 @@ interface taskStatus {
   userId: number;
   isDone: boolean;
 }
-interface taskTeamsPoints {
+export interface taskTeamsPoints {
   teamId: number;
   points: number;
 }

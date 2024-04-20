@@ -16,7 +16,15 @@ export const tasksData = [
     1,
     "",
     null,
-    []
+    [],
+    null,
+    null,
+    [ {teamId: 1, points: 24},
+      {teamId: 2, points: 14},
+      {teamId: 3, points: 8},
+      {teamId: 4, points: 32}
+    ],
+    1
   ),
   new Task(
     1,
@@ -33,7 +41,14 @@ export const tasksData = [
     1,
     "",
     null,
-    []
+    [],
+    null,
+    null,
+    [ {teamId: 1, points: 24},
+      {teamId: 2, points: 64},
+      {teamId: 3, points: 8},
+      {teamId: 4, points: 12}
+    ],
   ),
   new Task(
     2,
@@ -50,7 +65,14 @@ export const tasksData = [
     1,
     "",
     null,
-    []
+    [],
+    null,
+    null,
+    [ {teamId: 1, points: 44},
+      {teamId: 2, points: 54},
+      {teamId: 3, points: 48},
+      {teamId: 4, points: 52}
+    ],
   ),
   new Task(
     3,
@@ -67,7 +89,14 @@ export const tasksData = [
     1,
     "",
     null,
-    []
+    [],
+    null,
+    null,
+    [ {teamId: 1, points: 0},
+      {teamId: 2, points: 12},
+      {teamId: 3, points: 8},
+      {teamId: 4, points: 2}
+    ],
   ),
   new Task(
     4,
@@ -84,7 +113,14 @@ export const tasksData = [
     1,
     "",
     null,
-    []
+    [],
+    null,
+    null,
+    [ {teamId: 1, points: 24},
+      {teamId: 2, points: 44},
+      {teamId: 3, points: 38},
+      {teamId: 4, points: 32}
+    ],
   ),
   new Task(
     5,

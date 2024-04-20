@@ -3,7 +3,7 @@ export class User {
   login: string;
   token: string;
   name: string;
-  role: string;
+  roleName: string;
   permissions: number[];
   avatar: string;
   teamName: string;
@@ -17,7 +17,7 @@ export class User {
     login: string,
     token: string,
     name: string,
-    role: string,
+    roleName: string,
     permissions: number[],
     avatar: string,
     teamName: string,
@@ -30,7 +30,7 @@ export class User {
     this.login = login;
     this.token = token;
     this.name = name;
-    this.role = role;
+    this.roleName = roleName;
     this.permissions = permissions;
     this.avatar = avatar;
     this.teamName = teamName;

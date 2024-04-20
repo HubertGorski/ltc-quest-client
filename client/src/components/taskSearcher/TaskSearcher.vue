@@ -49,7 +49,7 @@ const filters: Filter[] = [
   ),
   new Filter(
     "type",
-    route.query.types,
+    route.query.type,
     [
       { title: "filters.taskType.basic", value: "basic" },
       { title: "filters.taskType.special", value: "special" },
@@ -86,7 +86,7 @@ const filters: Filter[] = [
   ),
   new Filter(
     "taskExpiredDate",
-    route.query.taskEndDate,
+    route.query.taskExpiredDate,
     [],
     "filters.taskLabels.taskExpiredDate",
     true
