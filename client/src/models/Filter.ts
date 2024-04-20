@@ -85,11 +85,13 @@ export function getChips(filters: Filter[]): SelectedFilterObjectChips[] {
   filterObjects.forEach((element) => {
     if (typeof element.value === "object" && element.value) {
       element.value.forEach((value) => {
-        newArray.push({
-          id: newArray.length,
-          name: element.name,
-          value: value,
-        });
+        if (value !== null) {
+          newArray.push({
+            id: newArray.length,
+            name: element.name,
+            value: value,
+          });
+        }
       });
     } else {
       newArray.push({
