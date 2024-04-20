@@ -10,7 +10,7 @@ const props = defineProps({
   sortTasksState: {
     type: Number,
     required: true,
-  }
+  },
 });
 
 const emit = defineEmits<{

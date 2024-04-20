@@ -6,7 +6,7 @@ import {
   type SelectedFilterObject,
   type SelectedFilterObjectChips,
 } from "@/models/Filter";
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
 import { getTranslatedFilterOptions } from "./HubUtils.vue";
 import { format, isValid } from "date-fns";
 import { useI18n } from "vue-i18n";
@@ -74,6 +74,12 @@ const getTranslatedLabel = (label: SelectedFilterObjectChips) => {
   });
   return actualLabel;
 };
+
+const isVisibleShowMore = computed(() => {
+  return objectLabelsChips.value.length > 4;
+});
+
+const isActiveShowMore = ref(true);
 </script>
 
 <template>
@@ -86,6 +92,15 @@ const getTranslatedLabel = (label: SelectedFilterObjectChips) => {
     >
       {{ getTranslatedLabel(label) }}
     </v-chip>
+    <v-chip
+      v-if="isVisibleShowMore"
+      @click="isActiveShowMore = !isActiveShowMore"
+      class="px-2 elevation-1"
+    >
+      <v-icon :class="{ rotate: isActiveShowMore }" size="25"
+        >mdi-menu-right</v-icon
+      >
+    </v-chip>
   </div>
 </template>
 
@@ -94,6 +109,9 @@ const getTranslatedLabel = (label: SelectedFilterObjectChips) => {
   display: flex;
   gap: 4px;
   flex-wrap: wrap;
-  padding: 8px 8px 0 8px;
+  padding-top: 8px;
+}
+.rotate {
+  transform: rotate(180deg);
 }
 </style>
