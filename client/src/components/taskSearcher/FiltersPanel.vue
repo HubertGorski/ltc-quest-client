@@ -2,11 +2,7 @@
 import { computed, reactive, ref } from "vue";
 import HubDatePicker from "@/components/hubComponents/HubDatePicker.vue";
 import { getTranslatedFilterOptions } from "../hubComponents/HubUtils.vue";
-import {
-  Filter,
-  getSelectedFilterObjectsWithEmptyValues,
-  type SelectedFilterObject,
-} from "@/models/Filter";
+import { Filter, type SelectedFilterObject } from "@/models/Filter";
 
 const props = defineProps({
   filters: {
@@ -28,7 +24,7 @@ const isEmptyFilters = computed(() => {
   );
 });
 const showFilters = () => {
-  panelActive.value = !panelActive.value;
+  panelActive.value = true;
 };
 
 const resetFilters = () => {
@@ -42,7 +38,7 @@ const resetFilters = () => {
 };
 
 const setFilters = () => {
-  emit("changeFilters", getSelectedFilterObjectsWithEmptyValues(filters));
+  emit("changeFilters", filters);
   panelActive.value = false;
 };
 </script>

@@ -1,15 +1,11 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import SearchAndSortBar, {
   type SearchData,
 } from "@/components/taskSearcher/SearchAndSortBar.vue";
 import FiltersPanel from "./FiltersPanel.vue";
 import { useRoute } from "vue-router";
-import {
-  Filter,
-  getSelectedFilterObjects,
-  type SelectedFilterObject,
-} from "@/models/Filter";
+import { Filter, type SelectedFilterObject } from "@/models/Filter";
 import HubChipsList from "../hubComponents/HubChipsList.vue";
 
 const route = useRoute();
@@ -94,13 +90,9 @@ const filters: Filter[] = [
 ];
 
 const sortTasksState = ref<number>(props.sortTasksState);
-const chipsFilters = ref<SelectedFilterObject[]>(
-  getSelectedFilterObjects(filters)
-);
 
 const changeFilters = (filterObjects: SelectedFilterObject[]) => {
   emit("changeFilters", filterObjects);
-  chipsFilters.value = getSelectedFilterObjects(filters);
 };
 const modifyTaskList = (data: SearchData) => {
   emit("modifyTaskList", data);
@@ -108,13 +100,13 @@ const modifyTaskList = (data: SearchData) => {
 </script>
 
 <template>
-  <div class="taskSearcher bg-white">
+  <div class="taskSearcher bg-white border border-b-md">
     <FiltersPanel :filters="filters" @changeFilters="changeFilters" />
     <SearchAndSortBar
       :sortTasksState="sortTasksState"
       @modifyTaskList="modifyTaskList"
     />
-    <HubChipsList v-model="chipsFilters" />
+    <HubChipsList :filters="filters" @changeFilters="changeFilters" />
   </div>
 </template>
 
@@ -122,7 +114,7 @@ const modifyTaskList = (data: SearchData) => {
 .taskSearcher {
   position: sticky;
   top: 64px;
-  padding: 16px;
+  padding: 16px 16px 8px 16px;
   z-index: 2;
 }
 </style>

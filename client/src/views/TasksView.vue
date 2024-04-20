@@ -33,7 +33,6 @@ watch(activeTab, (newActiveTab) => {
 
   return router.push({ path: "/tasks", query: route.query, hash: "" });
 });
-
 const updateFiltersQuery = (newFilters: SelectedFilterObject[]) => {
   const queryObject = {};
   newFilters.forEach((filter) => {
