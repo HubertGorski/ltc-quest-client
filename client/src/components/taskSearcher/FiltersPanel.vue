@@ -9,11 +9,11 @@ const props = defineProps({
     type: Array<Filter>,
     required: true,
   },
+  showPanelshowPanel: Boolean,
 });
 const emit = defineEmits<{
   (e: "changeFilters", value: SelectedFilterObject[]): void;
 }>();
-const panelActive = ref<boolean>(false);
 const filters: Filter[] = reactive(props.filters);
 const isEmptyFilters = computed(() => {
   return filters.every(
@@ -23,9 +23,8 @@ const isEmptyFilters = computed(() => {
       (Array.isArray(filter.value) && filter.value.length === 0)
   );
 });
-const showFilters = () => {
-  panelActive.value = true;
-};
+
+const isVisiblePanel = defineModel({ required: true });
 
 const resetFilters = () => {
   Object.values(filters).forEach((filter) => {
@@ -39,23 +38,23 @@ const resetFilters = () => {
 
 const setFilters = () => {
   emit("changeFilters", filters);
-  panelActive.value = false;
+  isVisiblePanel.value = false;
 };
 </script>
 
 <template>
   <div>
     <v-btn
-      @click="showFilters"
+      @click="isVisiblePanel = !isVisiblePanel"
       class="w-100 h-25 bg-grey-lighten-4"
       :class="[
         isEmptyFilters ? 'text-grey-darken-1' : 'text-black',
-        panelActive ? 'elevation-4' : ' elevation-1',
+        isVisiblePanel ? 'elevation-4' : ' elevation-1',
       ]"
     >
       <v-icon>mdi-filter</v-icon>
     </v-btn>
-    <div v-if="panelActive" class="filtersPanel">
+    <div v-if="isVisiblePanel" class="filtersPanel">
       <div v-for="filter in filters" :key="filter.name">
         <hub-date-picker
           v-if="filter.isDate"

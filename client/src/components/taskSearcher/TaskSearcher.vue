@@ -97,16 +97,26 @@ const changeFilters = (filterObjects: SelectedFilterObject[]) => {
 const modifyTaskList = (data: SearchData) => {
   emit("modifyTaskList", data);
 };
+const isVisiblePanel = ref(false);
 </script>
 
 <template>
   <div class="taskSearcher bg-white border border-b-md">
-    <FiltersPanel :filters="filters" @changeFilters="changeFilters" />
+    <FiltersPanel
+      :filters="filters"
+      @changeFilters="changeFilters"
+      v-model="isVisiblePanel"
+    />
     <SearchAndSortBar
+      v-if="!isVisiblePanel"
       :sortTasksState="sortTasksState"
       @modifyTaskList="modifyTaskList"
     />
-    <HubChipsList :filters="filters" @changeFilters="changeFilters" />
+    <HubChipsList
+      v-if="!isVisiblePanel"
+      :filters="filters"
+      @changeFilters="changeFilters"
+    />
   </div>
 </template>
 
