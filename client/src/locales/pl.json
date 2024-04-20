@@ -11,6 +11,8 @@
     "register": "Rejestracja",
     "addPoints": "Przyznaj punkty"
   },
+  "start": "Start",
+  "end": "Koniec",
   "logout": "Wyloguj",
   "back": "Wstecz",
   "select": "Wybierz",

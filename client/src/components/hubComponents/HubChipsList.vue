@@ -9,7 +9,9 @@ import {
 import { reactive, ref } from "vue";
 import { getTranslatedFilterOptions } from "./HubUtils.vue";
 import { format, isValid } from "date-fns";
+import { useI18n } from "vue-i18n";
 
+const { t } = useI18n();
 const props = defineProps({
   filters: {
     type: Array<Filter>,
@@ -28,11 +30,12 @@ const removeObjectLabel = (label: SelectedFilterObjectChips) => {
       typeof filter.value === "object" &&
       filter.value?.includes(label.value)
     ) {
-      console.log(label.value);
+      const nullCount = filter.value.filter((item) => item === null).length;
       let index = filter.value.indexOf(label.value);
-      filter.value.splice(index, 1);
+      filter.value.length === 2 && nullCount === 1
+        ? (filter.value = [])
+        : filter.value.splice(index, 1);
     } else if (filter.name === label.name) {
-      console.log(label.value);
       filter.value = null;
     }
   });
@@ -63,7 +66,9 @@ const getTranslatedLabel = (label: SelectedFilterObjectChips) => {
       return;
     }
     if (label.value !== null && isValid(label.value)) {
-      actualLabel = format(label.value, "dd/MM/yyyy HH:mm");
+      const date = format(label.value, "dd/MM/yyyy");
+      const title = label.name === "taskStartDate" ? t("start") : t("end");
+      actualLabel = `${title} ${date}`;
       return;
     }
   });
