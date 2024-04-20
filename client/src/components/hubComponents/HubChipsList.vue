@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import {
-  getSelectedFilterObjects,
+  getChips,
   type Filter,
   type SelectedFilterObject,
+  type SelectedFilterObjectChips,
 } from "@/models/Filter";
 import { reactive, ref, watch } from "vue";
 
@@ -17,13 +18,16 @@ const emit = defineEmits<{
 }>();
 
 const filters: Filter[] = reactive(props.filters);
-const objectLabels = ref<SelectedFilterObject[]>(
-  getSelectedFilterObjects(props.filters)
-);
 
-const removeObjectLabel = (name: string) => {
+const removeObjectLabel = (label: SelectedFilterObjectChips) => {
   Object.values(filters).forEach((filter) => {
-    if (filter.name === name) {
+    if (
+      typeof filter.value === "object" &&
+      filter.value?.includes(label.value)
+    ) {
+      let index = filter.value.indexOf(label.value);
+      filter.value.splice(index, 1);
+    } else if (filter.name === label.name) {
       filter.value = null;
     }
   });
@@ -31,17 +35,17 @@ const removeObjectLabel = (name: string) => {
   emit("changeFilters", filters);
 };
 
-watch(filters, (newValue, oldValue) => {
-  objectLabels.value = getSelectedFilterObjects(props.filters);
-});
+const objectLabelsChips = ref<SelectedFilterObjectChips[]>(
+  getChips(props.filters)
+);
 </script>
 
 <template>
   <div class="hubChipsList">
     <v-chip
-      v-for="label in objectLabels"
-      :key="label.name"
-      @click:close="removeObjectLabel(label.name)"
+      v-for="label in objectLabelsChips"
+      :key="label.id"
+      @click:close="removeObjectLabel(label)"
       closable
     >
       {{ label.value }}

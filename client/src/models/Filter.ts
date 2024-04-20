@@ -42,6 +42,12 @@ export interface SelectedFilterObject {
   value: FilterValue;
 }
 
+export interface SelectedFilterObjectChips {
+  id: number;
+  name: string;
+  value: FilterValue;
+}
+
 function queriesToDates(
   stringDates: LocationQueryValue | LocationQueryValue[]
 ): Date[] {
@@ -64,9 +70,7 @@ function queriesToDates(
   return dates;
 }
 
-export function getSelectedFilterObjects(
-  filters: Filter[]
-): SelectedFilterObject[] {
+export function getChips(filters: Filter[]): SelectedFilterObjectChips[] {
   const filterObjects: SelectedFilterObject[] = [];
   Object.values(filters).forEach((filter) => {
     if (
@@ -77,16 +81,23 @@ export function getSelectedFilterObjects(
     }
   });
 
-  return filterObjects;
-}
-
-export function getSelectedFilterObjectsWithEmptyValues(
-  filters: Filter[]
-): SelectedFilterObject[] {
-  const filterObjects: SelectedFilterObject[] = [];
-  Object.values(filters).forEach((filter) => {
-    filterObjects.push({ name: filter.name, value: filter.value });
+  const newArray: SelectedFilterObjectChips[] = [];
+  filterObjects.forEach((element) => {
+    if (typeof element.value === "object" && element.value) {
+      element.value.forEach((value) => {
+        newArray.push({
+          id: newArray.length,
+          name: element.name,
+          value: value,
+        });
+      });
+    } else {
+      newArray.push({
+        id: newArray.length,
+        name: element.name,
+        value: element.value,
+      });
+    }
   });
-
-  return filterObjects;
+  return newArray;
 }
