@@ -1,22 +1,23 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const show = ref(true);
+</script>
 
 <template>
-  <div class="killGamePanel">
+  <div class="killGamePanel text-grey-darken-2">
     <div class="killGamePanel_header">
-      <v-card class="px-2 py-2">
+      <v-card class="px-2 py-2 text-grey-darken-2">
         <v-icon>mdi-information-variant</v-icon>
       </v-card>
-      <v-card class="summaryPanel">
+      <v-card class="summaryPanel text-grey-darken-2">
         <div class="summaryPanel_tab">
           <v-tooltip v-model="show" location="top">
             <template v-slot:activator="{ props }">
-              <v-btn icon v-bind="props">
-                <v-icon color="grey-lighten-1"> mdi-cart </v-icon>
-              </v-btn>
+                <v-icon @click="show = !show" v-bind="props">mdi-cards-outline</v-icon>
             </template>
-            <span>Programmatic tooltip</span>
+            <span>cards tooltip</span>
           </v-tooltip>
-          <v-icon>mdi-cards-outline</v-icon>
           <div>4</div>
         </div>
         <div class="summaryPanel_tab">
