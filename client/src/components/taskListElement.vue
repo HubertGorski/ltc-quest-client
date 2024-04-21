@@ -29,14 +29,16 @@ const infoIcon = computed(() => {
     taskStatus: TASK_STATUS.EXPECTANCY,
   };
   return [isRejectedIcon, isConfirmedIcon, isExpectancyIcon].filter(
-    (infoIcon) => infoIcon.taskStatus === props.task.status
+    (infoIcon) => infoIcon.taskStatus === props.task.status,
   )[0];
 });
 
 const getPointsInPercentages = (points: number): number => {
-  const allPoints = props.task.teamsPoints.map(teamPoints => teamPoints.points);
-  return points * 100 / Math.max(...allPoints);
-}
+  const allPoints = props.task.teamsPoints.map(
+    (teamPoints) => teamPoints.points,
+  );
+  return (points * 100) / Math.max(...allPoints);
+};
 
 interface infoIcon {
   mdiText: string;
@@ -72,14 +74,13 @@ interface infoIcon {
         {{ task.description }}
       </div>
       <div class="pointsBars">
-        <div 
-        v-for="teamPoints in task.teamsPoints"
-        :key="teamPoints.teamId" 
-        class="pointsBars_bar"
-        :class="`bg-${wordStore.getTeamById(teamPoints.teamId)?.color}`"
-        :style="{ width: getPointsInPercentages(teamPoints.points) + '%' }"
-        >
-        </div>
+        <div
+          v-for="teamPoints in task.teamsPoints"
+          :key="teamPoints.teamId"
+          class="pointsBars_bar"
+          :class="`bg-${wordStore.getTeamById(teamPoints.teamId)?.color}`"
+          :style="{ width: getPointsInPercentages(teamPoints.points) + '%' }"
+        ></div>
       </div>
     </div>
     <div class="task_points">{{ task.points }}</div>

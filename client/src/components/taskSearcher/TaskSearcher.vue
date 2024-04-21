@@ -32,7 +32,7 @@ const filters: Filter[] = [
     ],
     "filters.taskLabels.taskStatus",
     false,
-    true
+    true,
   ),
   new Filter(
     "points",
@@ -41,7 +41,7 @@ const filters: Filter[] = [
       { title: "filters.taskPoints.positive", value: "positive" },
       { title: "filters.taskPoints.negative", value: "negative" },
     ],
-    "filters.taskLabels.taskPoints"
+    "filters.taskLabels.taskPoints",
   ),
   new Filter(
     "type",
@@ -50,7 +50,7 @@ const filters: Filter[] = [
       { title: "filters.taskType.basic", value: "basic" },
       { title: "filters.taskType.special", value: "special" },
     ],
-    "filters.taskLabels.taskType"
+    "filters.taskLabels.taskType",
   ),
   new Filter(
     "advantage",
@@ -59,7 +59,7 @@ const filters: Filter[] = [
       { title: "filters.taskTeamAdvantage.win", value: "win" },
       { title: "filters.taskTeamAdvantage.lose", value: "lose" },
     ],
-    "filters.taskLabels.taskTeamAdvantage"
+    "filters.taskLabels.taskTeamAdvantage",
   ),
   new Filter(
     "availability",
@@ -71,21 +71,21 @@ const filters: Filter[] = [
         value: "onlySelectedTeams",
       },
     ],
-    "filters.taskLabels.taskAvailability"
+    "filters.taskLabels.taskAvailability",
   ),
   new Filter(
     "taskStartDate",
     route.query.taskStartDate,
     [],
     "filters.taskLabels.taskStartDate",
-    true
+    true,
   ),
   new Filter(
     "taskExpiredDate",
     route.query.taskExpiredDate,
     [],
     "filters.taskLabels.taskExpiredDate",
-    true
+    true,
   ),
 ];
 

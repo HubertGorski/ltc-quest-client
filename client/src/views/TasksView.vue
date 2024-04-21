@@ -100,7 +100,7 @@ const getFilteredTasks = (searchPhrase: String, tasks: Task[]) => {
     : tasks.filter(
         (task: Task) =>
           task.title.toLowerCase().includes(searchPhrase.toLowerCase()) ||
-          task.description.toLowerCase().includes(searchPhrase.toLowerCase())
+          task.description.toLowerCase().includes(searchPhrase.toLowerCase()),
       );
 };
 

@@ -20,7 +20,7 @@ const isEmptyFilters = computed(() => {
     (filter) =>
       filter.value === null ||
       typeof filter.value === "undefined" ||
-      (Array.isArray(filter.value) && filter.value.length === 0)
+      (Array.isArray(filter.value) && filter.value.length === 0),
   );
 });
 

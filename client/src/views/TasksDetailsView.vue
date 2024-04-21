@@ -70,7 +70,7 @@ const statusButton = computed(() => {
     isRejectedBtn,
     isDisabledBtn,
   ].filter(
-    (TaskStatusButton) => TaskStatusButton.state === taskDetails.status
+    (TaskStatusButton) => TaskStatusButton.state === taskDetails.status,
   )[0];
 });
 

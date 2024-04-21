@@ -44,7 +44,7 @@ const removeObjectLabel = (label: SelectedFilterObjectChips) => {
 };
 
 const objectLabelsChips = ref<SelectedFilterObjectChips[]>(
-  getChips(props.filters)
+  getChips(props.filters),
 );
 
 const getAllTranslatedLabels = () => {
