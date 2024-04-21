@@ -12,12 +12,17 @@
     "addPoints": "Przyznaj punkty",
     "killGame": "Kill Game"
   },
+  "classifiedInformation": {
+    "title": "Zakładka zawiera poufne treści",
+    "description": "Informacje w niej zawarte przeznaczone są tylko dla właściciela konta. Przed kontynuowaniem upewnij się, że osoby trzecie nie patrzą Ci się w ekran :)"
+  },
   "start": "Start",
   "end": "Koniec",
   "logout": "Wyloguj",
   "back": "Wstecz",
   "select": "Wybierz",
   "cancel": "Odrzuć",
+  "continue": "Kontynuuj",
   "taskDetails": {
     "completedByUsers": "Uczestnicy, którzy ukończyli zadanie:",
     "taskAvailability": {

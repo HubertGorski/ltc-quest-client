@@ -48,6 +48,9 @@ const goToAddPointsPanel = () => {
 const currentRouteName = computed(() =>
   route.name ? route.name.toString() : ""
 );
+const isVisibleCurrentRouteName = computed(() => {
+  return !translatedRouteNames[currentRouteName.value]?.includes('router.');
+});
 const currentTranslatedRouteName = computed(() => {
   return translatedRouteNames[currentRouteName.value];
 });
@@ -82,7 +85,7 @@ setTranslatedRouteNames();
       <template v-slot:activator="{ props }">
         <v-toolbar :color="noSelectedTeam.color">
           <v-toolbar-title>
-            <div class="d-flex align-center">
+            <div v-if="isVisibleCurrentRouteName" class="d-flex align-center">
               <span>
                 {{ currentTranslatedRouteName }}
               </span>
