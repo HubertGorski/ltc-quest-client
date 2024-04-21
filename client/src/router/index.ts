@@ -9,59 +9,66 @@ import LoginView from "@/views/LoginView.vue";
 import ProfileView from "@/views/ProfileView.vue";
 import TasksDetailsView from "@/views/TasksDetailsView.vue";
 import AddPointsView from "@/views/AddPointsView.vue";
+import KillGameView from "@/mod/killGame/KillGameView.vue";
+import { ROUTE_NAME, ROUTE_PATH } from "./routeEnums";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/",
-      name: "home",
+      path: ROUTE_PATH.HOME,
+      name: ROUTE_NAME.HOME,
       component: HomeView,
     },
     {
-      path: "/profile",
-      name: "profile",
+      path: ROUTE_PATH.PROFILE,
+      name: ROUTE_NAME.PROFILE,
       component: ProfileView,
     },
     {
-      path: "/tasks",
-      name: "tasks",
+      path: ROUTE_PATH.TASKS,
+      name: ROUTE_NAME.TASKS,
       component: TasksView,
     },
     {
-      path: "/tasks/:id",
-      name: "tasksDetails",
+      path: ROUTE_PATH.TASK_DETAILS,
+      name: ROUTE_NAME.TASK_DETAILS,
       component: TasksDetailsView,
     },
     {
-      path: "/ranking",
-      name: "ranking",
+      path: ROUTE_PATH.RANKING,
+      name: ROUTE_NAME.RANKING,
       component: RankingView,
     },
     {
-      path: "/bingo",
-      name: "bingo",
+      path: ROUTE_PATH.BINGO,
+      name: ROUTE_NAME.BINGO,
       component: BingoView,
     },
     {
-      path: "/settings",
-      name: "settings",
+      path: ROUTE_PATH.SETTINGS,
+      name: ROUTE_NAME.SETTINGS,
       component: SettingsView,
     },
     {
-      path: "/login",
-      name: "login",
+      path: ROUTE_PATH.LOGIN,
+      name: ROUTE_NAME.LOGIN,
       component: LoginView,
     },
     {
-      path: "/register",
-      name: "register",
+      path: ROUTE_PATH.REGISTER,
+      name: ROUTE_NAME.REGISTER,
       component: RegisterView,
     },
     {
-      path: "/addPoints",
-      name: "addPoints",
+      path: ROUTE_PATH.ADD_POINTS,
+      name: ROUTE_NAME.ADD_POINTS,
       component: AddPointsView,
+    },
+    {
+      path: ROUTE_PATH.KILL_GAME,
+      name: ROUTE_NAME.KILL_GAME,
+      component: KillGameView,
     },
   ],
 });

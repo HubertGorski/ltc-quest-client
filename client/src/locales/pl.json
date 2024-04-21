@@ -9,7 +9,8 @@
     "settings": "Ustawienia konta",
     "login": "Logowanie",
     "register": "Rejestracja",
-    "addPoints": "Przyznaj punkty"
+    "addPoints": "Przyznaj punkty",
+    "killGame": "Kill Game"
   },
   "start": "Start",
   "end": "Koniec",

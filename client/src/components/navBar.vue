@@ -5,28 +5,46 @@ import { noSelectedTeam } from "@/models/Team";
 import { useI18n } from "vue-i18n";
 import { hasAccess, privTypes } from "@/managers/permissionsManager";
 import { useUserStore } from "@/stores/userStore";
+import router from "@/router";
+import { ROUTE_DICT, ROUTE_PATH, ROUTE_NAME } from "@/router/routeEnums";
 
 const { t } = useI18n();
 const userStore = useUserStore();
 const currentUser = userStore.user;
 const isOpenMenu = ref<boolean>(false);
+const translatedRouteNames: { [key: string]: string } = {};
+const route = useRoute();
+const menuOptions = [
+  {path: ROUTE_PATH.RANKING, label: ROUTE_DICT.RANKING},
+  {path: ROUTE_PATH.TASKS, label: ROUTE_DICT.TASKS},
+  {path: ROUTE_PATH.BINGO, label: ROUTE_DICT.BINGO},
+  {path: ROUTE_PATH.KILL_GAME, label: ROUTE_DICT.KILL_GAME},
+  {path: ROUTE_PATH.SETTINGS, label: ROUTE_DICT.SETTINGS},
+];
+const menuSpecialOptions = [
+  {path: ROUTE_PATH.LOGIN, label: "logout"},
+];
+
 const closeMenu = () => {
   isOpenMenu.value = false;
 };
+const setTranslatedRouteNames = () => {
+  router.getRoutes().forEach(element => {
+    if(!element.name) {
+      return;
+    }
+    
+    const name: string = element.name.toString();
+    translatedRouteNames[name] = t(`router.${name}`);
+  });
+}
+const backRoute = () => {
+  return router.go(-1);
+}
+const goToAddPointsPanel = () => {
+  return router.push('/addPoints');
+}
 
-const translatedRouteNames: { [key: string]: string } = {
-  home: t("router.home"),
-  profile: t("router.profile"),
-  tasks: t("router.tasks"),
-  tasksDetails: t("router.tasksDetails"),
-  ranking: t("router.ranking"),
-  bingo: t("router.bingo"),
-  settings: t("router.settings"),
-  login: t("router.login"),
-  register: t("router.register"),
-  addPoints: t("router.addPoints"),
-};
-const route = useRoute();
 const currentRouteName = computed(() =>
   route.name ? route.name.toString() : ""
 );
@@ -34,14 +52,23 @@ const currentTranslatedRouteName = computed(() => {
   return translatedRouteNames[currentRouteName.value];
 });
 const isAddPointsView = computed(() => {
-  return currentRouteName.value === 'addPoints';
+  return currentRouteName.value === ROUTE_NAME.ADD_POINTS;
 });
 const isTasksView = computed(() => {
-  return currentRouteName.value === 'tasks';
+  return currentRouteName.value === ROUTE_NAME.TASKS;
 });
 const hasAccessToAddTask = computed(() => {
   return hasAccess(privTypes.usingModTask, currentUser.permissions);
 });
+const addPointsButton = computed(() => {
+  return {
+    isVisible: (isTasksView.value || isAddPointsView.value) && hasAccessToAddTask.value,
+    action: isAddPointsView.value ?  () => backRoute() : () => goToAddPointsPanel(),
+    icon: isAddPointsView.value ? 'mdi-keyboard-backspace': '$plus',
+  }
+});
+
+setTranslatedRouteNames();
 </script>
 
 <template>
@@ -69,7 +96,7 @@ const hasAccessToAddTask = computed(() => {
               </span>
             </div>
           </v-toolbar-title>
-            <v-btn v-if="(isTasksView || isAddPointsView) && hasAccessToAddTask" @click="isAddPointsView ? $router.go(-1) : $router.push('/addPoints')" :icon="isAddPointsView ? 'mdi-keyboard-backspace': '$plus'" class="text-h6" />
+            <v-btn v-if="addPointsButton.isVisible" @click="addPointsButton.action" :icon="addPointsButton.icon" class="text-h6" />
           <v-btn class="mx-2 px-0" v-bind="props">
             <v-icon size="32">mdi-menu</v-icon>
           </v-btn>
@@ -95,44 +122,20 @@ const hasAccessToAddTask = computed(() => {
         </v-list>
         <v-divider></v-divider>
         <v-list>
-          <v-list-item>
+          <v-list-item v-for="menuOption in menuOptions" :key="menuOption.path">
             <RouterLink
               class="text-decoration-none text-grey-darken-2"
               @click="closeMenu"
-              to="/ranking"
-              >{{ $t("router.ranking") }}</RouterLink
-            >
-          </v-list-item>
-          <v-list-item>
-            <RouterLink
-              class="text-decoration-none text-grey-darken-2"
-              @click="closeMenu"
-              to="/tasks"
-              >{{ $t("router.tasks") }}</RouterLink
-            >
-          </v-list-item>
-          <v-list-item>
-            <RouterLink
-              class="text-decoration-none text-grey-darken-2"
-              @click="closeMenu"
-              to="/bingo"
-              >{{ $t("router.bingo") }}</RouterLink
-            >
-          </v-list-item>
-          <v-list-item>
-            <RouterLink
-              class="text-decoration-none text-grey-darken-2"
-              @click="closeMenu"
-              to="/settings"
-              >{{ $t("router.settings") }}</RouterLink
+              :to="menuOption.path"
+              >{{ $t(menuOption.label) }}</RouterLink
             >
           </v-list-item>
           <v-divider></v-divider>
-          <v-list-item>
+          <v-list-item v-for="menuSpecialOption in menuSpecialOptions" :key="menuSpecialOption.path">
             <RouterLink
               class="text-decoration-none text-grey-darken-2"
               @click="closeMenu"
-              to="/login"
+              :to="menuSpecialOption.path"
               >{{ $t("logout") }}</RouterLink
             >
           </v-list-item>
