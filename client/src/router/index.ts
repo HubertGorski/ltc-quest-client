@@ -10,11 +10,17 @@ import ProfileView from "@/views/ProfileView.vue";
 import TasksDetailsView from "@/views/TasksDetailsView.vue";
 import AddPointsView from "@/views/AddPointsView.vue";
 import KillGameView from "@/mod/killGame/KillGameView.vue";
+import ConfirmView from "@/views/ConfirmView.vue";
 import { ROUTE_NAME, ROUTE_PATH } from "./routeEnums";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: ROUTE_PATH.CONFIRM,
+      name: ROUTE_NAME.CONFIRM,
+      component: ConfirmView,
+    },
     {
       path: ROUTE_PATH.HOME,
       name: ROUTE_NAME.HOME,
@@ -69,8 +75,22 @@ const router = createRouter({
       path: ROUTE_PATH.KILL_GAME,
       name: ROUTE_NAME.KILL_GAME,
       component: KillGameView,
+      meta: {
+        requiresConfirmation: true
+      }
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  const isAccepted = sessionStorage.getItem("isAccepted") === 'true';
+  if (to.meta.requiresConfirmation && !isAccepted) {
+    sessionStorage.setItem("targetUrl", to.fullPath);
+    next(ROUTE_PATH.CONFIRM);
+  } else {
+    sessionStorage.removeItem("isAccepted");
+    next();
+  }
+})
 
 export default router;

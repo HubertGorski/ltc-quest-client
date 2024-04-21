@@ -10,6 +10,7 @@ export enum ROUTE_NAME {
     REGISTER = "register",
     ADD_POINTS = "addPoints",
     KILL_GAME = "killGame",
+    CONFIRM = "confirm",
   }
 
 export enum ROUTE_DICT {
@@ -24,6 +25,7 @@ export enum ROUTE_DICT {
     REGISTER = "router.register",
     ADD_POINTS = "router.addPoints",
     KILL_GAME = "router.killGame",
+    CONFIRM = "router.confirm",
   }
   
 export enum ROUTE_PATH {
@@ -38,4 +40,5 @@ export enum ROUTE_PATH {
     REGISTER = "/register",
     ADD_POINTS = "/addPoints",
     KILL_GAME = "/killGame",
+    CONFIRM = "/confirm",
   }
