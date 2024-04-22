@@ -5,7 +5,7 @@ import router from "./router";
 import vuetify from "./configs/vuetify";
 import i18n from "./configs/i18n";
 import VueApexCharts from "vue3-apexcharts";
-import "@/assets/styles.css";
+import '@/assets/styles.scss';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 

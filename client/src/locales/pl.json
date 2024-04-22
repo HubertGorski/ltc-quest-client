@@ -16,6 +16,27 @@
     "title": "Zakładka zawiera poufne treści",
     "description": "Informacje w niej zawarte przeznaczone są tylko dla właściciela konta. Przed kontynuowaniem upewnij się, że osoby trzecie nie patrzą Ci się w ekran :)"
   },
+  "killGame": {
+    "acceptStatus": {
+      "title": "Zginąłeś?",
+      "text": "Potwierdzenie statusu spowoduje przekazanie wszystkich kart użytkownikowi, który Cię zabił."
+    },
+    "declineStatus": {
+      "title": "Czy to pomyłka?",
+      "text": "Odrzucenie statusu spowoduje wysłanie informacji o tym do właściciela gry. Przeżyjesz i będziesz mógł kontynuować grę."
+    },
+    "summaryPanel": {
+      "cardsOwned": "Posiadane karty",
+      "killingsCommitted": "Dokonanych zabójstw",
+      "usersAlive": "Uczestnicy przy życiu"
+    },
+    "killGameStatus": {
+      "youAreAlive": "Żadne zabójstwo nie oczekuje na potwierdzenie.",
+      "waitingForConfirmation": " oczekuje na potwierdzenie Twojego zgonu.",
+      "youAreDead": "Jesteś martwy. Zostałeś zabity przez: ",
+      "notInGame": "Wygląda na to, że nie jesteś w grze."
+    }
+  },
   "start": "Start",
   "end": "Koniec",
   "logout": "Wyloguj",
@@ -23,6 +44,7 @@
   "select": "Wybierz",
   "cancel": "Odrzuć",
   "continue": "Kontynuuj",
+  "confirm": "Potwierdź",
   "taskDetails": {
     "completedByUsers": "Uczestnicy, którzy ukończyli zadanie:",
     "taskAvailability": {

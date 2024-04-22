@@ -76,7 +76,7 @@ setTranslatedRouteNames();
 </script>
 
 <template>
-  <div class="navBar_shadow"></div>
+  <div class="navBar_whiteSpace"></div>
   <div class="navBar">
     <v-menu
       v-model="isOpenMenu"
@@ -154,14 +154,15 @@ setTranslatedRouteNames();
   </div>
 </template>
 
-<style scoped>
-.navBar_shadow {
-  height: 64px;
-}
+<style lang="scss" scoped>
 .navBar {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1;
+
+  &_whiteSpace {
+    height: 64px;
+  }
 }
 </style>
