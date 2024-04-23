@@ -22,9 +22,22 @@ const props = defineProps({
     type: String,
     default: "back",
   },
+  action: {
+    type: Function,
+    required: true,
+  },
 });
 
 const dialog = ref(false);
+
+const acceptAction = () => {
+  dialog.value = false;
+  props.action();
+}
+
+const rejectAction = () => {
+  dialog.value = false;
+}
 </script>
 
 <template>
@@ -38,10 +51,10 @@ const dialog = ref(false);
       <v-card :prepend-icon="icon" :text="$t(text)" :title="$t(title)">
         <template v-slot:actions>
           <v-spacer></v-spacer>
-          <v-btn @click="dialog = false">
+          <v-btn @click="rejectAction">
             {{ $t(textNo) }}
           </v-btn>
-          <v-btn @click="dialog = false">
+          <v-btn @click="acceptAction">
             {{ $t(textYes) }}
           </v-btn>
         </template>

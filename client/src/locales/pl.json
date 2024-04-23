@@ -21,12 +21,12 @@
       "title": "Zginąłeś?",
       "text": "Potwierdzenie statusu spowoduje przekazanie wszystkich kart użytkownikowi, który Cię zabił."
     },
-    "declineStatus": {
+    "rejectStatus": {
       "title": "Czy to pomyłka?",
       "text": "Odrzucenie statusu spowoduje wysłanie informacji o tym do właściciela gry. Przeżyjesz i będziesz mógł kontynuować grę."
     },
     "summaryPanel": {
-      "cardsOwned": "Posiadane karty",
+      "cardsOwned": "Posiadane Karty Zabójstw",
       "killingsCommitted": "Dokonanych zabójstw",
       "usersAlive": "Uczestnicy przy życiu"
     },
@@ -35,7 +35,16 @@
       "waitingForConfirmation": " oczekuje na potwierdzenie Twojego zgonu.",
       "youAreDead": "Jesteś martwy. Zostałeś zabity przez: ",
       "notInGame": "Wygląda na to, że nie jesteś w grze."
-    }
+    },
+    "aliveStatus": {
+      "title": "Zabiłeś?",
+      "text": "Potwierdzenie spowoduje ujawnienie się osobie, którą chcesz zabić. Kontynuuj jeśli Twój cel wykonał czynność lub powiedział tekst z Karty Zabójstwa."
+    },
+    "notInGameStatus": {
+      "title": "Nie jesteś w grze?",
+      "text": "Poinformuj o tym właściciela gry. Kontynuuj jeśli chcesz wysłać zgłoszenie."
+    },
+    "killHim": "Zabijam"
   },
   "start": "Start",
   "end": "Koniec",
@@ -45,6 +54,7 @@
   "cancel": "Odrzuć",
   "continue": "Kontynuuj",
   "confirm": "Potwierdź",
+  "sendReport": "Wyślij zgłoszenie",
   "taskDetails": {
     "completedByUsers": "Uczestnicy, którzy ukończyli zadanie:",
     "taskAvailability": {
