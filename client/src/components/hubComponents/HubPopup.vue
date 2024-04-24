@@ -33,11 +33,11 @@ const dialog = ref(false);
 const acceptAction = () => {
   dialog.value = false;
   props.action();
-}
+};
 
 const rejectAction = () => {
   dialog.value = false;
-}
+};
 </script>
 
 <template>
