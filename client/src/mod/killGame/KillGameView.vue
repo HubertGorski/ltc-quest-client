@@ -8,7 +8,6 @@ import type { KillGameStatus } from "./KillGameStatusPanel.vue";
 import { KILL_GAME_USER_STATUS } from "./models/KillGameUser";
 import { killGameData } from "@/assets/data/killGame";
 import KillGameStatusPanel from "./KillGameStatusPanel.vue";
-import { reactive } from "vue";
 
 const { t } = useI18n();
 
@@ -146,7 +145,7 @@ const actualStatus: Ref<KillGameStatus> = ref(
 </script>
 
 <template>
-  <div class="px-3 py-3 text-grey-darken-3">
+  <div class="px-2 py-3 text-grey-darken-3">
     <div class="d-flex justify-space-between">
       <v-card class="px-2 py-2 text-grey-darken-2">
         <v-icon>mdi-information-variant</v-icon>
@@ -154,5 +153,15 @@ const actualStatus: Ref<KillGameStatus> = ref(
       <hub-summary-panel :summaryPanel="summaryPanel" />
     </div>
     <kill-game-status-panel :actualStatus="actualStatus" />
+    <div>
+      <v-card v-for="card in killGameData.cards" :key="card.cardId" class="my-4" :title="card.userName">
+        <div>
+            <v-card-subtitle>Zakazane słowo</v-card-subtitle>
+            <v-card-text>{{ card.keyWord }}</v-card-text>
+            <v-card-subtitle>Zakazana czynność</v-card-subtitle>
+            <v-card-text>{{ card.keyAction }}</v-card-text>
+        </div>
+      </v-card>
+    </div>
   </div>
 </template>
