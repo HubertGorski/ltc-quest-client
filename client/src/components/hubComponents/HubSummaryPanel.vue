@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, type Ref } from "vue";
+import HubIconWithTooltip from "./HubIconWithTooltip.vue";
 
 export interface TabSummaryPanel {
   id: number;
   icon: string;
-  isTooltipActive: Ref<boolean>;
   tooltipText: string;
   value: Ref<number>;
 }
@@ -17,17 +17,10 @@ const props = defineProps<{
 <template>
   <v-card class="summaryPanel text-grey-darken-2">
     <div v-for="tab in summaryPanel" :key="tab.id" class="summaryPanel_tab">
-      <v-tooltip v-model="tab.isTooltipActive.value" location="top">
-        <template v-slot:activator="{ props }">
-          <v-icon
-            @click="tab.isTooltipActive.value = !tab.isTooltipActive.value"
-            v-bind="props"
-            >{{ tab.icon }}</v-icon
-          >
-        </template>
-        <span>{{ tab.tooltipText }}</span>
-      </v-tooltip>
-      <div>{{ tab.value.value }}</div>
+      <hub-icon-with-tooltip :icon="tab.icon" :tooltipText="tab.tooltipText" />
+      <Transition name="bounce" mode="out-in">
+        <div :key="tab.value.value">{{ tab.value.value }}</div>
+      </Transition>
     </div>
   </v-card>
 </template>

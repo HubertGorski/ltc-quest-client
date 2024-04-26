@@ -26,25 +26,29 @@ const props = defineProps<{
 
 <template>
   <div>
-    <div class="status" :class="actualStatus.color">
-      <v-icon class="status_icon">{{ actualStatus.icon }}</v-icon>
-      <span class="status_text">{{ actualStatus.text }}</span>
-    </div>
+    <Transition name="disappearance" mode="out-in">
+      <div :key="actualStatus.id" class="status" :class="actualStatus.color">
+        <v-icon class="status_icon">{{ actualStatus.icon }}</v-icon>
+        <span class="status_text">{{ actualStatus.text }}</span>
+      </div>
+    </Transition>
     <v-divider />
-    <div class="confirmStatus">
-      <hub-popup
-        v-for="actionBtn in actualStatus.actionBtns"
-        :key="actionBtn.id"
-        :text="actionBtn.popupText"
-        :title="actionBtn.popupTitle"
-        :action="actionBtn.action"
-        class="confirmStatus_btn"
-      >
-        <v-btn variant="text" class="confirmStatus_btn-content">{{
-          $t(actionBtn.textBtn)
-        }}</v-btn>
-      </hub-popup>
-    </div>
+    <Transition name="disappearance" mode="out-in">
+      <div :key="actualStatus.id" class="confirmStatus">
+        <hub-popup
+          v-for="actionBtn in actualStatus.actionBtns"
+          :key="actionBtn.id"
+          :text="actionBtn.popupText"
+          :title="actionBtn.popupTitle"
+          :action="actionBtn.action"
+          class="confirmStatus_btn"
+        >
+          <v-btn variant="text" class="confirmStatus_btn-content">{{
+            $t(actionBtn.textBtn)
+          }}</v-btn>
+        </hub-popup>
+      </div>
+    </Transition>
     <v-divider v-if="actualStatus.actionBtns.length > 0" />
   </div>
 </template>

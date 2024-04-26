@@ -8,6 +8,7 @@ import type { KillGameStatus } from "./KillGameStatusPanel.vue";
 import { KILL_GAME_USER_STATUS } from "./models/KillGameUser";
 import { killGameData } from "@/assets/data/killGame";
 import KillGameStatusPanel from "./KillGameStatusPanel.vue";
+import KillGameCardsList from "./KillGameCardsList.vue";
 
 const { t } = useI18n();
 
@@ -18,7 +19,7 @@ const sendKillRequest = () => {
 const rejectStatus = () => {
   console.log("Odrzuciłem wniosek o mój zgon");
   actualStatus.value = statusBox.find(
-    (status) => status.status === KILL_GAME_USER_STATUS.ALIVE,
+    (status) => status.status === KILL_GAME_USER_STATUS.ALIVE
   )!;
 };
 
@@ -26,9 +27,8 @@ const acceptStatus = () => {
   console.log("Prawda to. Umarłem.");
   summaryPanelData.cardsOwned.value = 0;
   summaryPanelData.usersAlive.value--;
-  
   actualStatus.value = statusBox.find(
-    (status) => status.status === KILL_GAME_USER_STATUS.DEAD,
+    (status) => status.status === KILL_GAME_USER_STATUS.DEAD
   )!;
 };
 
@@ -52,21 +52,18 @@ const summaryPanel: TabSummaryPanel[] = [
   {
     id: 1,
     icon: "mdi-cards-outline",
-    isTooltipActive: ref(false),
     tooltipText: t("killGame.summaryPanel.cardsOwned"),
     value: summaryPanelData.cardsOwned,
   },
   {
     id: 2,
     icon: "mdi-account-remove-outline",
-    isTooltipActive: ref(false),
     tooltipText: t("killGame.summaryPanel.killingsCommitted"),
     value: summaryPanelData.killingsCommitted,
   },
   {
     id: 3,
     icon: "mdi-account-heart-outline",
-    isTooltipActive: ref(false),
     tooltipText: t("killGame.summaryPanel.usersAlive"),
     value: summaryPanelData.usersAlive,
   },
@@ -139,8 +136,8 @@ const statusBox: KillGameStatus[] = [
 ];
 const actualStatus: Ref<KillGameStatus> = ref(
   statusBox.find(
-    (statusBox) => statusBox.status === killGameData.user.status,
-  ) || statusBox[4],
+    (statusBox) => statusBox.status === killGameData.user.status
+  ) || statusBox[4]
 );
 </script>
 
@@ -153,15 +150,6 @@ const actualStatus: Ref<KillGameStatus> = ref(
       <hub-summary-panel :summaryPanel="summaryPanel" />
     </div>
     <kill-game-status-panel :actualStatus="actualStatus" />
-    <div>
-      <v-card v-for="card in killGameData.cards" :key="card.cardId" class="my-4" :title="card.userName">
-        <div>
-            <v-card-subtitle>Zakazane słowo</v-card-subtitle>
-            <v-card-text>{{ card.keyWord }}</v-card-text>
-            <v-card-subtitle>Zakazana czynność</v-card-subtitle>
-            <v-card-text>{{ card.keyAction }}</v-card-text>
-        </div>
-      </v-card>
-    </div>
+    <kill-game-cards-list :cards="killGameData.cards" />
   </div>
 </template>
