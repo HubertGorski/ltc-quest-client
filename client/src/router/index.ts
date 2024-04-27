@@ -12,6 +12,7 @@ import AddPointsView from "@/views/AddPointsView.vue";
 import KillGameView from "@/mod/killGame/KillGameView.vue";
 import ConfirmView from "@/views/ConfirmView.vue";
 import AdminView from "@/views/admin/AdminView.vue";
+import AdminKillGameView from "@/mod/killGame/AdminKillGameView.vue";
 import NoAccessView from "@/views/NoAccessView.vue";
 import { ROUTE_NAME, ROUTE_PATH } from "./routeEnums";
 import { useUserStore } from "@/stores/userStore";
@@ -92,6 +93,12 @@ const router = createRouter({
       path: ROUTE_PATH.ADMIN,
       name: ROUTE_NAME.ADMIN,
       component: AdminView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: ROUTE_PATH.ADMIN_KILL_GAME,
+      name: ROUTE_NAME.ADMIN_KILL_GAME,
+      component: AdminKillGameView,
       meta: { requiresAuth: true },
     },
   ],

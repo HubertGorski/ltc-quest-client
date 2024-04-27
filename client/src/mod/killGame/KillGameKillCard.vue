@@ -24,7 +24,7 @@ const infoIcon = computed(() => {
     isVisible: props.card.isAcquiredIndirectly,
   };
   const isExpectancyIcon: infoIcon = {
-    class: "text-yellow-accent-4",
+    class: "text-yellow-darken-3",
     icon: "mdi-clock-time-eight",
     tooltipText: t("isAwaitingConfirmation"),
     isVisible: props.card.isExpectancy,
@@ -45,7 +45,7 @@ interface infoIcon {
 </script>
 
 <template>
-  <v-card class="mb-4" :class="{ 'elevation-4': !card.isInactive }">
+  <v-card class="mb-4" :class="[card.isInactive ? 'bg-grey-lighten-5 elevation-1' : 'elevation-3']">
     <div>
       <div class="d-flex justify-space-between px-3 pt-2 pb-1">
         <v-card-title class="px-0 py-0">{{ card.userName }}</v-card-title>

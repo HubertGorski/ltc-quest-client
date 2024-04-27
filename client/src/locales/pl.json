@@ -13,7 +13,8 @@
     "killGame": "Kill Game",
     "confirm": "Poufne treści",
     "noAccess": "Brak uprawnień",
-    "admin": "Panel Admina"
+    "admin": "Panel Admina",
+    "adminKillGame": "Admin: Kill Game"
   },
   "noAccess": {
     "title": "Nieupoważnionym wstęp wzbroniony",
@@ -126,5 +127,11 @@
     "search": "Szukaj",
     "resetFilters": "Wyczyść filtry"
   },
-  "isAwaitingConfirmation": "Oczekuje na potwierdzenie"
+  "isAwaitingConfirmation": "Oczekuje na potwierdzenie",
+  "settings": "Ustawienia",
+  "admin": {
+    "menu": {
+      "manageApplicationModules": "Zarządzaj modułami aplikacji"
+    }
+  }
 }

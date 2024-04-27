@@ -50,6 +50,9 @@ const isAddPointsView = computed(() => {
 const isTasksView = computed(() => {
   return currentRouteName.value === ROUTE_NAME.TASKS;
 });
+const isAdminView = computed(() => {
+  return currentRouteName.value === ROUTE_NAME.ADMIN_KILL_GAME;
+});
 const hasAccessToAddTask = computed(() => {
   return hasAccess(privTypes.usingModTask, currentUser.permissions);
 });
@@ -64,6 +67,13 @@ const addPointsButton = computed(() => {
       ? () => backRoute()
       : () => goToAddPointsPanel(),
     icon: isAddPointsView.value ? "mdi-keyboard-backspace" : "$plus",
+  };
+});
+const backButton = computed(() => {
+  return {
+    isVisible: isAdminView.value,
+    action: () => backRoute(),
+    icon: "mdi-keyboard-backspace",
   };
 });
 
@@ -106,6 +116,12 @@ setTranslatedRouteNames();
               </span>
             </div>
           </v-toolbar-title>
+          <v-btn
+            v-if="backButton.isVisible"
+            @click="backButton.action"
+            :icon="backButton.icon"
+            class="text-h6"
+          />
           <v-btn
             v-if="addPointsButton.isVisible"
             @click="addPointsButton.action"
