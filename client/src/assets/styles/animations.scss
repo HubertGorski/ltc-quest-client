@@ -17,13 +17,13 @@
   }
 }
 
-//disappearance
-.disappearance-enter-active,
-.disappearance-leave-active {
+//fade
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 0.5s ease;
 }
 
-.disappearance-enter-from,
-.disappearance-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }

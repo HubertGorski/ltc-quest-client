@@ -50,7 +50,9 @@
       "keyAction": "Zakazana czynność",
       "acquiredDirectly": "Karta zdobyta osobiście",
       "acquiredIndirectly": "Karta zdobyta przez "
-    }
+    },
+    "activeOrders": "Aktywne zlecenia",
+    "cardsGained": "Zdobyte karty"
   },
   "start": "Start",
   "end": "Koniec",

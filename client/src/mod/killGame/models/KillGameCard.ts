@@ -36,6 +36,10 @@ export class KillGameCard {
     return KILL_GAME_CARD_STATUS.INACTIVE === this.status;
   }
 
+  get isActive(): boolean {
+    return KILL_GAME_CARD_STATUS.ACTIVE === this.status;
+  }
+
   get isAcquiredDirectly(): boolean {
     return this.isInactive && this.killerId === this.ownerId;
   }

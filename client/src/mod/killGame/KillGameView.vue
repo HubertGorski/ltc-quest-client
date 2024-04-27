@@ -9,6 +9,7 @@ import { KILL_GAME_USER_STATUS } from "./models/KillGameUser";
 import { killGameData } from "@/assets/data/killGame";
 import KillGameStatusPanel from "./KillGameStatusPanel.vue";
 import KillGameCardsList from "./KillGameCardsList.vue";
+import type { KillGameCard } from "./models/KillGameCard";
 
 const { t } = useI18n();
 
@@ -27,6 +28,7 @@ const acceptStatus = () => {
   console.log("Prawda to. Umarłem.");
   summaryPanelData.cardsOwned.value = 0;
   summaryPanelData.usersAlive.value--;
+  cards.value = [];
   actualStatus.value = statusBox.find(
     (status) => status.status === KILL_GAME_USER_STATUS.DEAD
   )!;
@@ -47,6 +49,8 @@ const summaryPanelData = {
   killingsCommitted: ref(killGameData.user.killingsCommitted),
   usersAlive: ref(killGameData.usersAlive),
 };
+
+const cards = ref<KillGameCard[]>(killGameData.cards);
 
 const summaryPanel: TabSummaryPanel[] = [
   {
@@ -150,6 +154,10 @@ const actualStatus: Ref<KillGameStatus> = ref(
       <hub-summary-panel :summaryPanel="summaryPanel" />
     </div>
     <kill-game-status-panel :actualStatus="actualStatus" />
-    <kill-game-cards-list :cards="killGameData.cards" />
+    <Transition name="fade" mode="out-in">
+      <div :key="cards.length" v-if="cards.length > 0">
+        <kill-game-cards-list :cards="cards" />
+      </div>
+    </Transition>
   </div>
 </template>

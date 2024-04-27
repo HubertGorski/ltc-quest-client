@@ -20,7 +20,7 @@ const isEmptyFilters = computed(() => {
     (filter) =>
       filter.value === null ||
       typeof filter.value === "undefined" ||
-      (Array.isArray(filter.value) && filter.value.length === 0),
+      (Array.isArray(filter.value) && filter.value.length === 0)
   );
 });
 
@@ -75,17 +75,17 @@ const setFilters = () => {
       </div>
       <v-sheet class="d-flex justify-center ga-2">
         <v-btn
-          @click="setFilters"
-          class="elevation-1 bg-grey-lighten-4 flex-grow-1"
-        >
-          <p>{{ $t("filters.search") }}</p>
-        </v-btn>
-        <v-btn
           @click="resetFilters"
           :class="[isEmptyFilters ? 'text-grey-darken-1' : 'text-black']"
           class="elevation-1 bg-grey-lighten-4"
         >
           <p>{{ $t("filters.resetFilters") }}</p>
+        </v-btn>
+        <v-btn
+          @click="setFilters"
+          class="elevation-1 bg-grey-lighten-4 flex-grow-1"
+        >
+          <p>{{ $t("filters.search") }}</p>
         </v-btn>
       </v-sheet>
     </div>

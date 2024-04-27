@@ -26,14 +26,14 @@ const props = defineProps<{
 
 <template>
   <div>
-    <Transition name="disappearance" mode="out-in">
+    <Transition name="fade" mode="out-in">
       <div :key="actualStatus.id" class="status" :class="actualStatus.color">
         <v-icon class="status_icon">{{ actualStatus.icon }}</v-icon>
         <span class="status_text">{{ actualStatus.text }}</span>
       </div>
     </Transition>
     <v-divider />
-    <Transition name="disappearance" mode="out-in">
+    <Transition name="fade" mode="out-in">
       <div :key="actualStatus.id" class="confirmStatus">
         <hub-popup
           v-for="actionBtn in actualStatus.actionBtns"

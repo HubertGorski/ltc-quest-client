@@ -37,7 +37,7 @@ const props = defineProps({
         >
           <div>
             <p class="font-16 text-grey-darken-3">{{ user.name }}</p>
-            <p class="font-14">{{ user.role }}</p>
+            <p class="font-14">{{ user.roleName }}</p>
           </div>
           <v-icon class="">{{ user.teamLogo }}</v-icon>
         </div>
