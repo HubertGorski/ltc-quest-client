@@ -49,7 +49,7 @@ export const users = [
     "83hd6ck37sh1",
     "Kacper Lassota",
     "Trener",
-    [1, 1, 1, 0, 0],
+    [1, 1, 1, 0, 0, 1],
     "https://cdn.vuetifyjs.com/images/john.jpg",
     "Gamblers",
     "mdi-bitcoin",

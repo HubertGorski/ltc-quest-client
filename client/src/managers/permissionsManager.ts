@@ -4,6 +4,7 @@ export const privTypes = {
     taskModeration: 2, // has access to accept and reject tasks
     modInvitations: 3, // has access to invitation new moderators
     adminInvitations: 4, // has access to invitation new admins
+    adminPanel: 5, // has access to admin panel
 }
 
 export function hasAccess(privId: number, actualPermissions: number[]): boolean {    

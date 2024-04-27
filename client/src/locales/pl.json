@@ -10,7 +10,14 @@
     "login": "Logowanie",
     "register": "Rejestracja",
     "addPoints": "Przyznaj punkty",
-    "killGame": "Kill Game"
+    "killGame": "Kill Game",
+    "confirm": "Poufne treści",
+    "noAccess": "Brak uprawnień",
+    "admin": "Panel Admina"
+  },
+  "noAccess": {
+    "title": "Nieupoważnionym wstęp wzbroniony",
+    "description": "Nie masz wystarczających uprawnień by przejść do tej strony. Jeśli uważasz, że powinieneś mieć dostęp do tej strony, skontaktuj się z osobą zarządzającą użytkownikami w aplikacji."
   },
   "classifiedInformation": {
     "title": "Zakładka zawiera poufne treści",
@@ -51,7 +58,6 @@
       "acquiredDirectly": "Karta zdobyta osobiście",
       "acquiredIndirectly": "Karta zdobyta przez "
     },
-    "activeOrders": "Aktywne zlecenia",
     "cardsGained": "Zdobyte karty"
   },
   "start": "Start",

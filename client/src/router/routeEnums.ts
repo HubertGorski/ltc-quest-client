@@ -11,6 +11,8 @@ export enum ROUTE_NAME {
     ADD_POINTS = "addPoints",
     KILL_GAME = "killGame",
     CONFIRM = "confirm",
+    NO_ACCESS = "noAccess",
+    ADMIN = "admin",
   }
 
 export enum ROUTE_DICT {
@@ -26,6 +28,8 @@ export enum ROUTE_DICT {
     ADD_POINTS = "router.addPoints",
     KILL_GAME = "router.killGame",
     CONFIRM = "router.confirm",
+    NO_ACCESS = "router.noAccess",
+    ADMIN = "router.admin",
   }
   
 export enum ROUTE_PATH {
@@ -41,4 +45,6 @@ export enum ROUTE_PATH {
     ADD_POINTS = "/addPoints",
     KILL_GAME = "/killGame",
     CONFIRM = "/confirm",
+    NO_ACCESS = "/noAccess",
+    ADMIN = "/admin",
   }

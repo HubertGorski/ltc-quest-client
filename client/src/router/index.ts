@@ -11,11 +11,20 @@ import TasksDetailsView from "@/views/TasksDetailsView.vue";
 import AddPointsView from "@/views/AddPointsView.vue";
 import KillGameView from "@/mod/killGame/KillGameView.vue";
 import ConfirmView from "@/views/ConfirmView.vue";
+import AdminView from "@/views/admin/AdminView.vue";
+import NoAccessView from "@/views/NoAccessView.vue";
 import { ROUTE_NAME, ROUTE_PATH } from "./routeEnums";
+import { useUserStore } from "@/stores/userStore";
+import { hasAccess, privTypes } from "@/managers/permissionsManager";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: ROUTE_PATH.NO_ACCESS,
+      name: ROUTE_NAME.NO_ACCESS,
+      component: NoAccessView,
+    },
     {
       path: ROUTE_PATH.CONFIRM,
       name: ROUTE_NAME.CONFIRM,
@@ -76,21 +85,33 @@ const router = createRouter({
       name: ROUTE_NAME.KILL_GAME,
       component: KillGameView,
       meta: {
-        requiresConfirmation: true
-      }
+        requiresConfirmation: true,
+      },
+    },
+    {
+      path: ROUTE_PATH.ADMIN,
+      name: ROUTE_NAME.ADMIN,
+      component: AdminView,
+      meta: { requiresAuth: true },
     },
   ],
 });
 
 router.beforeEach((to, from, next) => {
-  const isAccepted = sessionStorage.getItem("isAccepted") === 'true';
+  const isAccepted = sessionStorage.getItem("isAccepted") === "true";
   if (to.meta.requiresConfirmation && !isAccepted) {
     sessionStorage.setItem("targetUrl", to.fullPath);
     next(ROUTE_PATH.CONFIRM);
+  } else if (to.meta.requiresAuth && !isAuthenticated()) {
+    next(ROUTE_PATH.NO_ACCESS);
   } else {
     sessionStorage.removeItem("isAccepted");
     next();
   }
-})
+});
+
+function isAuthenticated() {
+  return hasAccess(privTypes.adminPanel, useUserStore().user.permissions);
+}
 
 export default router;

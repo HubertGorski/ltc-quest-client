@@ -14,14 +14,6 @@ const currentUser = userStore.user;
 const isOpenMenu = ref<boolean>(false);
 const translatedRouteNames: { [key: string]: string } = {};
 const route = useRoute();
-const menuOptions = [
-  { path: ROUTE_PATH.RANKING, label: ROUTE_DICT.RANKING },
-  { path: ROUTE_PATH.TASKS, label: ROUTE_DICT.TASKS },
-  { path: ROUTE_PATH.BINGO, label: ROUTE_DICT.BINGO },
-  { path: ROUTE_PATH.KILL_GAME, label: ROUTE_DICT.KILL_GAME },
-  { path: ROUTE_PATH.SETTINGS, label: ROUTE_DICT.SETTINGS },
-];
-const menuSpecialOptions = [{ path: ROUTE_PATH.LOGIN, label: "logout" }];
 
 const closeMenu = () => {
   isOpenMenu.value = false;
@@ -44,7 +36,7 @@ const goToAddPointsPanel = () => {
 };
 
 const currentRouteName = computed(() =>
-  route.name ? route.name.toString() : "",
+  route.name ? route.name.toString() : ""
 );
 const isVisibleCurrentRouteName = computed(() => {
   return !translatedRouteNames[currentRouteName.value]?.includes("router.");
@@ -61,6 +53,9 @@ const isTasksView = computed(() => {
 const hasAccessToAddTask = computed(() => {
   return hasAccess(privTypes.usingModTask, currentUser.permissions);
 });
+const hasAccessToAdminPanel = computed(() => {
+  return hasAccess(privTypes.adminPanel, currentUser.permissions);
+});
 const addPointsButton = computed(() => {
   return {
     isVisible:
@@ -71,6 +66,20 @@ const addPointsButton = computed(() => {
     icon: isAddPointsView.value ? "mdi-keyboard-backspace" : "$plus",
   };
 });
+
+const menuOptions = [
+  { path: ROUTE_PATH.RANKING, label: ROUTE_DICT.RANKING, isVisible: true },
+  { path: ROUTE_PATH.TASKS, label: ROUTE_DICT.TASKS, isVisible: true },
+  { path: ROUTE_PATH.BINGO, label: ROUTE_DICT.BINGO, isVisible: true },
+  { path: ROUTE_PATH.KILL_GAME, label: ROUTE_DICT.KILL_GAME, isVisible: true },
+  { path: ROUTE_PATH.SETTINGS, label: ROUTE_DICT.SETTINGS, isVisible: true },
+  {
+    path: ROUTE_PATH.ADMIN,
+    label: ROUTE_DICT.ADMIN,
+    isVisible: hasAccessToAdminPanel.value,
+  },
+];
+const menuSpecialOptions = [{ path: ROUTE_PATH.LOGIN, label: "logout" }];
 
 setTranslatedRouteNames();
 </script>
@@ -128,14 +137,16 @@ setTranslatedRouteNames();
         </v-list>
         <v-divider></v-divider>
         <v-list>
-          <v-list-item v-for="menuOption in menuOptions" :key="menuOption.path">
-            <RouterLink
-              class="text-decoration-none text-grey-darken-2"
-              @click="closeMenu"
-              :to="menuOption.path"
-              >{{ $t(menuOption.label) }}</RouterLink
-            >
-          </v-list-item>
+          <div v-for="menuOption in menuOptions" :key="menuOption.path">
+            <v-list-item v-if="menuOption.isVisible">
+              <RouterLink
+                class="text-decoration-none text-grey-darken-2"
+                @click="closeMenu"
+                :to="menuOption.path"
+                >{{ $t(menuOption.label) }}</RouterLink
+              >
+            </v-list-item>
+          </div>
           <v-divider></v-divider>
           <v-list-item
             v-for="menuSpecialOption in menuSpecialOptions"
