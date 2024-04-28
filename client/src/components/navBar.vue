@@ -32,7 +32,7 @@ const backRoute = () => {
   return router.go(-1);
 };
 const goToAddPointsPanel = () => {
-  return router.push("/addPoints");
+  return router.push(ROUTE_PATH.ADD_POINTS);
 };
 
 const currentRouteName = computed(() =>
@@ -53,6 +53,9 @@ const isTasksView = computed(() => {
 const isAdminView = computed(() => {
   return currentRouteName.value === ROUTE_NAME.ADMIN_KILL_GAME;
 });
+const isKillGameFaqView = computed(() => {
+  return currentRouteName.value === ROUTE_NAME.FAQ_KILL_GAME;
+});
 const hasAccessToAddTask = computed(() => {
   return hasAccess(privTypes.usingModTask, currentUser.permissions);
 });
@@ -71,7 +74,7 @@ const addPointsButton = computed(() => {
 });
 const backButton = computed(() => {
   return {
-    isVisible: isAdminView.value,
+    isVisible: isAdminView.value || isKillGameFaqView.value,
     action: () => backRoute(),
     icon: "mdi-keyboard-backspace",
   };

@@ -14,6 +14,8 @@ import ConfirmView from "@/views/ConfirmView.vue";
 import AdminView from "@/views/admin/AdminView.vue";
 import AdminKillGameView from "@/mod/killGame/AdminKillGameView.vue";
 import NoAccessView from "@/views/NoAccessView.vue";
+import FAQView from "@/views/faq/FAQView.vue";
+import KillGameFAQView from "@/views/faq/KillGameFAQView.vue";
 import { ROUTE_NAME, ROUTE_PATH } from "./routeEnums";
 import { useUserStore } from "@/stores/userStore";
 import { hasAccess, privTypes } from "@/managers/permissionsManager";
@@ -88,6 +90,16 @@ const router = createRouter({
       meta: {
         requiresConfirmation: true,
       },
+    },
+    {
+      path: ROUTE_PATH.FAQ,
+      name: ROUTE_NAME.FAQ,
+      component: FAQView,
+    },
+    {
+      path: ROUTE_PATH.FAQ_KILL_GAME,
+      name: ROUTE_NAME.FAQ_KILL_GAME,
+      component: KillGameFAQView,
     },
     {
       path: ROUTE_PATH.ADMIN,

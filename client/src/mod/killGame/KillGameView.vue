@@ -13,6 +13,8 @@ import {
   KILL_GAME_CARD_STATUS,
   type KillGameCard,
 } from "./models/KillGameCard";
+import router from "@/router";
+import { ROUTE_PATH } from "@/router/routeEnums";
 
 const { t } = useI18n();
 
@@ -61,6 +63,10 @@ const setExpectancySelectedCardStatus = () => {
     cards.value[selectedCard.value.cardId].status =
       KILL_GAME_CARD_STATUS.EXPECTANCY;
   }
+};
+
+const goToKillGameFAQ = () => {
+  return router.push(ROUTE_PATH.FAQ_KILL_GAME);
 };
 
 const killerName = computed(() => {
@@ -171,7 +177,7 @@ const actualStatus: Ref<KillGameStatus> = ref(
 <template>
   <div class="px-2 py-3 text-grey-darken-3">
     <div class="d-flex justify-space-between">
-      <v-card class="px-2 py-2 text-grey-darken-2">
+      <v-card @click="goToKillGameFAQ" class="px-2 py-2 text-grey-darken-2">
         <v-icon>mdi-information-variant</v-icon>
       </v-card>
       <hub-summary-panel :summaryPanel="summaryPanel" />

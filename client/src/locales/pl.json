@@ -14,7 +14,9 @@
     "confirm": "Poufne treści",
     "noAccess": "Brak uprawnień",
     "admin": "Panel Admina",
-    "adminKillGame": "Admin: Kill Game"
+    "adminKillGame": "Admin: Kill Game",
+    "faq": "FAQ",
+    "faqKillGame": "FAQ: Kill Game"
   },
   "noAccess": {
     "title": "Nieupoważnionym wstęp wzbroniony",
