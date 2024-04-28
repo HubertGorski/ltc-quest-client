@@ -55,7 +55,9 @@ const selectedCard =
     : ref<KillGameCard>(cards.value.find((card) => !card.isInactive)!);
 
 if (selectedCard.value) {
-  cards.value[selectedCard.value.cardId].isSelected = true;
+  cards.value.forEach(card => {
+    card.isSelected = selectedCard.value.cardId === card.cardId ? true : false;
+  });  
 }
 
 const setExpectancySelectedCardStatus = () => {
