@@ -22,6 +22,10 @@ const props = defineProps({
     type: String,
     default: "back",
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
   action: {
     type: Function,
     required: true,
@@ -42,12 +46,10 @@ const rejectAction = () => {
 
 <template>
   <div>
+    <div @click="dialog = !disabled" class="w-100">
+      <slot></slot>
+    </div>
     <v-dialog v-model="dialog" max-width="400" persistent>
-      <template v-slot:activator="{ props: activatorProps }">
-        <div class="w-100" v-bind="activatorProps">
-          <slot></slot>
-        </div>
-      </template>
       <v-card :prepend-icon="icon" :text="$t(text)" :title="$t(title)">
         <template v-slot:actions>
           <v-spacer></v-spacer>

@@ -8,6 +8,7 @@ const { t } = useI18n();
 
 const props = defineProps<{
   card: KillGameCard;
+  isSelected: Boolean;
 }>();
 
 const infoIcon = computed(() => {
@@ -45,7 +46,7 @@ interface infoIcon {
 </script>
 
 <template>
-  <v-card class="mb-4" :class="[card.isInactive ? 'bg-grey-lighten-5 elevation-1' : 'elevation-3']">
+  <v-card class="mb-4" :class="{ 'bg-grey-lighten-5 elevation-1' : card.isInactive, 'elevation-3 scale-1' : card.isSelected, 'scale-098' : !card.isSelected}">
     <div>
       <div class="d-flex justify-space-between px-3 pt-2 pb-1">
         <v-card-title class="px-0 py-0">{{ card.userName }}</v-card-title>

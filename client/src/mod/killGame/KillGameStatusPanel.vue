@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import type { KILL_GAME_USER_STATUS } from "./models/KillGameUser";
+import { computed } from "vue";
+import type { KillGameCard } from "./models/KillGameCard";
+import { KILL_GAME_USER_STATUS } from "./models/KillGameUser";
 import HubPopup from "@/components/hubComponents/HubPopup.vue";
 
 interface PopupSettings {
@@ -21,7 +23,15 @@ export interface KillGameStatus {
 
 const props = defineProps<{
   actualStatus: KillGameStatus;
+  selectedCard: KillGameCard | null;
 }>();
+
+const isExpectancyBtn = computed(() => {
+  return (
+    props.selectedCard?.isExpectancy &&
+    props.actualStatus.status === KILL_GAME_USER_STATUS.ALIVE
+  );
+});
 </script>
 
 <template>
@@ -41,9 +51,16 @@ const props = defineProps<{
           :text="actionBtn.popupText"
           :title="actionBtn.popupTitle"
           :action="actionBtn.action"
+          :disabled="isExpectancyBtn"
           class="confirmStatus_btn"
         >
-          <v-btn variant="text" class="confirmStatus_btn-content">{{
+          <v-btn
+            v-if="isExpectancyBtn"
+            variant="text"
+            class="confirmStatus_btn-content"
+            >{{ $t("killGame.cardExpectancy") }}</v-btn
+          >
+          <v-btn v-else variant="text" class="confirmStatus_btn-content">{{
             $t(actionBtn.textBtn)
           }}</v-btn>
         </hub-popup>
@@ -72,7 +89,6 @@ const props = defineProps<{
 
 .confirmStatus {
   display: flex;
-  padding: 6px;
   gap: 6px;
 
   &_btn {
@@ -80,6 +96,8 @@ const props = defineProps<{
     flex-grow: 1;
 
     &-content {
+      padding: 12px;
+      height: auto;
       width: 100%;
     }
   }

@@ -7,6 +7,7 @@ export class KillGameCard {
   status: KILL_GAME_CARD_STATUS;
   killerId: number | null;
   killerName: string;
+  isSelected: boolean;
 
   constructor(
     cardId: number,
@@ -16,7 +17,8 @@ export class KillGameCard {
     keyAction: string,
     status: KILL_GAME_CARD_STATUS,
     killerId: number | null = null,
-    killerName = ""
+    killerName = "",
+    isSelected = false
   ) {
     this.cardId = cardId;
     this.ownerId = ownerId;
@@ -26,6 +28,7 @@ export class KillGameCard {
     this.status = status;
     this.killerId = killerId;
     this.killerName = killerName;
+    this.isSelected = isSelected;
   }
 
   get isExpectancy(): boolean {

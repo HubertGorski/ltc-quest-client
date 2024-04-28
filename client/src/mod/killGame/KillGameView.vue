@@ -9,12 +9,16 @@ import { KILL_GAME_USER_STATUS } from "./models/KillGameUser";
 import { killGameData } from "@/assets/data/killGame";
 import KillGameStatusPanel from "./KillGameStatusPanel.vue";
 import KillGameCardsList from "./KillGameCardsList.vue";
-import type { KillGameCard } from "./models/KillGameCard";
+import {
+  KILL_GAME_CARD_STATUS,
+  type KillGameCard,
+} from "./models/KillGameCard";
 
 const { t } = useI18n();
 
 const sendKillRequest = () => {
   console.log("Wyslalem zapytanie o zabicie");
+  setExpectancySelectedCardStatus();
 };
 
 const rejectStatus = () => {
@@ -38,6 +42,27 @@ const sendReport = () => {
   console.log("Panie admin. Czemu nie gram?");
 };
 
+const selectCard = (card: KillGameCard) => {
+  selectedCard.value = card;
+};
+
+const cards = ref<KillGameCard[]>(killGameData.cards);
+const selectedCard =
+  killGameData.user.status === KILL_GAME_USER_STATUS.NEUTRAL
+    ? ref(null)
+    : ref<KillGameCard>(cards.value.find((card) => !card.isInactive)!);
+
+if (selectedCard.value) {
+  cards.value[selectedCard.value.cardId].isSelected = true;
+}
+
+const setExpectancySelectedCardStatus = () => {
+  if (selectedCard.value) {
+    cards.value[selectedCard.value.cardId].status =
+      KILL_GAME_CARD_STATUS.EXPECTANCY;
+  }
+};
+
 const killerName = computed(() => {
   return killGameData.user.killerId
     ? users[killGameData.user.killerId].name
@@ -49,8 +74,6 @@ const summaryPanelData = {
   killingsCommitted: ref(killGameData.user.killingsCommitted),
   usersAlive: ref(killGameData.usersAlive),
 };
-
-const cards = ref<KillGameCard[]>(killGameData.cards);
 
 const summaryPanel: TabSummaryPanel[] = [
   {
@@ -153,10 +176,13 @@ const actualStatus: Ref<KillGameStatus> = ref(
       </v-card>
       <hub-summary-panel :summaryPanel="summaryPanel" />
     </div>
-    <kill-game-status-panel :actualStatus="actualStatus" />
+    <kill-game-status-panel
+      :actualStatus="actualStatus"
+      :selectedCard="selectedCard"
+    />
     <Transition name="fade" mode="out-in">
       <div :key="cards.length" v-if="cards.length > 0">
-        <kill-game-cards-list :cards="cards" />
+        <kill-game-cards-list :cards="cards" @selectCard="selectCard" />
       </div>
     </Transition>
   </div>
