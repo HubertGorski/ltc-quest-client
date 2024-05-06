@@ -62,7 +62,9 @@
       "acquiredDirectly": "Karta zdobyta osobiście",
       "acquiredIndirectly": "Karta zdobyta przez "
     },
-    "cardsGained": "Zdobyte karty"
+    "cardsGained": "Zdobyte karty",
+    "killCards": "Karty zabójstw",
+    "gamers": "Gracze"
   },
   "start": "Start",
   "end": "Koniec",
