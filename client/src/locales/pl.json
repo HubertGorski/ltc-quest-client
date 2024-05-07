@@ -18,6 +18,7 @@
     "faq": "FAQ",
     "faqKillGame": "FAQ: Kill Game"
   },
+  "notifications": "Powiadomienia",
   "noAccess": {
     "title": "Nieupoważnionym wstęp wzbroniony",
     "description": "Nie masz wystarczających uprawnień by przejść do tej strony. Jeśli uważasz, że powinieneś mieć dostęp do tej strony, skontaktuj się z osobą zarządzającą użytkownikami w aplikacji."
@@ -64,7 +65,11 @@
     },
     "cardsGained": "Zdobyte karty",
     "killCards": "Karty zabójstw",
-    "gamers": "Gracze"
+    "gamers": "Gracze",
+    "notifications": {
+      "expectancy": "oczekuje na zgon użytkownika",
+      "rejected": "odmawia zgonu użytkownikowi"
+    }
   },
   "start": "Start",
   "end": "Koniec",

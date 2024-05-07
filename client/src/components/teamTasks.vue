@@ -21,7 +21,6 @@ const selectedTab = defineModel({ required: true });
     <v-card-text class="pt-0">
       <v-window v-model="selectedTab">
         <v-window-item>
-          all
           <task-list-element
             v-for="task of tasks"
             :key="task.teamTaskId"
