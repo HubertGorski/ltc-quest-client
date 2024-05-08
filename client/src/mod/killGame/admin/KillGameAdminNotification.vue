@@ -1,16 +1,12 @@
 <script setup lang="ts">
-import {
-  KILL_GAME_INFO_TYPE,
-  Notification,
-  type KillGameData,
-} from "@/models/Notification";
+import { KILL_GAME_INFO_TYPE, KillGameNotification, type KillGameData } from "@/models/notifications/KillGameNotification";
 import { format } from "date-fns";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 const props = defineProps({
   notification: {
-    type: Notification,
+    type: KillGameNotification,
     required: true,
   },
 });
@@ -26,21 +22,19 @@ const notificationIconMap: { [key in KILL_GAME_INFO_TYPE]: IconInfo } = {
   },
 };
 
-const defaultIconInfo: IconInfo = {
+const displayIconInfo: IconInfo = {
   icon: "mdi-check",
   color: "text-grey-darken-3",
 };
 
-const getNotificationIcon = (notification: Notification): IconInfo => {
+const getNotificationIcon = (notification: KillGameNotification): IconInfo => {
   const type = notification.data.infoType;
   const displayed = notification.displayed;
-  
-  const iconInfo = notificationIconMap[type] || defaultIconInfo;
-  
+  const iconInfo = notificationIconMap[type] || displayIconInfo;
   if (displayed) {
     return iconInfo;
   } else {
-    return defaultIconInfo;
+    return displayIconInfo;
   }
 };
 
@@ -50,7 +44,7 @@ const getNotificationMessage = (data: KillGameData) => {
     : `${data.user} ${t("killGame.notifications.rejected")} ${data.killer}`;
 };
 
-const displayNotification = (notification: Notification) => {
+const displayNotification = (notification: KillGameNotification) => {
   console.log("wyslanie do bazy ze wyeswietlono podana notification");
   console.log(notification.id);
   notification.displayed = true;

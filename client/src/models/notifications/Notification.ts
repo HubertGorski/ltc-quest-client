@@ -1,4 +1,4 @@
-import type { MODULE_NAME } from "./Module";
+import type { MODULE_NAME } from "../Module";
 
 export class Notification {
   id: number;
@@ -6,7 +6,6 @@ export class Notification {
   module: string;
   recipient: string;
   displayed: boolean;
-  data: KillGameData | any;
 
   constructor(
     id: number,
@@ -14,26 +13,13 @@ export class Notification {
     module: MODULE_NAME,
     recipient: string,
     displayed: boolean,
-    data: any
   ) {
     this.id = id;
     this.date = new Date(date);
     this.module = module;
     this.recipient = recipient;
     this.displayed = displayed;
-    this.data = data;
   }
-}
-
-export interface KillGameData {
-  killer: String;
-  user: String;
-  infoType: KILL_GAME_INFO_TYPE;
-}
-
-export enum KILL_GAME_INFO_TYPE {
-  EXPECTANCY = "expectancy",
-  REJECTED = "rejected",
 }
 
 export enum RECIPIENT {

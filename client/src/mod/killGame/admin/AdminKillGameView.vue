@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import KillGameAdminNotificationsPanel from "./KillGameAdminNotificationsPanel.vue";
+import { notifications } from "@/assets/data/notifications";
 
 const tabs = [
   { id: 0, title: "killGame.killCards" },
@@ -25,6 +26,6 @@ const selectedTab = ref<number>(tabs[0].id);
         {{ selectedTab }}
       </v-window-item>
     </v-window>
-    <kill-game-admin-notifications-panel />
+    <kill-game-admin-notifications-panel :notifications="notifications" />
   </div>
 </template>

@@ -1,14 +1,20 @@
 <script setup lang="ts">
-import { notifications } from "@/assets/data/notifications";
 import { computed } from "vue";
 import { ref } from "vue";
 import HubSupportBtn from "@/components/hubComponents/HubSupportBtn.vue";
-import { noSelectedTeam } from "@/models/Team";
-import { Notification } from "@/models/Notification";
 import KillGameAdminNotification from "./KillGameAdminNotification.vue";
+import KillGameAdminHeaderPanel from "./KillGameAdminHeaderPanel.vue";
+import { KillGameNotification } from "@/models/notifications/KillGameNotification";
+
+const props = defineProps({
+  notifications: {
+    type: Array<KillGameNotification>,
+    required: true,
+  },
+});
 
 const isOpenNotificationsPanel = ref<boolean>(false);
-const actualNotifications = ref<Notification[]>(notifications);
+const actualNotifications = ref<KillGameNotification[]>(props.notifications);
 
 const isNewNotification = computed(() => {
   return actualNotifications.value.some(
@@ -40,20 +46,12 @@ const displayAllNotifications = () => {
       <hub-support-btn v-bind="props" :icon="notificationsIcon" />
     </template>
     <v-card center>
-      <div class="notificationsHeader" :class="`bg-${noSelectedTeam.color}`">
-        <v-card-title @click="isOpenNotificationsPanel = false">{{
-          $t("notifications")
-        }}</v-card-title>
-        <v-btn
-          v-if="isNewNotification"
-          @click="displayAllNotifications"
-          variant="text"
-          class="notification_btn"
-        >
-          <v-icon class="mdi mdi-24px">mdi-check</v-icon>
-        </v-btn>
-        <div v-else class="pr-4">{{ actualNotifications.length }}</div>
-      </div>
+      <kill-game-admin-header-panel
+        v-model="isOpenNotificationsPanel"
+        :isNewNotification="isNewNotification"
+        :notificationsCounter="actualNotifications.length"
+        :action="displayAllNotifications"
+      />
       <div class="notifications">
         <div v-for="notification in actualNotifications" :key="notification.id">
           <v-divider></v-divider>
@@ -68,15 +66,5 @@ const displayAllNotifications = () => {
 .notifications {
   max-height: 380px;
   overflow-y: scroll;
-}
-.notificationsHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-right: 16px;
-
-  .v-card-title {
-    flex-grow: 1;
-  }
 }
 </style>
