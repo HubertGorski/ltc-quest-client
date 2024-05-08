@@ -12,7 +12,7 @@ import AddPointsView from "@/views/AddPointsView.vue";
 import KillGameView from "@/mod/killGame/KillGameView.vue";
 import ConfirmView from "@/views/ConfirmView.vue";
 import AdminView from "@/views/admin/AdminView.vue";
-import AdminKillGameView from "@/mod/killGame/AdminKillGameView.vue";
+import AdminKillGameView from "@/mod/killGame/admin/AdminKillGameView.vue";
 import NoAccessView from "@/views/NoAccessView.vue";
 import FAQView from "@/views/faq/FAQView.vue";
 import KillGameFAQView from "@/views/faq/KillGameFAQView.vue";
