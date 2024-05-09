@@ -72,8 +72,9 @@
       "rejected": "odmawia zgonu użytkownikowi",
       "userRejected": "odrzucił Twoją prośbę o zgon. Jeśli nie zgadzasz się z decyzją użytkownika, skontaktuj się z administratorem.",
       "userKillPart1": "Gratulacje! Zabiłeś gracza",
-      "userKillPart2": ". Otrzymujesz nowe zlecenie oraz",
-      "userKillPart3": " nowych kart."
+      "userKillPart2": ". Twój cel miał na koncie",
+      "userKillPart3": "graczy. Otrzymujesz nowe zlecenie oraz",
+      "userKillPart4": "nowych kart."
     }
   },
   "start": "Start",
@@ -84,6 +85,7 @@
   "cancel": "Odrzuć",
   "continue": "Kontynuuj",
   "confirm": "Potwierdź",
+  "confirmAll": "Potwierdź wszystkie",
   "sendReport": "Wyślij zgłoszenie",
   "taskDetails": {
     "completedByUsers": "Uczestnicy, którzy ukończyli zadanie:",

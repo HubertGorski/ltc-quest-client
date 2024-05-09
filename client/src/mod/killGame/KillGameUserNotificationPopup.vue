@@ -31,7 +31,7 @@ const getMessageNotification = (
 ): string => {
   return notification.data.infoType === KILL_GAME_USER_INFO_TYPE.REJECTED
     ? `${notification.data.user} ${t("killGame.notifications.userRejected")}`
-    : `${t("killGame.notifications.userKillPart1")} ${notification.data.user}${t("killGame.notifications.userKillPart2")} ${notification.data.newCards} ${t("killGame.notifications.userKillPart3")}`;
+    : `${t("killGame.notifications.userKillPart1")} ${notification.data.user}${t("killGame.notifications.userKillPart2")} ${notification.data.countUsers} ${t("killGame.notifications.userKillPart3")} ${notification.data.newCards} ${t("killGame.notifications.userKillPart4")}`;
 };
 
 const displayNotification = () => {
@@ -84,12 +84,12 @@ const displayAllNotifications = () => {
         </v-card>
       </div>
       <div class="confirmBtns">
-        <v-btn v-if="isNewMultiNotification" @click="displayAllNotifications"
-          >Potwierdź wszystkie</v-btn
-        >
-        <v-btn class="confirmBtns_confirmBtn" @click="displayNotification"
-          >Potwierdź</v-btn
-        >
+        <v-btn v-if="isNewMultiNotification" @click="displayAllNotifications">{{
+          $t("confirmAll")
+        }}</v-btn>
+        <v-btn class="confirmBtns_confirmBtn" @click="displayNotification">{{
+          $t("confirm")
+        }}</v-btn>
       </div>
     </div>
   </div>

@@ -118,6 +118,7 @@ export const userKillGameNotifications = [
       user: "Adam",
       infoType: KILL_GAME_USER_INFO_TYPE.REJECTED,
       newCards: null,
+      countUsers: null,
     }
   ),
   new KillGameUserNotification(
@@ -131,6 +132,7 @@ export const userKillGameNotifications = [
       user: "Hubert",
       infoType: KILL_GAME_USER_INFO_TYPE.REJECTED,
       newCards: null,
+      countUsers: null,
     }
   ),
   new KillGameUserNotification(
@@ -143,7 +145,8 @@ export const userKillGameNotifications = [
       owner: "Konrad",
       user: "Krzysiek",
       infoType: KILL_GAME_USER_INFO_TYPE.KILL,
-      newCards: 4,
+      newCards: 6,
+      countUsers: 2,
     }
   ),
 ];

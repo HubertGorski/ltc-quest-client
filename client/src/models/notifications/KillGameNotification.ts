@@ -35,6 +35,7 @@ export interface KillGameUserData {
   user: String;
   infoType: KILL_GAME_USER_INFO_TYPE;
   newCards: Number | null;
+  countUsers: Number | null;
 }
 
 export enum KILL_GAME_USER_INFO_TYPE {
