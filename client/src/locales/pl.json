@@ -67,8 +67,13 @@
     "killCards": "Karty zabójstw",
     "gamers": "Gracze",
     "notifications": {
+      "hi": "Cześć",
       "expectancy": "oczekuje na zgon użytkownika",
-      "rejected": "odmawia zgonu użytkownikowi"
+      "rejected": "odmawia zgonu użytkownikowi",
+      "userRejected": "odrzucił Twoją prośbę o zgon. Jeśli nie zgadzasz się z decyzją użytkownika, skontaktuj się z administratorem.",
+      "userKillPart1": "Gratulacje! Zabiłeś gracza",
+      "userKillPart2": ". Otrzymujesz nowe zlecenie oraz",
+      "userKillPart3": " nowych kart."
     }
   },
   "start": "Start",

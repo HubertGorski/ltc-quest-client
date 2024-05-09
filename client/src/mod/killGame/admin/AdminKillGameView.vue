@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import KillGameAdminNotificationsPanel from "./KillGameAdminNotificationsPanel.vue";
-import { notifications } from "@/assets/data/notifications";
+import { adminKillGameNotifications } from "@/assets/data/notifications";
 import { killersData, cardsData } from "@/assets/data/killGame";
 
 const tabs = [
@@ -55,7 +55,7 @@ const headersCardsTable = ref([
         </v-data-table>
       </v-window-item>
     </v-window>
-    <kill-game-admin-notifications-panel :notifications="notifications" />
+    <kill-game-admin-notifications-panel :notifications="adminKillGameNotifications" />
   </div>
 </template>
 

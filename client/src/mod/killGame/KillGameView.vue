@@ -15,6 +15,9 @@ import {
 } from "./models/KillGameCard";
 import router from "@/router";
 import { ROUTE_PATH } from "@/router/routeEnums";
+import KillGameUserNotificationPopup from "./KillGameUserNotificationPopup.vue";
+import { userKillGameNotifications } from "@/assets/data/notifications";
+import type { KillGameUserNotification } from "@/models/notifications/KillGameNotification";
 
 const { t } = useI18n();
 
@@ -55,9 +58,9 @@ const selectedCard =
     : ref<KillGameCard>(cards.value.find((card) => !card.isInactive)!);
 
 if (selectedCard.value) {
-  cards.value.forEach(card => {
+  cards.value.forEach((card) => {
     card.isSelected = selectedCard.value.cardId === card.cardId ? true : false;
-  });  
+  });
 }
 
 const setExpectancySelectedCardStatus = () => {
@@ -71,10 +74,16 @@ const goToKillGameFAQ = () => {
   return router.push(ROUTE_PATH.FAQ_KILL_GAME);
 };
 
-const killerName = computed(() => {
+const killerName = computed((): string => {
   return killGameData.user.killerId
     ? users[killGameData.user.killerId].name
     : "";
+});
+
+const availableNotifications = computed((): KillGameUserNotification[] => {
+  return userKillGameNotifications.filter(
+    (notification) => !notification.displayed
+  );
 });
 
 const summaryPanelData = {
@@ -177,21 +186,25 @@ const actualStatus: Ref<KillGameStatus> = ref(
 </script>
 
 <template>
-  <div class="px-2 py-3 text-grey-darken-3">
-    <div class="d-flex justify-space-between">
-      <v-card @click="goToKillGameFAQ" class="px-2 py-2 text-grey-darken-2">
-        <v-icon>mdi-information-variant</v-icon>
-      </v-card>
-      <hub-summary-panel :summaryPanel="summaryPanel" />
-    </div>
-    <kill-game-status-panel
-      :actualStatus="actualStatus"
-      :selectedCard="selectedCard"
-    />
-    <Transition name="fade" mode="out-in">
-      <div :key="cards.length" v-if="cards.length > 0">
-        <kill-game-cards-list :cards="cards" @selectCard="selectCard" />
+  <kill-game-user-notification-popup
+    :notifications="availableNotifications"
+  >
+    <div class="px-2 py-3 text-grey-darken-3">
+      <div class="d-flex justify-space-between">
+        <v-card @click="goToKillGameFAQ" class="px-2 py-2 text-grey-darken-2">
+          <v-icon>mdi-information-variant</v-icon>
+        </v-card>
+        <hub-summary-panel :summaryPanel="summaryPanel" />
       </div>
-    </Transition>
-  </div>
+      <kill-game-status-panel
+        :actualStatus="actualStatus"
+        :selectedCard="selectedCard"
+      />
+      <Transition name="fade" mode="out-in">
+        <div :key="cards.length" v-if="cards.length > 0">
+          <kill-game-cards-list :cards="cards" @selectCard="selectCard" />
+        </div>
+      </Transition>
+    </div>
+  </kill-game-user-notification-popup>
 </template>

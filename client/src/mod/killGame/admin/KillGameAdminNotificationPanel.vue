@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { KILL_GAME_INFO_TYPE, KillGameNotification, type KillGameData } from "@/models/notifications/KillGameNotification";
+import { KILL_GAME_ADMIN_INFO_TYPE, KillGameAdminNotification, type KillGameAdminData } from "@/models/notifications/KillGameNotification";
 import { format } from "date-fns";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 const props = defineProps({
   notification: {
-    type: KillGameNotification,
+    type: KillGameAdminNotification,
     required: true,
   },
 });
 
-const notificationIconMap: { [key in KILL_GAME_INFO_TYPE]: IconInfo } = {
-  [KILL_GAME_INFO_TYPE.REJECTED]: {
+const notificationIconMap: { [key in KILL_GAME_ADMIN_INFO_TYPE]: IconInfo } = {
+  [KILL_GAME_ADMIN_INFO_TYPE.REJECTED]: {
     icon: "mdi-alert-circle",
     color: "text-red-accent-4",
   },
-  [KILL_GAME_INFO_TYPE.EXPECTANCY]: {
+  [KILL_GAME_ADMIN_INFO_TYPE.EXPECTANCY]: {
     icon: "mdi-clock-time-eight",
     color: "text-yellow-darken-3",
   },
@@ -27,7 +27,7 @@ const displayIconInfo: IconInfo = {
   color: "text-grey-darken-3",
 };
 
-const getNotificationIcon = (notification: KillGameNotification): IconInfo => {
+const getNotificationIcon = (notification: KillGameAdminNotification): IconInfo => {
   const type = notification.data.infoType;
   const displayed = notification.displayed;
   const iconInfo = notificationIconMap[type] || displayIconInfo;
@@ -38,13 +38,13 @@ const getNotificationIcon = (notification: KillGameNotification): IconInfo => {
   }
 };
 
-const getNotificationMessage = (data: KillGameData) => {
-  return data.infoType === KILL_GAME_INFO_TYPE.EXPECTANCY
+const getNotificationMessage = (data: KillGameAdminData) => {
+  return data.infoType === KILL_GAME_ADMIN_INFO_TYPE.EXPECTANCY
     ? `${data.killer} ${t("killGame.notifications.expectancy")} ${data.user}`
     : `${data.user} ${t("killGame.notifications.rejected")} ${data.killer}`;
 };
 
-const displayNotification = (notification: KillGameNotification) => {
+const displayNotification = (notification: KillGameAdminNotification) => {
   console.log("wyslanie do bazy ze wyeswietlono podana notification");
   console.log(notification.id);
   notification.displayed = true;

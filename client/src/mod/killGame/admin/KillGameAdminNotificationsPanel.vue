@@ -2,19 +2,19 @@
 import { computed } from "vue";
 import { ref } from "vue";
 import HubSupportBtn from "@/components/hubComponents/HubSupportBtn.vue";
-import KillGameAdminNotification from "./KillGameAdminNotification.vue";
+import KillGameAdminNotificationPanel from "./KillGameAdminNotificationPanel.vue";
 import KillGameAdminHeaderPanel from "./KillGameAdminHeaderPanel.vue";
-import { KillGameNotification } from "@/models/notifications/KillGameNotification";
+import { KillGameAdminNotification } from "@/models/notifications/KillGameNotification";
 
 const props = defineProps({
   notifications: {
-    type: Array<KillGameNotification>,
+    type: Array<KillGameAdminNotification>,
     required: true,
   },
 });
 
 const isOpenNotificationsPanel = ref<boolean>(false);
-const actualNotifications = ref<KillGameNotification[]>(props.notifications);
+const actualNotifications = ref<KillGameAdminNotification[]>(props.notifications);
 
 const isNewNotification = computed(() => {
   return actualNotifications.value.some(
@@ -55,7 +55,7 @@ const displayAllNotifications = () => {
       <div class="notifications">
         <div v-for="notification in actualNotifications" :key="notification.id">
           <v-divider></v-divider>
-          <kill-game-admin-notification :notification="notification" />
+          <kill-game-admin-notification-panel :notification="notification" />
         </div>
       </div>
     </v-card>
