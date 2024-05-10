@@ -1,6 +1,7 @@
 export class KillGameCard {
   cardId: number;
   ownerId: number;
+  ownerName: string;
   targetPersonUserName: string;
   keyWord: string;
   keyAction: string;
@@ -12,6 +13,7 @@ export class KillGameCard {
   constructor(
     cardId: number,
     ownerId: number,
+    ownerName: string,
     targetPersonUserName: string,
     keyWord: string,
     keyAction: string,
@@ -22,6 +24,7 @@ export class KillGameCard {
   ) {
     this.cardId = cardId;
     this.ownerId = ownerId;
+    this.ownerName = ownerName;
     this.targetPersonUserName = targetPersonUserName;
     this.keyWord = keyWord;
     this.keyAction = keyAction;

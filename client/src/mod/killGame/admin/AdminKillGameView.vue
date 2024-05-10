@@ -7,8 +7,8 @@ import KillGameAdminKillers from "./KillGameAdminKillers.vue";
 import KillGameAdminCards from "./KillGameAdminCards.vue";
 
 const tabs = [
-  { id: 0, title: "killGame.killCards" },
-  { id: 1, title: "killGame.gamers" },
+  { id: 0, title: "killGame.gamers" },
+  { id: 1, title: "killGame.killCards" },
 ];
 const selectedTab = ref<number>(tabs[0].id);
 </script>

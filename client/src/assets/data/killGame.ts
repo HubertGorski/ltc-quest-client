@@ -22,6 +22,7 @@ export const killGameData = {
     new KillGameCard(
       1,
       1,
+      "Adam",
       "Oskar Litka",
       "Spirit",
       "Zrób słowiański przykuc",
@@ -30,6 +31,7 @@ export const killGameData = {
     new KillGameCard(
       2,
       1,
+      "Adam",
       "Amadeusz Hyży",
       "Szkolenie",
       "Zaśpiewaj coś z disneya",
@@ -39,6 +41,7 @@ export const killGameData = {
     new KillGameCard(
       2,
       1,
+      "Adam",
       "Stanisław Kot",
       "Ogarniam",
       "Poprowadź grupową grę dla conajmniej 10 uczestników",
@@ -47,6 +50,7 @@ export const killGameData = {
     new KillGameCard(
       3,
       1,
+      "Adam",
       "Klara Orłowska",
       "Ognisty krąg",
       "Zrób tosta",
@@ -70,6 +74,7 @@ export const cardsData = [
   new KillGameCard(
     1,
     1,
+    "Hubert",
     "Adam",
     "spirit",
     "zjedz tosty",
@@ -80,6 +85,7 @@ export const cardsData = [
   new KillGameCard(
     2,
     2,
+    "Kacper",
     "Hubert",
     "ognisty krąg",
     "zrób słowiański przykuc",
@@ -90,6 +96,7 @@ export const cardsData = [
   new KillGameCard(
     3,
     3,
+    "Adam",
     "Kacper",
     "zdrowie",
     "polej alkohol",
