@@ -1,23 +1,29 @@
 export class KillGameUser {
     userId: number;
+    userName: string;
     cardsOwned: number;
     killingsCommitted: number;
-    status: KILL_GAME_USER_STATUS;
     killerId: number | null;
-
+    killerName: string;
+    status: KILL_GAME_USER_STATUS;
+    
     constructor(
       userId: number,
+      userName: string,
       cardsOwned: number,
       killingsCommitted: number,
+      killerId: number,
+      killerName: string,
       status: KILL_GAME_USER_STATUS = KILL_GAME_USER_STATUS.NEUTRAL,
-      killerId: number | null = null,
 
     ) {
       this.userId = userId;
+      this.userName = userName;
       this.cardsOwned = cardsOwned;
       this.killingsCommitted = killingsCommitted;
-      this.status = status;
       this.killerId = killerId;
+      this.killerName = killerName;
+      this.status = status;
     }
   }
   

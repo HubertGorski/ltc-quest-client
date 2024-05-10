@@ -8,7 +8,15 @@ import {
 } from "@/mod/killGame/models/KillGameUser";
 
 export const killGameData = {
-  user: new KillGameUser(1, 4, 2, KILL_GAME_USER_STATUS.UNCERTAIN, 2),
+  user: new KillGameUser(
+    1,
+    "Adam",
+    12,
+    3,
+    2,
+    "Laura",
+    KILL_GAME_USER_STATUS.UNCERTAIN
+  ),
   usersAlive: 17,
   cards: [
     new KillGameCard(
@@ -50,16 +58,43 @@ export const killGameData = {
 };
 
 export const killersData = [
-  { killerId: 1, killerName: "Adam", cardsOwned: 12, killingsCommitted: 3 },
-  { killerId: 2, killerName: "Laura", cardsOwned: 11, killingsCommitted: 6 },
-  { killerId: 3, killerName: "Oskar", cardsOwned: 7, killingsCommitted: 7 },
-  { killerId: 4, killerName: "Kuba", cardsOwned: 10, killingsCommitted: 2 },
-  { killerId: 5, killerName: "Magda", cardsOwned: 5, killingsCommitted: 5 },
-  { killerId: 6, killerName: "Igor", cardsOwned: 32, killingsCommitted: 13 },
+  new KillGameUser(1, "Adam", 12, 3, 2, "Laura"),
+  new KillGameUser(2, "Laura", 11, 6, 3, "Oskar"),
+  new KillGameUser(3, "Oskar", 7, 7, 4, "Kuba"),
+  new KillGameUser(4, "Kuba", 10, 2, 5, "Magda"),
+  new KillGameUser(5, "Magda", 5, 5, 6, "Igor"),
+  new KillGameUser(6, "Igor", 32, 13, 1, "Adam"),
 ];
 
 export const cardsData = [
-  { killerId: 1, killerName: "Adam", userId: 2, userName: "Hubert", action: 'zjedz tosty', word: 'spirit'},
-  { killerId: 3, killerName: "Laura", userId: 4, userName: "Kacper", action: 'zrób słowiański przykuc', word: 'ognisty krąg'},
-  { killerId: 5, killerName: "Grzesiu", userId: 6, userName: "Oskar", action: 'polej alkohol', word: 'zdrowie'},
+  new KillGameCard(
+    1,
+    1,
+    "Adam",
+    "spirit",
+    "zjedz tosty",
+    KILL_GAME_CARD_STATUS.ACTIVE,
+    2,
+    "Hubert"
+  ),
+  new KillGameCard(
+    2,
+    2,
+    "Hubert",
+    "ognisty krąg",
+    "zrób słowiański przykuc",
+    KILL_GAME_CARD_STATUS.ACTIVE,
+    3,
+    "Kacper"
+  ),
+  new KillGameCard(
+    3,
+    3,
+    "Kacper",
+    "zdrowie",
+    "polej alkohol",
+    KILL_GAME_CARD_STATUS.ACTIVE,
+    1,
+    "Adam"
+  ),
 ];
