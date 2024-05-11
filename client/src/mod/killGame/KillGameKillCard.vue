@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import type { KillGameCard } from "./models/KillGameCard";
-import HubIconWithTooltip from "@/components/hubComponents/HubIconWithTooltip.vue";
+import HubTooltip from "@/components/hubComponents/HubTooltip.vue";
 import { computed } from "vue";
 
 const { t } = useI18n();
@@ -50,7 +50,7 @@ interface infoIcon {
     <div>
       <div class="d-flex justify-space-between px-3 pt-2 pb-1">
         <v-card-title class="px-0 py-0">{{ card.targetPersonUserName }}</v-card-title>
-        <hub-icon-with-tooltip
+        <hub-tooltip
           v-if="infoIcon"
           :class="infoIcon.class"
           :icon="infoIcon.icon"

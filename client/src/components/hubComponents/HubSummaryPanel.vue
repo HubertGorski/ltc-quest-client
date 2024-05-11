@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, type Ref } from "vue";
-import HubIconWithTooltip from "./HubIconWithTooltip.vue";
+import { type Ref } from "vue";
+import HubTooltip from "./HubTooltip.vue";
 
 export interface TabSummaryPanel {
   id: number;
@@ -17,7 +17,7 @@ const props = defineProps<{
 <template>
   <v-card class="summaryPanel text-grey-darken-2">
     <div v-for="tab in summaryPanel" :key="tab.id" class="summaryPanel_tab">
-      <hub-icon-with-tooltip :icon="tab.icon" :tooltipText="tab.tooltipText" />
+      <hub-tooltip :icon="tab.icon" :tooltipText="tab.tooltipText" />
       <Transition name="bounce" mode="out-in">
         <div :key="tab.value.value">{{ tab.value.value }}</div>
       </Transition>

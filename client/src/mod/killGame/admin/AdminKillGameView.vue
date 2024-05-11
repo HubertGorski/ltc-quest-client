@@ -5,6 +5,7 @@ import { adminKillGameNotifications } from "@/assets/data/notifications";
 import { killersData, cardsData } from "@/assets/data/killGame";
 import KillGameAdminKillers from "./KillGameAdminKillers.vue";
 import KillGameAdminCards from "./KillGameAdminCards.vue";
+import { users } from "@/assets/data/users";
 
 const tabs = [
   { id: 0, title: "killGame.gamers" },
@@ -25,7 +26,7 @@ const selectedTab = ref<number>(tabs[0].id);
         <kill-game-admin-killers :killers="killersData" />
       </v-window-item>
       <v-window-item>
-        <kill-game-admin-cards :cards="cardsData" />
+        <kill-game-admin-cards :cards="cardsData" :users="users" />
       </v-window-item>
     </v-window>
     <kill-game-admin-notifications-panel
