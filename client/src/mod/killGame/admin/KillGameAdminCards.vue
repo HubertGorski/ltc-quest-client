@@ -4,6 +4,7 @@ import type { KillGameCard } from "../models/KillGameCard";
 import { noSelectedTeam } from "@/models/Team";
 import HubTooltip from "@/components/hubComponents/HubTooltip.vue";
 import type { User } from "@/models/User";
+import HubSelectInput, { type IItem } from "@/components/hubComponents/HubSelectInput.vue";
 
 const props = defineProps({
   cards: {
@@ -36,19 +37,21 @@ const dataToDisplay = ref<Card[]>(
   })
 );
 
-const availableUsers = ref<UserInList[]>(
+const availableUsers = ref<IItem[]>(
   props.users.map((user) => {
     return {
-      userId: user.userId,
+      id: user.userId,
       name: user.name,
     };
   })
 );
 
-interface UserInList {
-  userId: number;
-  name: string;
-}
+const setOwner = (item: IItem, index: number) => {
+  dataToDisplay.value[index].ownerName = item.name;
+};
+const setTargetPerson = (item: IItem, index: number) => {
+  dataToDisplay.value[index].targetPersonUserName = item.name;
+};
 
 interface Card {
   cardId: number;
@@ -73,47 +76,25 @@ interface Card {
       </thead>
       <tbody>
         <tr
-          v-for="card in dataToDisplay"
+          v-for="(card, index) in dataToDisplay"
           :key="card.cardId"
           class="border-b-sm"
           :class="{
             'font-italic border-t-md border-b-md border-red': card.isEditMode,
           }"
         >
-          <v-menu>
-            <template v-slot:activator="{ props }">
-              <td v-bind="props">
-                <hub-tooltip
-                  :tooltipText="card.ownerName"
-                  :disabled="card.isEditMode"
-                >
-                  <input
-                    v-model="card.ownerName"
-                    class="disabled-input text-grey-darken-3"
-                    :disabled="card.isEditMode"
-                  />
-                </hub-tooltip>
-              </td>
-            </template>
-            <v-list v-if="card.isEditMode">
-              <v-list-item
-                v-for="user in availableUsers"
-                :key="user.userId"
-                class="listItem"
-              >
-                {{ user.name }}</v-list-item
-              >
-            </v-list>
-          </v-menu>
-          <td>
-            <hub-tooltip :tooltipText="card.targetPersonUserName">
-              <input
-                v-model="card.targetPersonUserName"
-                class="text-grey-darken-3"
-                :class="{ 'disabled-input': !card.isEditMode }"
-              />
-            </hub-tooltip>
-          </td>
+          <hub-select-input
+            :item="{ id: card.cardId, name: card.ownerName }"
+            :listItems="availableUsers"
+            :isEditMode="card.isEditMode"
+            @setItem="setOwner($event, index)"
+          />
+          <hub-select-input
+            :item="{ id: card.cardId, name: card.targetPersonUserName }"
+            :listItems="availableUsers"
+            :isEditMode="card.isEditMode"
+            @setItem="setTargetPerson($event, index)"
+          />
           <td>
             <hub-tooltip :tooltipText="card.keyWord">
               <input
@@ -162,9 +143,5 @@ interface Card {
       pointer-events: none;
     }
   }
-}
-
-.listItem.v-list-item--density-default.v-list-item--one-line {
-  min-height: auto;
 }
 </style>
