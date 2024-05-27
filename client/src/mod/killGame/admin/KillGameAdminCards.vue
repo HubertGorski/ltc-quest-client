@@ -4,7 +4,12 @@ import type { KillGameCard } from "../models/KillGameCard";
 import { noSelectedTeam } from "@/models/Team";
 import HubTooltip from "@/components/hubComponents/HubTooltip.vue";
 import type { User } from "@/models/User";
-import HubSelectInput, { type IItem } from "@/components/hubComponents/HubSelectInput.vue";
+import HubSelectInput, {
+  type IItem,
+} from "@/components/hubComponents/HubSelectInput.vue";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 
 const props = defineProps({
   cards: {
@@ -46,11 +51,52 @@ const availableUsers = ref<IItem[]>(
   })
 );
 
+const cardOptions: IItem[] = [
+  { id: 1, name: t("edit"), icon: "mdi-pencil-circle-outline" },
+  { id: 2, name: t("remove"), icon: "mdi-minus-circle-outline" },
+  { id: 3, name: t("kill"), icon: "mdi-close-circle-outline" },
+];
+
+const isEditAllMode = ref<boolean>(false);
+
+const editAll = () => {
+  isEditAllMode.value = true;
+  dataToDisplay.value.forEach((data) => {
+    data.isEditMode = true;
+  });
+};
+const saveAll = () => {
+  isEditAllMode.value = false;
+  dataToDisplay.value.forEach((data) => {
+    data.isEditMode = false;
+  });
+};
+const saveCard = (index: number) => {
+  dataToDisplay.value[index].isEditMode = false;
+  console.log("save do bazy");
+};
+
 const setOwner = (item: IItem, index: number) => {
   dataToDisplay.value[index].ownerName = item.name;
 };
 const setTargetPerson = (item: IItem, index: number) => {
   dataToDisplay.value[index].targetPersonUserName = item.name;
+};
+const controlBtnHandle = (item: IItem, index: number): void => {
+  if (item.id === 1) {
+    dataToDisplay.value[index].isEditMode = true;
+    return;
+  }
+
+  if (item.id === 2) {
+    console.log("usuwam", dataToDisplay.value[index]);
+  }
+
+  if (item.id === 3) {
+    console.log("zabijam", dataToDisplay.value[index]);
+  }
+
+  dataToDisplay.value.splice(index, 1);
 };
 
 interface Card {
@@ -71,7 +117,13 @@ interface Card {
           <td v-for="header in headers" :key="header.key" class="text-center">
             {{ header.title }}
           </td>
-          <td></td>
+          <td>
+            <v-icon @click="isEditAllMode ? saveAll() : editAll()">{{
+              isEditAllMode
+                ? "mdi-check-circle-outline"
+                : "mdi-pencil-circle-outline"
+            }}</v-icon>
+          </td>
         </tr>
       </thead>
       <tbody>
@@ -83,18 +135,22 @@ interface Card {
             'font-italic border-t-md border-b-md border-red': card.isEditMode,
           }"
         >
-          <hub-select-input
-            :item="{ id: card.cardId, name: card.ownerName }"
-            :listItems="availableUsers"
-            :isEditMode="card.isEditMode"
-            @setItem="setOwner($event, index)"
-          />
-          <hub-select-input
-            :item="{ id: card.cardId, name: card.targetPersonUserName }"
-            :listItems="availableUsers"
-            :isEditMode="card.isEditMode"
-            @setItem="setTargetPerson($event, index)"
-          />
+          <td>
+            <hub-select-input
+              :item="{ id: card.cardId, name: card.ownerName }"
+              :listItems="availableUsers"
+              :isEditMode="card.isEditMode"
+              @setItem="setOwner($event, index)"
+            />
+          </td>
+          <td>
+            <hub-select-input
+              :item="{ id: card.cardId, name: card.targetPersonUserName }"
+              :listItems="availableUsers"
+              :isEditMode="card.isEditMode"
+              @setItem="setTargetPerson($event, index)"
+            />
+          </td>
           <td>
             <hub-tooltip :tooltipText="card.keyWord">
               <input
@@ -114,11 +170,18 @@ interface Card {
             </hub-tooltip>
           </td>
           <td class="text-center text-grey-darken-2">
-            <v-icon @click="card.isEditMode = !card.isEditMode">{{
-              card.isEditMode
-                ? "mdi-check-circle-outline"
-                : "mdi-pencil-circle-outline"
-            }}</v-icon>
+            <hub-select-input
+              :item="{ id: 0, name: '' }"
+              :listItems="cardOptions"
+              :isEditMode="!card.isEditMode"
+              :icon="
+                card.isEditMode
+                  ? 'mdi-check-circle-outline'
+                  : 'mdi-dots-horizontal-circle-outline'
+              "
+              @isClicked="saveCard(index)"
+              @setItem="controlBtnHandle($event, index)"
+            />
           </td>
         </tr>
       </tbody>

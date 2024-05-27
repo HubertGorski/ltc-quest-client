@@ -144,6 +144,9 @@
     "search": "Szukaj",
     "resetFilters": "Wyczyść filtry"
   },
+  "kill": "Zabij",
+  "remove": "Usuń",
+  "edit": "Edytuj",
   "isAwaitingConfirmation": "Oczekuje na potwierdzenie",
   "settings": "Ustawienia",
   "admin": {
