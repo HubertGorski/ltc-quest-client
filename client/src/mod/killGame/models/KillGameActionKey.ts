@@ -3,14 +3,14 @@ import { LANG } from "@/enums/languagesEnum";
 export class KillGameActionKey {
   keyId: number;
   lang: LANG;
-  action: string;
+  text: string;
   usageCount: number;
   ownerId: number;
 
-  constructor(keyId: number = 0, lang: LANG = LANG.PL, action: string = "", usageCount: number = 0, ownerId: number = 0) {
+  constructor(keyId: number = 0, lang: LANG = LANG.PL, text: string = "", usageCount: number = 0, ownerId: number = 0) {
     this.keyId = keyId;
     this.lang = lang;
-    this.action = action;
+    this.text = text;
     this.usageCount = usageCount;
     this.ownerId = ownerId;
   }

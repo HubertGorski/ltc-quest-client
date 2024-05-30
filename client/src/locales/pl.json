@@ -32,6 +32,10 @@
   "player": "Gracz",
   "status": "Status",
   "killGame": {
+    "generateGame": "Generuj grę",
+    "selectPlayers": "Wybierz graczy",
+    "selectActions": "Wybierz czynności",
+    "selectWords": "Wybierz słowa",
     "kills": "Zabójstw",
     "numberOfCards": "Ilość kart",
     "alive": "Żywy",

@@ -1,10 +1,33 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { ref } from "vue";
+import { actionsKeyData } from "@/assets/data/killGame";
+import { wordsKeyData } from "@/assets/data/killGame";
+import { killersData } from "@/assets/data/killGame";
+import type { KillGameActionKey } from "../models/KillGameActionKey";
+import type { KillGameWordKey } from "../models/KillGameWordKey";
 
-const isPlayersListComplete = ref<boolean>(false);
-const isActionsListComplete = ref<boolean>(false);
-const isWordsListComplete = ref<boolean>(false);
+const minimumRequiredPlayers: number = 2;
+
+const actionsKey = ref<KillGameActionKey[]>(actionsKeyData);
+const wordsKey = ref<KillGameWordKey[]>(wordsKeyData);
+
+const selectedActions = ref<KillGameActionKey[]>([]);
+const selectedWords = ref<KillGameWordKey[]>([]);
+const selectedPlayers = ref<number[]>(
+  killersData.map((killer) => killer.userId)
+);
+
+const isActionsListComplete = computed((): boolean => {
+  return selectedActions.value.length >= selectedPlayers.value.length;
+});
+const isWordsListComplete = computed((): boolean => {
+  return selectedWords.value.length >= selectedPlayers.value.length;
+});
+const isPlayersListComplete = computed((): boolean => {
+  return selectedPlayers.value.length > minimumRequiredPlayers;
+});
+
 const isGenerateBtnAvailable = computed((): boolean => {
   return (
     isPlayersListComplete.value &&
@@ -17,41 +40,98 @@ const isGenerateBtnAvailable = computed((): boolean => {
 <template>
   <v-expansion-panels class="killGameAddCards">
     <v-expansion-panel>
-      <v-expansion-panel-title
-        >Wybierz graczy
+      <v-expansion-panel-title>
+        <span
+          >{{ $t("killGame.selectPlayers") }} ({{
+            selectedPlayers.length
+          }})</span
+        >
         <template v-slot:actions="{ expanded }">
           <v-icon
-            :color="!expanded ? 'teal' : ''"
-            :icon="expanded ? 'mdi-pencil' : 'mdi-check'"
+            :color="expanded ? '' : isPlayersListComplete ? 'teal' : 'red'"
+            :icon="
+              expanded
+                ? 'mdi-pencil'
+                : isPlayersListComplete
+                  ? 'mdi-check'
+                  : 'mdi-close'
+            "
           ></v-icon></template
       ></v-expansion-panel-title>
-      <v-expansion-panel-text> Tutaj lista graczy</v-expansion-panel-text>
+      <v-expansion-panel-text>
+        <div v-for="killer in killersData" :key="killer.userId">
+          <v-checkbox
+            v-model="selectedPlayers"
+            :label="killer.userName"
+            :value="killer.userId"
+            hide-details
+          ></v-checkbox>
+        </div>
+      </v-expansion-panel-text>
     </v-expansion-panel>
     <v-expansion-panel>
-      <v-expansion-panel-title
-        >Wybierz czynności
+      <v-expansion-panel-title>
+        <span
+          >{{ $t("killGame.selectActions") }} ({{ selectedActions.length }}/{{
+            selectedPlayers.length
+          }})</span
+        >
         <template v-slot:actions="{ expanded }">
           <v-icon
-            :color="!expanded ? 'teal' : ''"
-            :icon="expanded ? 'mdi-pencil' : 'mdi-check'"
+            :color="expanded ? '' : isActionsListComplete ? 'teal' : 'red'"
+            :icon="
+              expanded
+                ? 'mdi-pencil'
+                : isActionsListComplete
+                  ? 'mdi-check'
+                  : 'mdi-close'
+            "
           ></v-icon> </template
       ></v-expansion-panel-title>
-      <v-expansion-panel-text> Tutaj lista czynności </v-expansion-panel-text>
+      <v-expansion-panel-text>
+        <div v-for="action in actionsKey" :key="action.keyId">
+          <v-checkbox
+            v-model="selectedActions"
+            :label="action.text"
+            :value="action.keyId"
+            hide-details
+          ></v-checkbox>
+        </div>
+      </v-expansion-panel-text>
     </v-expansion-panel>
     <v-expansion-panel>
-      <v-expansion-panel-title
-        >Wybierz słowa
+      <v-expansion-panel-title>
+        <span
+          >{{ $t("killGame.selectWords") }} ({{ selectedWords.length }}/{{
+            selectedPlayers.length
+          }})</span
+        >
         <template v-slot:actions="{ expanded }">
           <v-icon
-            :color="!expanded ? 'teal' : ''"
-            :icon="expanded ? 'mdi-pencil' : 'mdi-check'"
+            :color="expanded ? '' : isWordsListComplete ? 'teal' : 'red'"
+            :icon="
+              expanded
+                ? 'mdi-pencil'
+                : isWordsListComplete
+                  ? 'mdi-check'
+                  : 'mdi-close'
+            "
           ></v-icon>
         </template>
       </v-expansion-panel-title>
-      <v-expansion-panel-text> Tutaj lista słów </v-expansion-panel-text>
+      <v-expansion-panel-text>
+        <div v-for="word in wordsKey" :key="word.keyId">
+          <v-checkbox
+            v-model="selectedWords"
+            :label="word.text"
+            :value="word.keyId"
+            hide-details
+          ></v-checkbox>
+        </div>
+      </v-expansion-panel-text>
     </v-expansion-panel>
     <v-btn :disabled="!isGenerateBtnAvailable" class="mt-2 w-100">
-      <span>Generuj grę</span>
+      <span>{{ $t("killGame.generateGame") }}</span>
     </v-btn>
   </v-expansion-panels>
 </template>

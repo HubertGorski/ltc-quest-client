@@ -1,3 +1,5 @@
+import { LANG } from "@/enums/languagesEnum";
+import { KillGameActionKey } from "@/mod/killGame/models/KillGameActionKey";
 import {
   KILL_GAME_CARD_STATUS,
   KillGameCard,
@@ -6,6 +8,7 @@ import {
   KILL_GAME_USER_STATUS,
   KillGameUser,
 } from "@/mod/killGame/models/KillGameUser";
+import { KillGameWordKey } from "@/mod/killGame/models/KillGameWordKey";
 
 export const killGameData = {
   user: new KillGameUser(
@@ -69,6 +72,20 @@ export const killersData = [
   new KillGameUser(5, "Magda Korzeniowska", 5, 5, 6, "Igor", -2),
   new KillGameUser(6, "Igor", 32, 13, 1, "Adam", 0),
 ];
+
+export const actionsKeyData = [
+  new KillGameActionKey(1, LANG.PL, "Zaśpiewaj barkę", 1, 1),
+  new KillGameActionKey(2, LANG.PL, "Zatańcz tunaka", 1, 1),
+  new KillGameActionKey(3, LANG.PL, "Zrób tosty", 1, 1),
+  new KillGameActionKey(4, LANG.PL, "Krzyknij IGRYYY", 1, 1),
+]
+
+export const wordsKeyData = [
+  new KillGameWordKey(1, LANG.PL, "Buki", 1, 1),
+  new KillGameWordKey(2, LANG.PL, "Fikasz to znikasz", 1, 1),
+  new KillGameWordKey(3, LANG.PL, "Szkolenie", 1, 1),
+  new KillGameWordKey(4, LANG.PL, "Chcę przerwę", 1, 1),
+]
 
 export const cardsData = [
   new KillGameCard(
