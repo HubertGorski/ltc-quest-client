@@ -8,6 +8,7 @@ import HubSelectInput, {
   type IItem,
 } from "@/components/hubComponents/HubSelectInput.vue";
 import { useI18n } from "vue-i18n";
+import { deepClone, deepEqual } from "@/components/hubComponents/HubUtils.vue";
 
 const { t } = useI18n();
 
@@ -23,10 +24,10 @@ const props = defineProps({
 });
 
 const headers = [
-  { key: "ownerName", title: "Właściciel" },
-  { key: "targetPersonUserName", title: "Cel" },
-  { key: "keyWord", title: "Słowo" },
-  { key: "keyAction", title: "Czynność" },
+  { key: "ownerName", title: t("killGame.owner") },
+  { key: "targetPersonUserName", title: t("killGame.target") },
+  { key: "keyWord", title: t("killGame.keyWord") },
+  { key: "keyAction", title: t("killGame.keyAction") },
 ];
 
 const dataToDisplay = ref<Card[]>(
@@ -51,6 +52,8 @@ const availableUsers = ref<IItem[]>(
   })
 );
 
+let backupCards: Card[] = [];
+
 const cardOptions: IItem[] = [
   { id: 1, name: t("edit"), icon: "mdi-pencil-circle-outline" },
   { id: 2, name: t("remove"), icon: "mdi-minus-circle-outline" },
@@ -61,19 +64,30 @@ const isEditAllMode = ref<boolean>(false);
 
 const editAll = () => {
   isEditAllMode.value = true;
+  backupCards = deepClone(dataToDisplay.value);
   dataToDisplay.value.forEach((data) => {
     data.isEditMode = true;
   });
 };
+
 const saveAll = () => {
   isEditAllMode.value = false;
-  dataToDisplay.value.forEach((data) => {
-    data.isEditMode = false;
+  dataToDisplay.value.forEach((_, idx) => {
+    saveCard(idx);
   });
 };
 const saveCard = (index: number) => {
-  dataToDisplay.value[index].isEditMode = false;
-  console.log("save do bazy");
+  const selectedCard = dataToDisplay.value[index];
+  selectedCard.isEditMode = false;
+
+  backupCards.forEach((card, idx) => {
+    if (card.cardId === selectedCard.cardId) {
+      backupCards.splice(idx, 1);
+      !deepEqual(card, selectedCard)
+        ? console.log("save do bazy", dataToDisplay.value[index])
+        : null;
+    }
+  });
 };
 
 const setOwner = (item: IItem, index: number) => {
@@ -84,6 +98,8 @@ const setTargetPerson = (item: IItem, index: number) => {
 };
 const controlBtnHandle = (item: IItem, index: number): void => {
   if (item.id === 1) {
+    const selectedCard = Object.assign({}, dataToDisplay.value[index]);
+    backupCards.push(selectedCard);
     dataToDisplay.value[index].isEditMode = true;
     return;
   }

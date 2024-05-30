@@ -75,7 +75,11 @@
       "userKillPart2": ". Twój cel miał na koncie",
       "userKillPart3": "graczy. Otrzymujesz nowe zlecenie oraz",
       "userKillPart4": "nowych kart."
-    }
+    },
+    "owner": "Właściciel",
+    "target": "Cel",
+    "keyWord": "Słowo",
+    "keyAction": "Czynność"
   },
   "start": "Start",
   "end": "Koniec",

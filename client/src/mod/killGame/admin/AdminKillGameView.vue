@@ -8,8 +8,8 @@ import KillGameAdminCards from "./KillGameAdminCards.vue";
 import { users } from "@/assets/data/users";
 
 const tabs = [
-  { id: 0, title: "killGame.gamers" },
-  { id: 1, title: "killGame.killCards" },
+  { id: 0, title: "killGame.killCards" },
+  { id: 1, title: "killGame.gamers" },
 ];
 const selectedTab = ref<number>(tabs[0].id);
 </script>
@@ -23,10 +23,10 @@ const selectedTab = ref<number>(tabs[0].id);
     </v-tabs>
     <v-window v-model="selectedTab">
       <v-window-item>
-        <kill-game-admin-killers :killers="killersData" />
+        <kill-game-admin-cards :cards="cardsData" :users="users" />
       </v-window-item>
       <v-window-item>
-        <kill-game-admin-cards :cards="cardsData" :users="users" />
+        <kill-game-admin-killers :killers="killersData" />
       </v-window-item>
     </v-window>
     <kill-game-admin-notifications-panel
