@@ -12,6 +12,8 @@ import {
   deepEqual,
   hasEmptyValues,
 } from "@/components/hubComponents/HubUtils.vue";
+import router from "@/router";
+import { ROUTE_PATH } from "@/router/routeEnums";
 
 const { t } = useI18n();
 
@@ -83,6 +85,10 @@ const saveAll = (): void => {
     saveCard(idx);
   });
 };
+
+const goToAddNewCards = (): void => {
+  router.push(ROUTE_PATH.ADMIN_ADD_CARDS_KILL_GAME);
+}
 
 const addNewCard = (): void => {
   const idCard: number = getNewIdCard();
@@ -161,7 +167,7 @@ interface Card {
 <template>
   <div>
     <div class="killGameAdminCards_addButtons">
-      <v-btn>
+      <v-btn @click="goToAddNewCards">
         <span>{{ $t("killGame.addManyCards") }}</span>
         <v-icon>mdi-plus-circle-multiple-outline</v-icon>
       </v-btn>
@@ -230,19 +236,21 @@ interface Card {
               />
             </hub-tooltip>
           </td>
-          <td class="text-center text-grey-darken-2">
-            <hub-select-input
+          <td :class="[hasEmptyValues(card) ? 'text-grey' : 'text-grey-darken-2']" class="text-center">
+            <hub-tooltip :tooltipText="t('fillEmptyInputs')" :disabled="!hasEmptyValues(card)">
+              <hub-select-input
               :item="{ id: 0, name: '' }"
               :listItems="cardOptions"
               :isEditMode="!card.isEditMode"
               :icon="
                 card.isEditMode
-                  ? 'mdi-check-circle-outline'
-                  : 'mdi-dots-horizontal-circle-outline'
-              "
+                ? 'mdi-check-circle-outline'
+                : 'mdi-dots-horizontal-circle-outline'
+                "
               @isClicked="saveCard(index)"
               @setItem="controlBtnHandle($event, index)"
-            />
+              />
+            </hub-tooltip>
           </td>
         </tr>
       </tbody>

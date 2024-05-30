@@ -15,9 +15,11 @@
     "noAccess": "Brak uprawnień",
     "admin": "Panel Admina",
     "adminKillGame": "Admin: Kill Game",
+    "adminAddCardsKillGame": "Kill Game: Dodaj karty",
     "faq": "FAQ",
     "faqKillGame": "FAQ: Kill Game"
   },
+  "fillEmptyInputs": "Uzupełnij puste pola",
   "notifications": "Powiadomienia",
   "noAccess": {
     "title": "Nieupoważnionym wstęp wzbroniony",

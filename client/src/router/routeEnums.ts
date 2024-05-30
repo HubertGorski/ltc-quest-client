@@ -14,11 +14,12 @@ export enum ROUTE_NAME {
     NO_ACCESS = "noAccess",
     ADMIN = "admin",
     ADMIN_KILL_GAME = "adminKillGame",
+    ADMIN_ADD_CARDS_KILL_GAME = "adminAddCardsKillGame",
     FAQ = "faq",
     FAQ_KILL_GAME = "faqKillGame",
   }
-
-export enum ROUTE_DICT {
+  
+  export enum ROUTE_DICT {
     HOME = "router.home",
     PROFILE = "router.profile",
     TASKS = "router.tasks",
@@ -34,11 +35,12 @@ export enum ROUTE_DICT {
     NO_ACCESS = "router.noAccess",
     ADMIN = "router.admin",
     ADMIN_KILL_GAME = "router.adminKillGame",
+    ADMIN_ADD_CARDS_KILL_GAME = "router.adminAddCardsKillGame",
     FAQ = "router.faq",
     FAQ_KILL_GAME = "router.faqKillGame",
   }
   
-export enum ROUTE_PATH {
+  export enum ROUTE_PATH {
     HOME = "/",
     PROFILE = "/profile",
     TASKS = "/tasks",
@@ -54,6 +56,7 @@ export enum ROUTE_PATH {
     NO_ACCESS = "/noAccess",
     ADMIN = "/admin",
     ADMIN_KILL_GAME = "/admin/killGame",
+    ADMIN_ADD_CARDS_KILL_GAME = "/admin/killGame/addCards",
     FAQ = "/faq",
     FAQ_KILL_GAME = "/faq/killGame",
   }

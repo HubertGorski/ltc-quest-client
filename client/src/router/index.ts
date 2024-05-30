@@ -13,6 +13,7 @@ import KillGameView from "@/mod/killGame/KillGameView.vue";
 import ConfirmView from "@/views/ConfirmView.vue";
 import AdminView from "@/views/admin/AdminView.vue";
 import AdminKillGameView from "@/mod/killGame/admin/AdminKillGameView.vue";
+import AdminKillGameAddCardsView from "@/mod/killGame/admin/AdminKillGameAddCardsView.vue";
 import NoAccessView from "@/views/NoAccessView.vue";
 import FAQView from "@/views/faq/FAQView.vue";
 import KillGameFAQView from "@/views/faq/KillGameFAQView.vue";
@@ -111,6 +112,12 @@ const router = createRouter({
       path: ROUTE_PATH.ADMIN_KILL_GAME,
       name: ROUTE_NAME.ADMIN_KILL_GAME,
       component: AdminKillGameView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: ROUTE_PATH.ADMIN_ADD_CARDS_KILL_GAME,
+      name: ROUTE_NAME.ADMIN_ADD_CARDS_KILL_GAME,
+      component: AdminKillGameAddCardsView,
       meta: { requiresAuth: true },
     },
   ],

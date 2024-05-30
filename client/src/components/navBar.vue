@@ -50,11 +50,12 @@ const isAddPointsView = computed(() => {
 const isTasksView = computed(() => {
   return currentRouteName.value === ROUTE_NAME.TASKS;
 });
-const isAdminView = computed(() => {
-  return currentRouteName.value === ROUTE_NAME.ADMIN_KILL_GAME;
-});
-const isKillGameFaqView = computed(() => {
-  return currentRouteName.value === ROUTE_NAME.FAQ_KILL_GAME;
+const isBackBtnVisible = computed(() => {
+  return (
+    currentRouteName.value === ROUTE_NAME.ADMIN_KILL_GAME ||
+    currentRouteName.value === ROUTE_NAME.FAQ_KILL_GAME ||
+    currentRouteName.value === ROUTE_NAME.ADMIN_ADD_CARDS_KILL_GAME
+  );
 });
 const hasAccessToAddTask = computed(() => {
   return hasAccess(privTypes.usingModTask, currentUser.permissions);
@@ -74,7 +75,7 @@ const addPointsButton = computed(() => {
 });
 const backButton = computed(() => {
   return {
-    isVisible: isAdminView.value || isKillGameFaqView.value,
+    isVisible: isBackBtnVisible.value,
     action: () => backRoute(),
     icon: "mdi-keyboard-backspace",
   };
