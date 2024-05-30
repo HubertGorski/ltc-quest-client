@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import HubTooltip from "@/components/hubComponents/HubTooltip.vue";
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 
 const props = defineProps({
   isEditMode: {
@@ -54,6 +56,7 @@ export interface IItem {
             :value="item.name"
             class="disabled-input text-grey-darken-3"
             :disabled="isEditMode"
+            :placeholder="`(${t('empty')})`"
           />
         </hub-tooltip>
       </div>

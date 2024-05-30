@@ -8,7 +8,10 @@ import HubSelectInput, {
   type IItem,
 } from "@/components/hubComponents/HubSelectInput.vue";
 import { useI18n } from "vue-i18n";
-import { deepClone, deepEqual } from "@/components/hubComponents/HubUtils.vue";
+import {
+  deepEqual,
+  hasEmptyValues,
+} from "@/components/hubComponents/HubUtils.vue";
 
 const { t } = useI18n();
 
@@ -62,45 +65,75 @@ const cardOptions: IItem[] = [
 
 const isEditAllMode = ref<boolean>(false);
 
-const editAll = () => {
+const editAll = (): void => {
   isEditAllMode.value = true;
-  backupCards = deepClone(dataToDisplay.value);
-  dataToDisplay.value.forEach((data) => {
-    data.isEditMode = true;
+  dataToDisplay.value.forEach((data: Card) => {
+    const isInBackup = backupCards.some(item => item.cardId === data.cardId);
+    if (!isInBackup) {
+      data.isEditMode = true;
+      const selectedCard = Object.assign({}, data);
+      backupCards.push(selectedCard);
+    }
   });
 };
 
-const saveAll = () => {
+const saveAll = (): void => {
   isEditAllMode.value = false;
   dataToDisplay.value.forEach((_, idx) => {
     saveCard(idx);
   });
 };
-const saveCard = (index: number) => {
+
+const addNewCard = (): void => {
+  const idCard: number = getNewIdCard();
+  const newCard: Card = {
+    cardId: idCard,
+    ownerName: "",
+    targetPersonUserName: "",
+    keyWord: "",
+    keyAction: "",
+    isEditMode: true,
+  };
+  dataToDisplay.value.unshift(newCard);
+  const selectedCard = Object.assign({}, newCard);
+  backupCards.push(selectedCard);
+};
+
+const getNewIdCard = (): number => {
+  //TODO: get available id for new card from database
+  return dataToDisplay.value.length + 1;
+};
+
+const saveCard = (index: number): void => {
   const selectedCard = dataToDisplay.value[index];
-  selectedCard.isEditMode = false;
 
   backupCards.forEach((card, idx) => {
-    if (card.cardId === selectedCard.cardId) {
+    if (card.cardId !== selectedCard.cardId) {
+      return;
+    }
+
+    if (!deepEqual(card, selectedCard) && !hasEmptyValues(selectedCard)) {
+      console.log("save do bazy", dataToDisplay.value[index]);
+    }
+
+    if (!hasEmptyValues(selectedCard)) {
+      selectedCard.isEditMode = false;
       backupCards.splice(idx, 1);
-      !deepEqual(card, selectedCard)
-        ? console.log("save do bazy", dataToDisplay.value[index])
-        : null;
     }
   });
 };
 
-const setOwner = (item: IItem, index: number) => {
+const setOwner = (item: IItem, index: number): void => {
   dataToDisplay.value[index].ownerName = item.name;
 };
-const setTargetPerson = (item: IItem, index: number) => {
+const setTargetPerson = (item: IItem, index: number): void => {
   dataToDisplay.value[index].targetPersonUserName = item.name;
 };
 const controlBtnHandle = (item: IItem, index: number): void => {
   if (item.id === 1) {
+    dataToDisplay.value[index].isEditMode = true;
     const selectedCard = Object.assign({}, dataToDisplay.value[index]);
     backupCards.push(selectedCard);
-    dataToDisplay.value[index].isEditMode = true;
     return;
   }
 
@@ -127,6 +160,16 @@ interface Card {
 
 <template>
   <div>
+    <div class="killGameAdminCards_addButtons">
+      <v-btn>
+        <span>{{ $t("killGame.addManyCards") }}</span>
+        <v-icon>mdi-plus-circle-multiple-outline</v-icon>
+      </v-btn>
+      <v-btn @click="addNewCard" :class="`bg-${noSelectedTeam.color}`">
+        <span>{{ $t("killGame.addCard") }}</span>
+        <v-icon>mdi-plus-circle-outline</v-icon>
+      </v-btn>
+    </div>
     <table class="killGameAdminCards_table">
       <thead>
         <tr :class="`bg-${noSelectedTeam.color}`">
@@ -173,6 +216,7 @@ interface Card {
                 v-model="card.keyWord"
                 class="text-grey-darken-3"
                 :class="{ 'disabled-input': !card.isEditMode }"
+                :placeholder="`(${t('empty')})`"
               />
             </hub-tooltip>
           </td>
@@ -182,6 +226,7 @@ interface Card {
                 v-model="card.keyAction"
                 class="text-grey-darken-3"
                 :class="{ 'disabled-input': !card.isEditMode }"
+                :placeholder="`(${t('empty')})`"
               />
             </hub-tooltip>
           </td>
@@ -205,7 +250,16 @@ interface Card {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+.killGameAdminCards_addButtons {
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 4px;
+  .v-icon {
+    padding-left: 8px;
+  }
+}
+
 .killGameAdminCards_table {
   width: 100%;
   border-collapse: collapse;

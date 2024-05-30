@@ -79,7 +79,9 @@
     "owner": "Właściciel",
     "target": "Cel",
     "keyWord": "Słowo",
-    "keyAction": "Czynność"
+    "keyAction": "Czynność",
+    "addManyCards": "Dodaj wiele kart",
+    "addCard": "Dodaj kartę"
   },
   "start": "Start",
   "end": "Koniec",
@@ -157,5 +159,6 @@
     "menu": {
       "manageApplicationModules": "Zarządzaj modułami aplikacji"
     }
-  }
+  },
+  "empty": "puste"
 }

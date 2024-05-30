@@ -52,5 +52,23 @@ function deepClone<T>(obj: T): T {
   return clonedObj as T;
 }
 
-export { getTranslatedFilterOptions, deepEqual, deepClone };
+function hasEmptyValues<T extends object>(obj: T): boolean {
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      const value = (obj as any)[key];
+      if (
+        value === null ||
+        value === undefined ||
+        (typeof value === 'string' && value.trim() === '') ||
+        (Array.isArray(value) && value.length === 0) ||
+        (typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === 0)
+      ) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+export { getTranslatedFilterOptions, deepEqual, deepClone, hasEmptyValues };
 </script>
