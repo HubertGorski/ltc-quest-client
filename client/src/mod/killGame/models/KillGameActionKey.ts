@@ -5,11 +5,13 @@ export class KillGameActionKey {
   lang: LANG;
   action: string;
   usageCount: number;
+  ownerId: number;
 
-  constructor(keyId: number = 0, lang: LANG = LANG.PL, action: string = "", usageCount: number = 0) {
+  constructor(keyId: number = 0, lang: LANG = LANG.PL, action: string = "", usageCount: number = 0, ownerId: number = 0) {
     this.keyId = keyId;
     this.lang = lang;
     this.action = action;
     this.usageCount = usageCount;
+    this.ownerId = ownerId;
   }
 }

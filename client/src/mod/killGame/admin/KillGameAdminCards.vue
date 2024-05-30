@@ -28,7 +28,7 @@ const props = defineProps({
   },
 });
 
-const headers = [
+const headers: {key: keyof Card, title: string}[] = [
   { key: "ownerName", title: t("killGame.owner") },
   { key: "targetPersonUserName", title: t("killGame.target") },
   { key: "keyWord", title: t("killGame.keyWord") },
@@ -197,7 +197,7 @@ interface Card {
           :key="card.cardId"
           class="border-b-sm"
           :class="{
-            'font-italic border-t-md border-b-md border-red': card.isEditMode,
+            'font-italic border-t-md border-b-md': card.isEditMode,
           }"
         >
           <td>

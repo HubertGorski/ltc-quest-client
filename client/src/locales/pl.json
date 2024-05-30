@@ -29,7 +29,14 @@
     "title": "Zakładka zawiera poufne treści",
     "description": "Informacje w niej zawarte przeznaczone są tylko dla właściciela konta. Przed kontynuowaniem upewnij się, że osoby trzecie nie patrzą Ci się w ekran :)"
   },
+  "gamer": "Gracz",
+  "status": "Status",
   "killGame": {
+    "kills": "Zabójstw",
+    "numberOfCards": "Ilość kart",
+    "alive": "Żywy",
+    "uncertain": "Niepotwierdzony",
+    "dead": "Martwy",
     "acceptStatus": {
       "title": "Zginąłeś?",
       "text": "Potwierdzenie statusu spowoduje przekazanie wszystkich kart użytkownikowi, który Cię zabił."

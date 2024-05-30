@@ -62,12 +62,12 @@ export const killGameData = {
 };
 
 export const killersData = [
-  new KillGameUser(1, "Adam", 12, 3, 2, "Laura"),
-  new KillGameUser(2, "Laura", 11, 6, 3, "Oskar"),
-  new KillGameUser(3, "Oskar", 7, 7, 4, "Kuba"),
-  new KillGameUser(4, "Kuba", 10, 2, 5, "Magda"),
-  new KillGameUser(5, "Magda", 5, 5, 6, "Igor"),
-  new KillGameUser(6, "Igor", 32, 13, 1, "Adam"),
+  new KillGameUser(1, "Adam", 12, 3, 2, "Laura", 1),
+  new KillGameUser(2, "Laura", 11, 6, 3, "Oskar", 1),
+  new KillGameUser(3, "Oskar", 7, 7, 4, "Kuba", -2),
+  new KillGameUser(4, "Kuba Zagrzebkowy", 10, 2, 5, "Magda", 0),
+  new KillGameUser(5, "Magda Korzeniowska", 5, 5, 6, "Igor", -2),
+  new KillGameUser(6, "Igor", 32, 13, 1, "Adam", 0),
 ];
 
 export const cardsData = [
