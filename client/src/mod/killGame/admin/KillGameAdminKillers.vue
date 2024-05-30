@@ -14,7 +14,7 @@ const props = defineProps({
 });
 
 const headers: { key: keyof KillGameUser; title: string }[] = [
-  { key: "userName", title: t("gamer") },
+  { key: "userName", title: t("player") },
   { key: "cardsOwned", title: t("killGame.numberOfCards") },
   { key: "killingsCommitted", title: t("killGame.kills") },
   { key: "status", title: t("status") },

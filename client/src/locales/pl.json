@@ -29,7 +29,7 @@
     "title": "Zakładka zawiera poufne treści",
     "description": "Informacje w niej zawarte przeznaczone są tylko dla właściciela konta. Przed kontynuowaniem upewnij się, że osoby trzecie nie patrzą Ci się w ekran :)"
   },
-  "gamer": "Gracz",
+  "player": "Gracz",
   "status": "Status",
   "killGame": {
     "kills": "Zabójstw",
@@ -74,7 +74,7 @@
     },
     "cardsGained": "Zdobyte karty",
     "killCards": "Karty zabójstw",
-    "gamers": "Gracze",
+    "players": "Gracze",
     "notifications": {
       "hi": "Cześć",
       "expectancy": "oczekuje na zgon użytkownika",

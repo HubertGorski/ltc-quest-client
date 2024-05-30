@@ -9,7 +9,7 @@ import { users } from "@/assets/data/users";
 
 const tabs = [
   { id: 0, title: "killGame.killCards" },
-  { id: 1, title: "killGame.gamers" },
+  { id: 1, title: "killGame.players" },
 ];
 const selectedTab = ref<number>(tabs[0].id);
 </script>
