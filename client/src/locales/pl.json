@@ -55,7 +55,7 @@
       "usersAlive": "Uczestnicy przy życiu"
     },
     "killGameStatus": {
-      "youAreAlive": "Żadne zabójstwo nie oczekuje na potwierdzenie.",
+      "youAreAlive": "Nikt nie oczekuje na potwierdzenie Twojego zgonu.",
       "waitingForConfirmation": " oczekuje na potwierdzenie Twojego zgonu.",
       "youAreDead": "Jesteś martwy. Zostałeś zabity przez: ",
       "notInGame": "Wygląda na to, że nie jesteś w grze."
