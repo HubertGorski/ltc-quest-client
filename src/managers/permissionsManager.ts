@@ -5,6 +5,7 @@ export const privTypes = {
     modInvitations: 3, // has access to invitation new moderators
     adminInvitations: 4, // has access to invitation new admins
     adminPanel: 5, // has access to admin panel
+    preview: 6,
 }
 
 export function hasAccess(privId: number, actualPermissions: number[]): boolean {    
