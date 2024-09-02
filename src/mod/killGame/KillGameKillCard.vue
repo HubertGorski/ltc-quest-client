@@ -24,6 +24,7 @@ const infoIcon = computed(() => {
     tooltipText: `${t("killGame.card.acquiredIndirectly")} ${props.card.killerName}`,
     isVisible: props.card.isAcquiredIndirectly,
   };
+  const xd = 'xd';
   const isExpectancyIcon: infoIcon = {
     class: "text-yellow-darken-3",
     icon: "mdi-clock-time-eight",
