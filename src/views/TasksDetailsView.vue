@@ -99,11 +99,7 @@ window.scrollTo({ top: 0, behavior: "smooth" });
         <v-btn @click="$router.go(-1)">
           <v-icon>mdi-arrow-left-bottom</v-icon>
         </v-btn>
-        <v-btn
-          @click="statusButton.action"
-          :class="statusButton.class"
-          class="flex-grow-1"
-        >
+        <v-btn @click="statusButton.action" :class="statusButton.class" class="flex-grow-1">
           <span>{{ statusButton.text }}</span>
         </v-btn>
       </v-sheet>
@@ -116,58 +112,35 @@ window.scrollTo({ top: 0, behavior: "smooth" });
         </v-btn>
       </v-sheet>
     </div>
-    <v-card class="px-4 py-2">
-      <span class="text-h6">{{ taskDetails.title }}</span>
-      <v-card-text>{{ taskDetails.description }}</v-card-text>
-    </v-card>
+    <div class="d-flex">
+      <v-card class="px-4 py-2 flex-grow-1">
+        <span class="text-h6">{{ taskDetails.title }}</span>
+        <v-card-text>{{ taskDetails.description }}</v-card-text>
+      </v-card>
+      <v-sheet class="pointsTemplate ml-4">12</v-sheet>
+    </div>
     <v-card class="my-4 px-2 py-2">
       <span class="px-2 text-subtitle-1">{{
         $t("taskDetails.additionalInfo")
       }}</span>
       <v-card-text>{{ taskDetails.additionalDescription }}</v-card-text>
     </v-card>
-    <v-card
-      v-for="(image, attachment) of additionalImages"
-      :key="attachment"
-      class="px-2 py-2 my-2"
-    >
-      <span class="px-2 text-subtitle-2"
-        >{{ $t("taskDetails.attachment") }} {{ attachment + 1 }}</span
-      >
+    <v-card v-for="(image, attachment) of additionalImages" :key="attachment" class="px-2 py-2 my-2">
+      <span class="px-2 text-subtitle-2">{{ $t("taskDetails.attachment") }} {{ attachment + 1 }}</span>
       <img class="h-100 w-100 pt-2" :src="image" />
     </v-card>
-    <user-mini-card
-      :user="createrDetails"
-      :date="taskDetails.creationDate"
-      dateText="taskDetails.taskCreationDate"
-    />
-    <user-mini-card
-      v-if="taskDetails.acceptDate"
-      :user="accepterDetails"
-      :date="taskDetails.acceptDate"
-      dateText="taskDetails.taskAcceptedDate"
-      reverse
-    />
+    <user-mini-card :user="createrDetails" :date="taskDetails.creationDate" dateText="taskDetails.taskCreationDate" />
+    <user-mini-card v-if="taskDetails.acceptDate" :user="accepterDetails" :date="taskDetails.acceptDate"
+      dateText="taskDetails.taskAcceptedDate" reverse />
     <v-card class="my-4 px-2 py-2">
       <span class="px-2 text-subtitle-1">{{
         $t("taskDetails.completedByUsers")
       }}</span>
       <div class="d-flex flex-wrap justify-center px-8 pt-4 ga-2">
-        <btn-with-dropdown
-          v-for="team of teams"
-          :key="team.teamId"
-          :title="team.name"
-          :color="team.color"
-          :icon="team.logo"
-          :items="['Kacper', 'Laura', 'Krzysiek']"
-        ></btn-with-dropdown>
+        <btn-with-dropdown v-for="team of teams" :key="team.teamId" :title="team.name" :color="team.color"
+          :icon="team.logo" :items="['Kacper', 'Laura', 'Krzysiek']"></btn-with-dropdown>
       </div>
-      <apexchart
-        class="py-4"
-        type="pie"
-        :options="chartOptions"
-        :series="series"
-      ></apexchart>
+      <apexchart class="py-4" type="pie" :options="chartOptions" :series="series"></apexchart>
       <div class="text-center text-subtitle-2 font-italic">
         {{ $t("taskDetails.taskAvailability.forSelected") }}
       </div>
@@ -182,13 +155,45 @@ window.scrollTo({ top: 0, behavior: "smooth" });
   gap: 4px;
   padding: 4px 0 16px 0;
 }
+
 .manageButtons button {
   padding: 0 12px;
   height: 32px;
   min-width: 24px;
   font-size: 12px;
 }
+
 .disable-events {
   pointer-events: none;
+}
+
+.bookmark-container {
+  position: relative;
+  width: 150px;
+  height: 100px;
+}
+
+.pointsTemplate {
+  position: relative;
+  width: 150px;
+  height: 100px;
+  background-color: #3498db;
+  text-align: center;
+  line-height: 100px;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+}
+
+.pointsTemplate::after {
+  content: '';
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 75px solid transparent;
+  border-right: 75px solid transparent;
+  border-top: 25px solid #3498db;
 }
 </style>
