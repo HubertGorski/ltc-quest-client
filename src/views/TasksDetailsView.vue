@@ -117,7 +117,13 @@ window.scrollTo({ top: 0, behavior: "smooth" });
         <span class="text-h6">{{ taskDetails.title }}</span>
         <v-card-text>{{ taskDetails.description }}</v-card-text>
       </v-card>
-      <v-sheet class="pointsTemplate ml-4">12</v-sheet>
+      <div class="pointsTemplate-container">
+        <v-sheet class="pointsTemplate ml-4">
+          {{ taskDetails.points }}
+          <v-tooltip activator="parent" location="bottom">Liczba punktów do
+            zdobycia.</v-tooltip>
+        </v-sheet>
+      </div>
     </div>
     <v-card class="my-4 px-2 py-2">
       <span class="px-2 text-subtitle-1">{{
@@ -167,7 +173,7 @@ window.scrollTo({ top: 0, behavior: "smooth" });
   pointer-events: none;
 }
 
-.bookmark-container {
+.pointsTemplate-container {
   position: relative;
   width: 150px;
   height: 100px;
@@ -175,14 +181,14 @@ window.scrollTo({ top: 0, behavior: "smooth" });
 
 .pointsTemplate {
   position: relative;
-  width: 150px;
-  height: 100px;
+  width: 130px;
+  height: 80px;
   background-color: #3498db;
   text-align: center;
   line-height: 100px;
   color: white;
   font-family: Arial, sans-serif;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .pointsTemplate::after {
@@ -192,8 +198,8 @@ window.scrollTo({ top: 0, behavior: "smooth" });
   left: 0;
   width: 0;
   height: 0;
-  border-left: 75px solid transparent;
-  border-right: 75px solid transparent;
+  border-left: 65px solid transparent;
+  border-right: 65px solid transparent;
   border-top: 25px solid #3498db;
 }
 </style>
