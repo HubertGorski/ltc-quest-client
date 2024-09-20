@@ -119,7 +119,7 @@ window.scrollTo({ top: 0, behavior: "smooth" });
       </v-card>
       <div class="pointsTemplate-container">
         <v-sheet class="pointsTemplate ml-4">
-          {{ taskDetails.points }}
+          {{ taskDetails.points }} <span style="font-size: 24px;">pkt</span>
           <v-tooltip activator="parent" location="bottom">Liczba punktów do
             zdobycia.</v-tooltip>
         </v-sheet>
