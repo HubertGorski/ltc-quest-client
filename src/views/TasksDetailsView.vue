@@ -112,7 +112,7 @@ window.scrollTo({ top: 0, behavior: "smooth" });
         </v-btn>
       </v-sheet>
     </div>
-    <div class="d-flex">
+    <div class="d-flex mobile-layout align-items-stretch justify-center">
       <v-card class="px-4 py-2 flex-grow-1">
         <span class="text-h6">{{ taskDetails.title }}</span>
         <v-card-text>{{ taskDetails.description }}</v-card-text>
@@ -171,6 +171,12 @@ window.scrollTo({ top: 0, behavior: "smooth" });
 
 .disable-events {
   pointer-events: none;
+}
+
+@media (max-width: 460px) {
+  .mobile-layout {
+    flex-direction: column;
+  }
 }
 
 .pointsTemplate-container {
