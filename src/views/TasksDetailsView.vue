@@ -7,7 +7,7 @@ import { hexColor } from "@/managers/styleManager";
 import btnWithDropdown from "@/components/btnWithDropdown.vue";
 import { useI18n } from "vue-i18n";
 import { useUserStore } from "@/stores/userStore";
-import { computed } from "vue";
+import { ref, onMounted, onBeforeUnmount, computed } from "vue";
 import userMiniCard from "@/components/userMiniCard.vue";
 import type { User } from "@/models/User";
 import { TASK_STATUS, type Task } from "@/models/Task";
@@ -89,6 +89,31 @@ interface TaskStatusButton {
   action?: Function;
 }
 window.scrollTo({ top: 0, behavior: "smooth" });
+
+const pointsTemplateHeight = ref(80);
+
+onMounted(() => {
+  const checkHeight = () => {
+    const mobileLayout = document.querySelector(".mobile-layout") as HTMLElement;
+
+    if (mobileLayout) {
+      const layoutHeight = mobileLayout.offsetHeight;
+
+      if (layoutHeight > 179 && window.innerWidth > 460) {
+        pointsTemplateHeight.value = 124;
+      } else {
+        pointsTemplateHeight.value = 80;
+      }
+    }
+  };
+
+  window.addEventListener("resize", checkHeight);
+  checkHeight();
+
+  onBeforeUnmount(() => {
+    window.removeEventListener("resize", checkHeight);
+  });
+});
 </script>
 
 <template>
@@ -112,16 +137,15 @@ window.scrollTo({ top: 0, behavior: "smooth" });
         </v-btn>
       </v-sheet>
     </div>
-    <div class="d-flex mobile-layout align-items-stretch justify-center">
+    <div class="d-flex mobile-layout align-items-stretch">
       <v-card class="px-4 py-2 flex-grow-1">
         <span class="text-h6">{{ taskDetails.title }}</span>
         <v-card-text>{{ taskDetails.description }}</v-card-text>
       </v-card>
       <div class="pointsTemplate-container">
-        <v-sheet class="pointsTemplate ml-4">
+        <v-sheet class="pointsTemplate ml-4" :style="{ height: pointsTemplateHeight + 'px' }">
           {{ taskDetails.points }} <span style="font-size: 24px;">pkt</span>
-          <v-tooltip activator="parent" location="bottom">Liczba punktów do
-            zdobycia.</v-tooltip>
+          <v-tooltip activator="parent" location="bottom">Liczba punktów do zdobycia.</v-tooltip>
         </v-sheet>
       </div>
     </div>
@@ -176,6 +200,8 @@ window.scrollTo({ top: 0, behavior: "smooth" });
 @media (max-width: 460px) {
   .mobile-layout {
     flex-direction: column;
+    align-items: center;
+    gap: 16px;
   }
 }
 
@@ -188,7 +214,6 @@ window.scrollTo({ top: 0, behavior: "smooth" });
 .pointsTemplate {
   position: relative;
   width: 130px;
-  height: 80px;
   background-color: #3498db;
   text-align: center;
   line-height: 100px;
