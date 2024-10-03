@@ -1,0 +1,539 @@
+[33mcommit 739041f300236b5c2a22530a9c9f69d629f08b2d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mTemplateHeight[m[33m, [m[1;31morigin/TemplateHeight[m[33m)[m
+Author: Skulak13 <tomek.skulski@gmail.com>
+Date:   Sun Sep 29 18:08:21 2024 +0200
+
+    Dynamiczna templatka na punkty
+
+[33mcommit a02e1e1bc99ff3053b165781392abb63967c831e[m[33m ([m[1;31morigin/PointsMark[m[33m, [m[1;32mTemplateMargin[m[33m, [m[1;32mPointsMark[m[33m)[m
+Author: Skulak13 <tomek.skulski@gmail.com>
+Date:   Fri Sep 20 23:32:09 2024 +0200
+
+    Update TasksDetailsView.vue
+    
+    Responsywność na mobile
+
+[33mcommit 1de6a70c1ac44b37fb8fa777f79a93ffae36c2f1[m
+Author: Skulak13 <tomek.skulski@gmail.com>
+Date:   Fri Sep 20 21:23:12 2024 +0200
+
+    Templatka pod punkty za zadanie
+
+[33mcommit a01988ae278688174d0ab83c1ca8baf70dea6566[m
+Author: Skulak <tomek.skulski@gmail.com>
+Date:   Fri Sep 20 20:54:43 2024 +0200
+
+    Templatka pod punkty za zadanie
+
+[33mcommit eced58fad9a0d1df9864288561ab760304bd6be1[m
+Author: Skulak <tomek.skulski@gmail.com>
+Date:   Tue Sep 17 18:13:13 2024 +0200
+
+    Pierwszy commit
+
+[33mcommit f6b68ba88f564f54266f41fb13ee7f34c4e6e499[m[33m ([m[1;32mTest2[m[33m)[m
+Merge: c895b28 d7ee52c
+Author: HubertGorski <36700863+HubertGorski@users.noreply.github.com>
+Date:   Fri Aug 30 20:42:13 2024 +0200
+
+    Merge pull request #1 from HubertGorski/test-branch
+    
+    test commit
+
+[33mcommit d7ee52cf62075dea4786f2113b971a6a61bdc9cc[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Fri Aug 30 20:22:06 2024 +0200
+
+    test commit
+
+[33mcommit c895b285c9be67cf45cb7e085cebdb43cc1b66bb[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Fri Aug 30 20:19:01 2024 +0200
+
+    delete other files
+
+[33mcommit edea6a21e28e85a5f41e476729f6908e283d56f8[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Fri May 31 21:34:02 2024 +0200
+
+    small fix, kill game status dict
+
+[33mcommit 96e688b8e98ce50414acec77c5031d1bb58fb211[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Fri May 31 21:30:08 2024 +0200
+
+    color tabs titles
+
+[33mcommit 3db285e4b28bbd994c2254c6456897c5aacc113a[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Thu May 30 23:22:52 2024 +0200
+
+    generate kill game view
+
+[33mcommit 7bb8ccb399420bfba62e0f857835ee88c777cdd9[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Thu May 30 22:00:34 2024 +0200
+
+    accordion in add cards panel
+
+[33mcommit 7b42167a30800b7062d85afc99872c5b92213128[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Thu May 30 21:27:09 2024 +0200
+
+    killers table in admin panel
+
+[33mcommit 44390857b2eea99133b940d81a24c0a46e805135[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Thu May 30 19:35:50 2024 +0200
+
+    add new view to add cards
+
+[33mcommit 50898cb3bfe3e0617d621dae22efb81f1f546df0[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Thu May 30 18:21:28 2024 +0200
+
+    add card for admin in killgame
+
+[33mcommit 5e3c801faed0c0ff128661cbd3868cf041c5aa9f[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Thu May 30 16:23:10 2024 +0200
+
+    group save editted cards
+
+[33mcommit db69d15510446f046f6596b88a979d6d5e8ea645[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Tue May 28 00:30:14 2024 +0200
+
+    control buttons in admin kill game
+
+[33mcommit 20e4c22d4e08645b6baf35aeed7bf5c1700a968f[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Mon May 27 22:44:26 2024 +0200
+
+    created HubSelectInput
+
+[33mcommit e6a462e181eafbfca191f58b6e9d981f169f940d[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sat May 11 14:30:15 2024 +0200
+
+    refactor hub-tooltip and data table in kill game admin panel
+
+[33mcommit c0770a195f81eeffefa401ea9cbd6f0fd7ef0d9c[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Fri May 10 20:12:24 2024 +0200
+
+    cards table in kill game for admins
+
+[33mcommit 9ed9bdeb368bfca89e3c6939d539c64c7a83dc32[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Fri May 10 19:41:10 2024 +0200
+
+    refactor kill game models
+
+[33mcommit c9c2cc211948db56dc9bfed7211fc083e39514bd[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Thu May 9 23:44:25 2024 +0200
+
+    add count users to kill game notification
+
+[33mcommit 9e1bc9e7e210177c8d00afea56a7fb20e14331b4[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Thu May 9 21:04:36 2024 +0200
+
+    kill game user notifications
+
+[33mcommit 68cbb16bafed928102d1fdf2a09cd60f3d77f2e4[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Thu May 9 01:59:01 2024 +0200
+
+    admin tables in kill game
+
+[33mcommit 22f6c79d37990faee4937fc97ce1910b116101e7[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Thu May 9 00:22:27 2024 +0200
+
+    refactor notifications panel part2
+
+[33mcommit cc7aa46de3c118c15fe3968f385c0162a10438a8[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Wed May 8 16:54:14 2024 +0200
+
+    refactor notifications panel part1
+
+[33mcommit 6d1c8452610949163b6462ab35a95a3cc3bf3427[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Tue May 7 20:42:51 2024 +0200
+
+    notifications panel
+
+[33mcommit e99d3f8c92b1dfd2069f9749f80e4632fb532eac[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Mon May 6 22:31:20 2024 +0200
+
+    start kill game admin panel and notifications
+
+[33mcommit d4f326c19c41ab449d87161ecb5dd8b09ac5cc41[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sun Apr 28 17:05:15 2024 +0200
+
+    selecting card quick fix
+
+[33mcommit 1dcc4d2c9cee6949670b719ccc3b4e9c9dbe4e33[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sun Apr 28 16:56:48 2024 +0200
+
+    faq view
+
+[33mcommit 0fe4adb87d2dae5aec399bb04f1461887ff76f8c[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sun Apr 28 15:01:07 2024 +0200
+
+    selecting kill card
+
+[33mcommit decc8e5fc5fe6e93ba3be46afc6906f1ce65a387[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sun Apr 28 00:33:28 2024 +0200
+
+    admin panel menu
+
+[33mcommit 498b36f2a893e20997de5460211aded0751baf65[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sat Apr 27 19:35:05 2024 +0200
+
+    no access view
+
+[33mcommit 487bcd8dcc39213b2d0fff3095f1514e78dcbdb1[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Sat Apr 27 14:46:59 2024 +0200
+
+    killgame cards
+
+[33mcommit d6780770489f094c48bb0ab92a7f1d87dbb22e60[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Fri Apr 26 23:48:00 2024 +0200
+
+    kill cards
+
+[33mcommit d81cafec30f11016221463db3ae4d178844c45be[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Thu Apr 25 00:07:42 2024 +0200
+
+    killCards start
+
+[33mcommit fb5cd65ea97275736bd648b7cd6d6a54dab952d3[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Wed Apr 24 22:47:28 2024 +0200
+
+    refactor kill game view
+
+[33mcommit d06ec8a0eca6ef7c77310ffc9c5d927f8c0fc119[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Tue Apr 23 22:30:15 2024 +0200
+
+    actions buttons in kill game statuses
+
+[33mcommit 366366672914fc6e8de64f5c6e69bd303b0f00e6[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Mon Apr 22 23:19:48 2024 +0200
+
+    kill game statuses
+
+[33mcommit 44117bd9bc94f2d11ccaee3630c5bed157a5b209[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sun Apr 21 23:23:43 2024 +0200
+
+    tooltip to stats
+
+[33mcommit 97a125a43ce2d56a816e8535a180a9846327c1f3[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sun Apr 21 22:46:29 2024 +0200
+
+    format prettier
+
+[33mcommit e21923ed5a1620afefc4f2fb9c852a67ac5d415f[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sun Apr 21 22:45:11 2024 +0200
+
+    kill game view
+
+[33mcommit 334e201be6c9e6d66eeba92766aad71623405dce[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sun Apr 21 21:46:23 2024 +0200
+
+    classified information panel
+
+[33mcommit c0351e6e99b284b1e43848e492c95ecde6082a21[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sun Apr 21 16:57:42 2024 +0200
+
+    confirmView
+
+[33mcommit e5b211d781c1224fa4a954182ccbf7b6dcd5b59b[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sun Apr 21 14:46:11 2024 +0200
+
+    refactor navbar
+
+[33mcommit aabb0e2a96a5803ccc142b2d1d51292058eceb5e[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Sat Apr 20 23:15:30 2024 +0200
+
+    add show more arrow do chips list
+
+[33mcommit 391fad44b033e7fba205e36998cac0b2c12fba28[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Sat Apr 20 21:04:26 2024 +0200
+
+    fix with one selected date
+
+[33mcommit c21f2be65429962cb3e087b25438b2e977f3864f[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Sat Apr 20 20:18:01 2024 +0200
+
+    translate chips
+
+[33mcommit 12dd77cffa0521167c15ee9ac339beb6b304f38f[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Sat Apr 20 18:09:54 2024 +0200
+
+    hub chips
+
+[33mcommit 9a559463aad148bc6960486a56cd6f4c64dc4e68[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Sat Apr 20 17:13:23 2024 +0200
+
+    emit visible panel
+
+[33mcommit 84e6242704d601d3446ff1229c6bcfa712405567[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Sat Apr 20 16:35:49 2024 +0200
+
+    hub chips
+
+[33mcommit 0ed02341622ed4494a2748cd24f99796682bb226[m
+Merge: ad7126c 9393e88
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Sat Apr 20 14:14:23 2024 +0200
+
+    Merge branch 'main' of https://github.com/HubertGorski/ltc-quest
+
+[33mcommit 9393e88a98c62ce99b792b99a56425b8b64f4cf2[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Wed Apr 17 00:49:54 2024 +0200
+
+    add points view and premissions
+
+[33mcommit 761a0185ed4ab7f64894efb2766c4b9c0b592f00[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Tue Apr 16 22:51:49 2024 +0200
+
+    modTask and privileges
+
+[33mcommit 17e796e0fbf05027471c4493cba43d78ee854ae1[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Tue Apr 16 00:38:48 2024 +0200
+
+    quick fix load type task and exp date from url
+
+[33mcommit da102cee5a4fdc25e21b65cdf83d11d2915d09b1[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Tue Apr 16 00:30:30 2024 +0200
+
+    quick fix search bar filter color
+
+[33mcommit 8619e3d185747b6ec70d2593ed0c1d13458d869a[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Tue Apr 16 00:20:34 2024 +0200
+
+    word store and progress bars in tasks list
+
+[33mcommit ad7126c4d11bc4e7ec7429a42af694dcaa1a760b[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Wed Apr 10 00:18:07 2024 +0200
+
+    add HubChipsList
+
+[33mcommit c369e11f319a661c62a2c230222dc6bb9bd0f1cc[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Tue Apr 9 22:43:11 2024 +0200
+
+    fix is empty filters
+
+[33mcommit 5c019a8bb656c38949317a00091564b070b8653b[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sun Apr 7 20:54:30 2024 +0200
+
+    refactor filter list
+
+[33mcommit f78c9b55d0ef07a0b87190d7c9c69aa1641b4b52[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sun Apr 7 02:06:35 2024 +0200
+
+    refactor filters
+
+[33mcommit 001c410caf204101e3710824ae4f06fe6140f04f[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sat Apr 6 22:59:37 2024 +0200
+
+    hubUtils
+
+[33mcommit 624c6ad1d8db6a83ad70706b57e84189d7b4c471[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sat Apr 6 21:51:17 2024 +0200
+
+    refactor task searcher
+
+[33mcommit 2120370748d09769d2da1aa99723a2167bb2953f[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Wed Apr 3 23:15:12 2024 +0200
+
+    save dates in queries and refactor filters
+
+[33mcommit c1ea5de74032d0b84a5218ac85ce987dfa254946[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Fri Mar 29 21:13:54 2024 +0100
+
+    style date picker
+
+[33mcommit d34bb49e57edba27197c517d64ec5368b3f8d785[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Wed Mar 27 21:29:07 2024 +0100
+
+    add expired text to btn in task details
+
+[33mcommit 45121b1fe89de65a6034dc105e74cecfd0f50c56[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Wed Mar 27 21:22:14 2024 +0100
+
+    code formatting
+
+[33mcommit 85988f9ed6525c469db661dbb48a2675b89a728e[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Wed Mar 27 21:15:49 2024 +0100
+
+    add start and expiration date in tasks
+
+[33mcommit bfda0503d8a8fe97f7dcbaa41dab90185cad7a6f[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sun Mar 24 19:43:43 2024 +0100
+
+    go to top btn, mini user card, task details view
+
+[33mcommit f2bc30be6493e3ce3f03d914d31f65b03098abf1[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sun Mar 24 13:41:06 2024 +0100
+
+    create user store
+
+[33mcommit 9d60e27aac79e1cd52eab3e197f95a69bfe1092b[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sat Mar 23 23:36:13 2024 +0100
+
+    manage buttons, new filter and redesign task list
+
+[33mcommit 822ba8728eaa881caa5cacc914174eb73a0c48f4[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Thu Mar 21 21:42:34 2024 +0100
+
+    filter router and formating code
+
+[33mcommit 0462f442404286f9380afb7c16d9fa12ecb515c4[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Wed Mar 20 23:59:07 2024 +0100
+
+    new filters and refactor
+
+[33mcommit 4452d6da64c64a9537c305757974cb11eca2dac4[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sat Mar 16 00:03:02 2024 +0100
+
+    task details and dict navbar
+
+[33mcommit d88aff8842d1cfec43db9fa3a702cce0c335f78a[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Fri Mar 15 00:13:50 2024 +0100
+
+    charts and i18n
+
+[33mcommit 584359aa6584efdf836bd04811417049a7a6ab36[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Wed Mar 13 23:24:08 2024 +0100
+
+    vue router sort
+
+[33mcommit 21260e2905255b7112aa0b33167094c602a2c7a2[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Tue Mar 12 23:03:03 2024 +0100
+
+    refactor
+
+[33mcommit c744ef916fe4e3ee04c767014477a854d06cd4bd[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Tue Mar 12 00:12:47 2024 +0100
+
+    filters
+
+[33mcommit b9463965dbf6f41a71e404e0c19f04889ac36a86[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Mon Mar 11 23:12:44 2024 +0100
+
+    better sort
+
+[33mcommit 856ee830b4e0adbf60d33b1504f826ed3fc45cbf[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Mon Mar 11 22:30:10 2024 +0100
+
+    sorts
+
+[33mcommit beb5298182d15d84fcfe5a895c0934a098b9ea5b[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Mon Mar 11 00:08:22 2024 +0100
+
+    team select
+
+[33mcommit 51d79f7d7e203f8ab69ad77c351bf449b6e4c1db[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Fri Mar 8 01:07:46 2024 +0100
+
+    front models
+
+[33mcommit 37c5801130c07e90cb1657ffc58ee1aaae3376c8[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Thu Mar 7 00:05:18 2024 +0100
+
+    task searcher
+
+[33mcommit 00498fe530e8726de4a2686e2a02148ceb4a6489[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Wed Mar 6 22:23:17 2024 +0100
+
+    router
+
+[33mcommit bb9ee0f5fb8917f607d6be62609f27b59e4e4c30[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Tue Mar 5 23:12:34 2024 +0100
+
+    switch team
+
+[33mcommit 7b0982205570a7bab902336d661496340273ab13[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Mon Mar 4 22:44:11 2024 +0100
+
+    add vuetify
+
+[33mcommit 77f333bfec21df78d1d4641129ca50eec01f87e5[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Sun Mar 3 20:00:27 2024 +0100
+
+    sequelize init
+
+[33mcommit f10a2f32ee23d38829446e6e3e57d60fda983074[m
+Author: HubertGorski <hubert.gorski181@gmail.com>
+Date:   Sun Mar 3 15:07:12 2024 +0100
+
+    setup
+
+[33mcommit 60407c070df90f4cbf2f66065ceca7d94cc70c70[m
+Author: hubert <hubert.gorski@bowwe.com>
+Date:   Sun Mar 3 13:52:06 2024 +0100
+
+    setup client

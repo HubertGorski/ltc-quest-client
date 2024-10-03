@@ -17,6 +17,7 @@ export enum ROUTE_NAME {
     ADMIN_ADD_CARDS_KILL_GAME = "adminAddCardsKillGame",
     FAQ = "faq",
     FAQ_KILL_GAME = "faqKillGame",
+    ADMIN_LTC_QUEST = "admin-ltc-quest",
   }
   
   export enum ROUTE_DICT {
@@ -59,4 +60,5 @@ export enum ROUTE_NAME {
     ADMIN_ADD_CARDS_KILL_GAME = "/admin/killGame/addCards",
     FAQ = "/faq",
     FAQ_KILL_GAME = "/faq/killGame",
+    ADMIN_LTC_QUEST = "/admin/ltc-quest",
   }

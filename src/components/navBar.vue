@@ -54,7 +54,8 @@ const isBackBtnVisible = computed(() => {
   return (
     currentRouteName.value === ROUTE_NAME.ADMIN_KILL_GAME ||
     currentRouteName.value === ROUTE_NAME.FAQ_KILL_GAME ||
-    currentRouteName.value === ROUTE_NAME.ADMIN_ADD_CARDS_KILL_GAME
+    currentRouteName.value === ROUTE_NAME.ADMIN_ADD_CARDS_KILL_GAME ||
+    currentRouteName.value === ROUTE_NAME.ADMIN_LTC_QUEST
   );
 });
 const hasAccessToAddTask = computed(() => {
@@ -101,11 +102,7 @@ setTranslatedRouteNames();
 <template>
   <div class="navBar_whiteSpace"></div>
   <div class="navBar">
-    <v-menu
-      v-model="isOpenMenu"
-      :close-on-content-click="false"
-      location="bottom"
-    >
+    <v-menu v-model="isOpenMenu" :close-on-content-click="false" location="bottom">
       <template v-slot:activator="{ props }">
         <v-toolbar :color="noSelectedTeam.color">
           <v-toolbar-title>
@@ -120,18 +117,9 @@ setTranslatedRouteNames();
               </span>
             </div>
           </v-toolbar-title>
-          <v-btn
-            v-if="backButton.isVisible"
-            @click="backButton.action"
-            :icon="backButton.icon"
-            class="text-h6"
-          />
-          <v-btn
-            v-if="addPointsButton.isVisible"
-            @click="addPointsButton.action"
-            :icon="addPointsButton.icon"
-            class="text-h6"
-          />
+          <v-btn v-if="backButton.isVisible" @click="backButton.action" :icon="backButton.icon" class="text-h6" />
+          <v-btn v-if="addPointsButton.isVisible" @click="addPointsButton.action" :icon="addPointsButton.icon"
+            class="text-h6" />
           <v-btn class="mx-2 px-0" v-bind="props">
             <v-icon size="32">mdi-menu</v-icon>
           </v-btn>
@@ -139,16 +127,9 @@ setTranslatedRouteNames();
       </template>
       <v-card center max-width="270">
         <v-list>
-          <RouterLink
-            class="text-decoration-none text-grey-darken-2"
-            @click="closeMenu"
-            to="/profile"
-          >
-            <v-list-item
-              :prepend-avatar="currentUser.avatar"
-              :subtitle="currentUser.teamName"
-              :title="currentUser.name"
-            >
+          <RouterLink class="text-decoration-none text-grey-darken-2" @click="closeMenu" to="/profile">
+            <v-list-item :prepend-avatar="currentUser.avatar" :subtitle="currentUser.teamName"
+              :title="currentUser.name">
               <template v-slot:append>
                 <v-icon>{{ currentUser.teamLogo }}</v-icon>
               </template>
@@ -159,25 +140,15 @@ setTranslatedRouteNames();
         <v-list>
           <div v-for="menuOption in menuOptions" :key="menuOption.path">
             <v-list-item v-if="menuOption.isVisible">
-              <RouterLink
-                class="text-decoration-none text-grey-darken-2"
-                @click="closeMenu"
-                :to="menuOption.path"
-                >{{ $t(menuOption.label) }}</RouterLink
-              >
+              <RouterLink class="text-decoration-none text-grey-darken-2" @click="closeMenu" :to="menuOption.path">{{
+                $t(menuOption.label) }}</RouterLink>
             </v-list-item>
           </div>
           <v-divider></v-divider>
-          <v-list-item
-            v-for="menuSpecialOption in menuSpecialOptions"
-            :key="menuSpecialOption.path"
-          >
-            <RouterLink
-              class="text-decoration-none text-grey-darken-2"
-              @click="closeMenu"
-              :to="menuSpecialOption.path"
-              >{{ $t("logout") }}</RouterLink
-            >
+          <v-list-item v-for="menuSpecialOption in menuSpecialOptions" :key="menuSpecialOption.path">
+            <RouterLink class="text-decoration-none text-grey-darken-2" @click="closeMenu" :to="menuSpecialOption.path">
+              {{
+                $t("logout") }}</RouterLink>
           </v-list-item>
         </v-list>
       </v-card>

@@ -17,6 +17,7 @@ import AdminKillGameAddCardsView from "@/mod/killGame/admin/AdminKillGameAddCard
 import NoAccessView from "@/views/NoAccessView.vue";
 import FAQView from "@/views/faq/FAQView.vue";
 import KillGameFAQView from "@/views/faq/KillGameFAQView.vue";
+import LTCQuestView from "@/views/admin/LTCQuestView.vue";
 import { ROUTE_NAME, ROUTE_PATH } from "./routeEnums";
 import { useUserStore } from "@/stores/userStore";
 import { hasAccess, privTypes } from "@/managers/permissionsManager";
@@ -118,6 +119,12 @@ const router = createRouter({
       path: ROUTE_PATH.ADMIN_ADD_CARDS_KILL_GAME,
       name: ROUTE_NAME.ADMIN_ADD_CARDS_KILL_GAME,
       component: AdminKillGameAddCardsView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: ROUTE_PATH.ADMIN_LTC_QUEST,
+      name: ROUTE_NAME.ADMIN_LTC_QUEST,
+      component: LTCQuestView,
       meta: { requiresAuth: true },
     },
   ],
