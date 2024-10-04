@@ -3,6 +3,5 @@
 </script>
 
 <template>
-    <!-- tutaj umieść zawartość komponentu -->
-    <h1>LTC Quest</h1>
+    <v-switch label="Show points bars" color="primary"></v-switch>
 </template>
