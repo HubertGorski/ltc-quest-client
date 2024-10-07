@@ -25,7 +25,7 @@ const infoIcon = computed(() => {
   };
   const isExpectancyIcon: infoIcon = {
     mdiText: "mdi-clock-time-eight",
-    color: "text-yellow-darken-3",
+    color: "text-yellow-darken-4",
     taskStatus: TASK_STATUS.EXPECTANCY,
   };
   return [isRejectedIcon, isConfirmedIcon, isExpectancyIcon].filter(
