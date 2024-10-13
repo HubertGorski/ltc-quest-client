@@ -9,8 +9,8 @@ const appModules: appModule[] = [
     id: 1,
     name: "LTC Quest",
     icon: "mdi-application-outline",
-    isActive: false,
-    url: ''
+    isActive: true,
+    url: ROUTE_PATH.ADMIN_LTC_QUEST,
   },
   { id: 2, name: "Kill Game", icon: "mdi-axe", isActive: true, url: ROUTE_PATH.ADMIN_KILL_GAME },
   {
@@ -39,20 +39,14 @@ interface appModule {
 <template>
   <div class="adminPanel">
     <div class="adminPanel_header text-grey-darken-3">
-      {{t("admin.menu.manageApplicationModules")}}
+      {{ t("admin.menu.manageApplicationModules") }}
     </div>
     <div class="adminPanel_menuItems">
-      <div
-        v-for="appModule in appModules"
-        :key="appModule.id"
-        class="menuItem"
-        :class="[
-          appModule.isActive
-            ? 'elevation-3 text-grey-darken-3'
-            : 'elevation-1 text-grey-darken-1 bg-grey-lighten-5',
-        ]"
-        @click="goToSelectedPanel(appModule.url)"
-      >
+      <div v-for="appModule in appModules" :key="appModule.id" class="menuItem" :class="[
+        appModule.isActive
+          ? 'elevation-3 text-grey-darken-3'
+          : 'elevation-1 text-grey-darken-1 bg-grey-lighten-5',
+      ]" @click="goToSelectedPanel(appModule.url)">
         <v-icon class="menuItem_icon">{{ appModule.icon }}</v-icon>
         <span class="menuItem_name">{{ appModule.name }}</span>
       </div>
@@ -85,6 +79,7 @@ interface appModule {
       &_icon {
         font-size: 36px;
       }
+
       &_name {
         font-size: 16px;
       }
