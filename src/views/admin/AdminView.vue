@@ -9,7 +9,7 @@ const appModules: appModule[] = [
     id: 1,
     name: "LTC Quest",
     icon: "mdi-application-outline",
-    isActive: false,
+    isActive: true,
     url: ROUTE_PATH.ADMIN_LTC_QUEST,
   },
   { id: 2, name: "Kill Game", icon: "mdi-axe", isActive: true, url: ROUTE_PATH.ADMIN_KILL_GAME },
