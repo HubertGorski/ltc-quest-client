@@ -2,8 +2,10 @@
 import { TASK_STATUS, Task } from "@/models/Task";
 import { useWordStore } from "@/stores/wordStore";
 import { computed } from "vue";
+import { useSpaceStore } from '@/stores/spaceStore';
 
 const wordStore = useWordStore();
+const spaceStore = useSpaceStore();
 
 const props = defineProps({
   task: {
@@ -25,7 +27,7 @@ const infoIcon = computed(() => {
   };
   const isExpectancyIcon: infoIcon = {
     mdiText: "mdi-clock-time-eight",
-    color: "text-yellow-darken-1",
+    color: "text-yellow-darken-3",
     taskStatus: TASK_STATUS.EXPECTANCY,
   };
   return [isRejectedIcon, isConfirmedIcon, isExpectancyIcon].filter(
@@ -48,39 +50,22 @@ interface infoIcon {
 </script>
 
 <template>
-  <RouterLink
-    :to="{ path: `/tasks/${task.taskId}` }"
-    :class="[task.isDisabled ? 'text-grey-lighten-1' : 'text-grey-darken-3']"
-    class="task"
-  >
+  <RouterLink :to="{ path: `/tasks/${task.taskId}` }"
+    :class="[task.isDisabled ? 'text-grey-lighten-1' : 'text-grey-darken-3']" class="task">
     <div class="task_info">
       <div class="title">
-        <v-icon
-          v-if="infoIcon"
-          class="pb-1 mr-2"
-          :class="infoIcon.color"
-          size="20"
-          >{{ infoIcon.mdiText }}</v-icon
-        >
+        <v-icon v-if="infoIcon" class="pb-1 mr-2" :class="infoIcon.color" size="20">{{ infoIcon.mdiText }}</v-icon>
         <span> {{ task.title }}</span>
       </div>
-      <div
-        v-if="!task.isDone"
-        class="description"
-        :class="[
-          task.isDisabled ? 'text-grey-lighten-1' : 'text-grey-darken-2',
-        ]"
-      >
+      <div v-if="!task.isDone" class="description" :class="[
+        task.isDisabled ? 'text-grey-lighten-1' : 'text-grey-darken-2',
+      ]">
         {{ task.description }}
       </div>
-      <div class="pointsBars">
-        <div
-          v-for="teamPoints in task.teamsPoints"
-          :key="teamPoints.teamId"
-          class="pointsBars_bar"
+      <div v-if="spaceStore.isPointsBarsAvailable" class="pointsBars">
+        <div v-for="teamPoints in task.teamsPoints" :key="teamPoints.teamId" class="pointsBars_bar"
           :class="`bg-${wordStore.getTeamById(teamPoints.teamId)?.color}`"
-          :style="{ width: getPointsInPercentages(teamPoints.points) + '%' }"
-        ></div>
+          :style="{ width: getPointsInPercentages(teamPoints.points) + '%' }"></div>
       </div>
     </div>
     <div class="task_points">{{ task.points }}</div>
@@ -96,6 +81,7 @@ interface infoIcon {
   justify-content: space-between;
   text-decoration: none;
 }
+
 .task_points {
   padding: 8px;
   font-size: 18px;
@@ -103,13 +89,16 @@ interface infoIcon {
   justify-content: center;
   align-items: center;
 }
+
 .task_info {
   padding-left: 8px;
 }
+
 .title {
   font-size: 16px;
   font-weight: 600;
 }
+
 .description {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -118,9 +107,11 @@ interface infoIcon {
   text-overflow: ellipsis;
   white-space: normal;
 }
+
 .pointsBars {
   padding: 4px 0;
 }
+
 .pointsBars_bar {
   height: 2px;
   margin: 2px;
