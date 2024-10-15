@@ -13,11 +13,11 @@ export enum ROUTE_NAME {
   CONFIRM = "confirm",
   NO_ACCESS = "noAccess",
   ADMIN = "admin",
+  ADMIN_LTC_QUEST = "adminLtcQuest",
   ADMIN_KILL_GAME = "adminKillGame",
   ADMIN_ADD_CARDS_KILL_GAME = "adminAddCardsKillGame",
   FAQ = "faq",
   FAQ_KILL_GAME = "faqKillGame",
-  ADMIN_LTC_QUEST = "admin-ltc-quest",
 }
 
 export enum ROUTE_DICT {
