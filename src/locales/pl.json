@@ -174,5 +174,8 @@
       "manageApplicationModules": "Zarządzaj modułami aplikacji"
     }
   },
-  "empty": "puste"
+  "empty": "puste",
+  "ltcQuest": { 
+    "Show points bars" : "Pokaż słupki z punktami"
+  }
 }
