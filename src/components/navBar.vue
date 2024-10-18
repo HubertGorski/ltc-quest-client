@@ -6,7 +6,7 @@ import { useI18n } from "vue-i18n";
 import { hasAccess, privTypes } from "@/managers/permissionsManager";
 import { useUserStore } from "@/stores/userStore";
 import router from "@/router";
-import { ROUTE_DICT, ROUTE_PATH, ROUTE_NAME } from "@/router/routeEnums";
+import { ROUTE_OPTION, ROUTE_PATH, ROUTE_NAME } from "@/router/routeEnums";
 
 const { t } = useI18n();
 const userStore = useUserStore();
@@ -83,14 +83,14 @@ const backButton = computed(() => {
 });
 
 const menuOptions = [
-  { path: ROUTE_PATH.RANKING, label: ROUTE_DICT.RANKING, isVisible: true },
-  { path: ROUTE_PATH.TASKS, label: ROUTE_DICT.TASKS, isVisible: true },
-  { path: ROUTE_PATH.BINGO, label: ROUTE_DICT.BINGO, isVisible: true },
-  { path: ROUTE_PATH.KILL_GAME, label: ROUTE_DICT.KILL_GAME, isVisible: true },
-  { path: ROUTE_PATH.SETTINGS, label: ROUTE_DICT.SETTINGS, isVisible: true },
+  { path: ROUTE_PATH.RANKING, label: ROUTE_OPTION.RANKING, isVisible: true },
+  { path: ROUTE_PATH.TASKS, label: ROUTE_OPTION.TASKS, isVisible: true },
+  { path: ROUTE_PATH.BINGO, label: ROUTE_OPTION.BINGO, isVisible: true },
+  { path: ROUTE_PATH.KILL_GAME, label: ROUTE_OPTION.KILL_GAME, isVisible: true },
+  { path: ROUTE_PATH.SETTINGS, label: ROUTE_OPTION.SETTINGS, isVisible: true },
   {
     path: ROUTE_PATH.ADMIN,
-    label: ROUTE_DICT.ADMIN,
+    label: ROUTE_OPTION.ADMIN,
     isVisible: hasAccessToAdminPanel.value,
   },
 ];

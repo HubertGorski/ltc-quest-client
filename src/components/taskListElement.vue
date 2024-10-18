@@ -2,10 +2,10 @@
 import { TASK_STATUS, Task } from "@/models/Task";
 import { useWordStore } from "@/stores/wordStore";
 import { computed } from "vue";
-import { useSpaceStore } from '@/stores/spaceStore';
+import { useLtcQuestStore } from '@/stores/ltcQuestStore';
 
 const wordStore = useWordStore();
-const spaceStore = useSpaceStore();
+const ltcQuestStore = useLtcQuestStore();
 
 const props = defineProps({
   task: {
@@ -62,7 +62,7 @@ interface infoIcon {
       ]">
         {{ task.description }}
       </div>
-      <div v-if="spaceStore.isPointsBarsAvailable" class="pointsBars">
+      <div v-if="ltcQuestStore.isPointsBarsAvailable" class="pointsBars">
         <div v-for="teamPoints in task.teamsPoints" :key="teamPoints.teamId" class="pointsBars_bar"
           :class="`bg-${wordStore.getTeamById(teamPoints.teamId)?.color}`"
           :style="{ width: getPointsInPercentages(teamPoints.points) + '%' }"></div>
