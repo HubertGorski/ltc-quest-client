@@ -20,7 +20,7 @@ export enum ROUTE_NAME {
   FAQ_KILL_GAME = "faqKillGame",
 }
 
-export enum ROUTE_DICT {
+export enum ROUTE_OPTION {
   HOME = "router.home",
   PROFILE = "router.profile",
   TASKS = "router.tasks",
@@ -56,9 +56,9 @@ export enum ROUTE_PATH {
   CONFIRM = "/confirm",
   NO_ACCESS = "/noAccess",
   ADMIN = "/admin",
+  ADMIN_LTC_QUEST = "/admin/ltcQuest",
   ADMIN_KILL_GAME = "/admin/killGame",
   ADMIN_ADD_CARDS_KILL_GAME = "/admin/killGame/addCards",
   FAQ = "/faq",
   FAQ_KILL_GAME = "/faq/killGame",
-  ADMIN_LTC_QUEST = "/admin/ltc-quest",
 }
