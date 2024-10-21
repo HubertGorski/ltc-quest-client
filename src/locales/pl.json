@@ -176,6 +176,6 @@
   },
   "empty": "puste",
   "ltcQuest": { 
-    "Show points bars" : "Pokaż słupki z punktami"
+    "showPointsBars" : "Pokaż słupki z punktami"
   }
 }

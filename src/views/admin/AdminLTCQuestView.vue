@@ -5,6 +5,6 @@ const ltcQuestStore = useLtcQuestStore();
 </script>
 
 <template>
-    <v-switch v-model="ltcQuestStore.isPointsBarsAvailable" :label="$t('Show points bars')" color="primary">
+    <v-switch v-model="ltcQuestStore.isPointsBarsAvailable" :label="$t('ltcQuest.showPointsBars')" color="primary">
     </v-switch>
 </template>
